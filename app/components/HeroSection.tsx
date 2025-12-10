@@ -228,29 +228,29 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
             >
-              <span className="block mb-2">Turn Your Medical Knowledge</span>
-              <span className="block flex items-center justify-center gap-3">
-                <span>Into</span>
-                <span className="relative inline-block min-w-[280px] md:min-w-[400px] text-center">
+              <span className="block mb-4 text-white">Turn Your Medical Knowledge</span>
+              <span className="block">
+                <span className="text-white">Into </span>
+                <span className="relative inline-block min-w-[320px] md:min-w-[480px] lg:min-w-[600px] h-[1.2em] align-middle">
                   <AnimatePresence mode="wait">
                     <motion.span
-                      key={influenceWords[activeWord].text}
-                      initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
+                      key={activeWord}
+                      initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
                       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                      exit={{ opacity: 0, y: -30, filter: "blur(10px)" }}
+                      exit={{ opacity: 0, y: -40, filter: "blur(8px)" }}
                       transition={{ 
-                        duration: 0.8, 
+                        duration: 0.7, 
                         ease: [0.22, 1, 0.36, 1] 
                       }}
-                      className={`absolute inset-0 bg-gradient-to-r ${influenceWords[activeWord].color} bg-clip-text text-transparent`}
+                      className={`absolute left-0 right-0 top-0 bg-gradient-to-r ${influenceWords[activeWord].color} bg-clip-text text-transparent`}
                     >
                       {influenceWords[activeWord].text}
                     </motion.span>
                   </AnimatePresence>
                 </span>
-                <span>.</span>
+                <span className="text-white">.</span>
               </span>
             </motion.h2>
 
@@ -259,18 +259,19 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-lg md:text-xl lg:text-2xl text-gray-400 mb-4 max-w-4xl mx-auto leading-relaxed px-4"
+              className="text-lg md:text-xl lg:text-2xl mb-4 max-w-4xl mx-auto leading-relaxed px-4"
             >
               <motion.span
                 animate={{ 
                   backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  scale: [1, 1.02, 1],
                 }}
                 transition={{
-                  duration: 8,
+                  duration: 6,
                   repeat: Infinity,
-                  ease: "linear"
+                  ease: "easeInOut"
                 }}
-                className="bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent bg-[length:200%_auto]"
+                className="inline-block bg-gradient-to-r from-gray-500 via-white to-gray-500 bg-clip-text text-transparent bg-[length:200%_auto]"
               >
                 CreatorMD helps medics create clear, credible health content, build digital authority, and open new opportunities — without burnout or confusion.
               </motion.span>
