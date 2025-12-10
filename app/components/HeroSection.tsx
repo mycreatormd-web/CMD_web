@@ -12,18 +12,13 @@ const HeroSection = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const heroWords = [
-    { text: "Authority", color: "text-blue-500" },
-    { text: "Opportunities", color: "text-emerald-500" },
-    { text: "Impact", color: "text-purple-500" },
-    { text: "Influence", color: "text-rose-500" }
-  ];
-
-  const rotatingTexts = [
-    "without confusion",
-    "without burnout",
-    "with clarity",
-    "with confidence"
+  const influenceWords = [
+    { text: "Influence", color: "from-blue-400 via-emerald-400 to-cyan-400" },
+    { text: "Impact", color: "from-purple-400 via-pink-400 to-rose-400" },
+    { text: "Opportunity", color: "from-emerald-400 via-teal-400 to-cyan-400" },
+    { text: "Presence", color: "from-blue-400 via-indigo-400 to-purple-400" },
+    { text: "Leadership", color: "from-amber-400 via-orange-400 to-red-400" },
+    { text: "Meaningful Reach", color: "from-cyan-400 via-blue-400 to-indigo-400" }
   ];
 
   // Particle system
@@ -49,8 +44,8 @@ const HeroSection = () => {
   // Word rotation effect
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveWord((prev) => (prev + 1) % heroWords.length);
-    }, 2000);
+      setActiveWord((prev) => (prev + 1) % influenceWords.length);
+    }, 3000);
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -127,7 +122,7 @@ const HeroSection = () => {
   return (
     <div 
       ref={containerRef}
-      className="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900"
+      className="relative min-h-screen overflow-hidden bg-gradient-to-br from-black via-gray-950 to-black"
     >
       {/* Animated Background Canvas */}
       <canvas
@@ -136,11 +131,11 @@ const HeroSection = () => {
       />
       
       {/* Floating Particles */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 opacity-30">
         {particles.map((particle) => (
           <motion.div
             key={particle.id}
-            className="absolute rounded-full bg-blue-400"
+            className="absolute rounded-full bg-gradient-to-br from-blue-400 to-cyan-400 blur-[1px]"
             style={{
               left: particle.x,
               top: particle.y,
@@ -148,20 +143,22 @@ const HeroSection = () => {
               height: particle.size,
             }}
             animate={{
-              y: [0, -20, 0],
-              x: [0, Math.sin(particle.id) * 10, 0],
+              y: [0, -30, 0],
+              x: [0, Math.sin(particle.id) * 15, 0],
+              opacity: [0.3, 0.6, 0.3],
             }}
             transition={{
-              duration: 2 + particle.id * 0.1,
+              duration: 4 + particle.id * 0.2,
               repeat: Infinity,
               ease: "easeInOut",
+              repeatType: "mirror",
             }}
           />
         ))}
       </div>
 
       {/* Animated Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_70%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
 
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-4 pt-32 pb-16">
@@ -170,25 +167,43 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center justify-center gap-3 mb-8"
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="flex items-center justify-center gap-3 mb-12"
           >
             <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              animate={{ 
+                rotate: 360,
+              }}
+              transition={{ 
+                duration: 25, 
+                repeat: Infinity, 
+                ease: "linear" 
+              }}
             >
-              <Brain className="w-10 h-10 text-blue-400" />
+              <Brain className="w-12 h-12 text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
             </motion.div>
-            <div className="flex items-baseline">
-              <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
+            <div className="flex items-baseline gap-1">
+              <motion.h1 
+                className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 via-blue-300 to-emerald-400 bg-clip-text text-transparent"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              >
                 Creator
-              </h1>
-              <span className="text-5xl font-bold text-white">MD</span>
+              </motion.h1>
+              <motion.span 
+                className="text-5xl md:text-6xl font-bold text-white"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              >
+                MD
+              </motion.span>
               <motion.span
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.5 }}
-                className="ml-2 text-xs font-semibold bg-gradient-to-r from-purple-600 to-pink-600 text-white px-2 py-1 rounded-full"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.6, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className="ml-2 text-xs font-semibold bg-gradient-to-r from-purple-600 to-pink-600 text-white px-2 py-1 rounded-full shadow-lg"
               >
                 ™️
               </motion.span>
@@ -199,51 +214,65 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-center mb-6"
+            transition={{ delay: 0.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="text-center mb-10"
           >
-            <span className="inline-block px-4 py-2 bg-blue-900/50 backdrop-blur-sm rounded-full border border-blue-700/50 text-blue-300 text-sm font-medium mb-4">
-              Medical Content Acceleration System
+            <span className="inline-block px-6 py-2.5 bg-gradient-to-r from-blue-950/50 to-emerald-950/50 backdrop-blur-md rounded-full border border-blue-800/20 text-blue-300 text-sm font-medium shadow-lg">
+              Built by medics, for medics.
             </span>
           </motion.div>
 
           {/* Main Headline */}
-          <div className="text-center mb-8">
-            <h2 className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              Turn medical knowledge into
-              <br />
-              <div className="relative inline-block h-28 md:h-32 overflow-hidden">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={activeWord}
-                    initial={{ y: 50, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -50, opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className={`absolute left-0 right-0 ${heroWords[activeWord].color}`}
-                  >
-                    {heroWords[activeWord].text}
-                  </motion.span>
-                </AnimatePresence>
-              </div>
-            </h2>
+          <div className="text-center mb-12">
+            <motion.h2 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight"
+            >
+              <span className="block mb-2">Turn Your Medical Knowledge</span>
+              <span className="block flex items-center justify-center gap-3">
+                <span>Into</span>
+                <span className="relative inline-block min-w-[280px] md:min-w-[400px] text-center">
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={influenceWords[activeWord].text}
+                      initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
+                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                      exit={{ opacity: 0, y: -30, filter: "blur(10px)" }}
+                      transition={{ 
+                        duration: 0.8, 
+                        ease: [0.22, 1, 0.36, 1] 
+                      }}
+                      className={`absolute inset-0 bg-gradient-to-r ${influenceWords[activeWord].color} bg-clip-text text-transparent`}
+                    >
+                      {influenceWords[activeWord].text}
+                    </motion.span>
+                  </AnimatePresence>
+                </span>
+                <span>.</span>
+              </span>
+            </motion.h2>
 
             {/* Animated Subheading */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="text-2xl md:text-3xl text-gray-300 mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              className="text-lg md:text-xl lg:text-2xl text-gray-400 mb-4 max-w-4xl mx-auto leading-relaxed px-4"
             >
-              <span className="font-medium">Create impactful content </span>
               <motion.span
-                key={rotatingTexts[activeWord % rotatingTexts.length]}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="inline-block font-bold text-emerald-400"
+                animate={{ 
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+                className="bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent bg-[length:200%_auto]"
               >
-                {rotatingTexts[activeWord % rotatingTexts.length]}
+                CreatorMD helps medics create clear, credible health content, build digital authority, and open new opportunities — without burnout or confusion.
               </motion.span>
             </motion.div>
           </div>
@@ -252,8 +281,8 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-3xl mx-auto"
+            transition={{ delay: 1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 max-w-3xl mx-auto px-4"
           >
             {[
               { label: "Trained Medics", value: "500+", icon: Sparkles },
@@ -263,14 +292,25 @@ const HeroSection = () => {
             ].map((stat, index) => (
               <motion.div
                 key={index}
-                whileHover={{ scale: 1.05 }}
-                className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  delay: 1.1 + index * 0.1, 
+                  duration: 0.8, 
+                  ease: [0.22, 1, 0.36, 1] 
+                }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -8,
+                  transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } 
+                }}
+                className="group bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-md rounded-2xl p-5 border border-white/5 hover:border-blue-500/30 transition-all duration-300 shadow-xl hover:shadow-blue-500/10"
               >
                 <div className="flex items-center justify-center gap-2 mb-2">
-                  <stat.icon className="w-5 h-5 text-blue-400" />
-                  <div className="text-3xl font-bold text-white">{stat.value}</div>
+                  <stat.icon className="w-5 h-5 text-blue-400 group-hover:text-blue-300 transition-colors" />
+                  <div className="text-3xl font-bold text-white group-hover:scale-110 transition-transform duration-300">{stat.value}</div>
                 </div>
-                <div className="text-sm text-gray-400 text-center">{stat.label}</div>
+                <div className="text-sm text-gray-500 group-hover:text-gray-400 text-center transition-colors">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -279,33 +319,43 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
+            transition={{ delay: 1.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20 px-4"
           >
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-bold rounded-xl text-lg shadow-2xl overflow-hidden"
+              whileHover={{ 
+                scale: 1.05, 
+                boxShadow: "0 20px 60px rgba(59, 130, 246, 0.4)",
+                transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } 
+              }}
+              whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
+              className="group relative px-10 py-4 bg-gradient-to-r from-blue-600 via-blue-500 to-emerald-600 text-white font-bold rounded-2xl text-lg shadow-2xl overflow-hidden ring-2 ring-blue-400/20 hover:ring-blue-400/40 transition-all"
             >
               <span className="relative z-10 flex items-center gap-2">
                 Join Waitlist 
-                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </span>
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-blue-600"
+                className="absolute inset-0 bg-gradient-to-r from-emerald-600 via-emerald-500 to-blue-600"
                 initial={{ x: "-100%" }}
                 whileHover={{ x: 0 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               />
+              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.button>
 
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ 
+                scale: 1.05,
+                borderColor: "rgba(255, 255, 255, 0.3)",
+                backgroundColor: "rgba(255, 255, 255, 0.15)",
+                transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } 
+              }}
+              whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
               onClick={() => setVideoPlaying(true)}
-              className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-bold rounded-xl text-lg border border-white/20 hover:bg-white/20 transition-colors flex items-center gap-3"
+              className="group px-10 py-4 bg-white/5 backdrop-blur-md text-white font-bold rounded-2xl text-lg border border-white/10 transition-all flex items-center gap-3 shadow-lg hover:shadow-white/10"
             >
-              <Play className="w-5 h-5" />
+              <Play className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
               Watch Intro
             </motion.button>
           </motion.div>
@@ -313,10 +363,10 @@ const HeroSection = () => {
           {/* Scroll Indicator */}
           <motion.div
             animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
             className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
           >
-            <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+            <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center">
               <div className="w-1 h-3 bg-blue-400 rounded-full mt-2" />
             </div>
           </motion.div>
@@ -330,17 +380,19 @@ const HeroSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md"
             onClick={() => setVideoPlaying(false)}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
               className="relative w-full max-w-4xl mx-4"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="aspect-video bg-gray-900 rounded-xl overflow-hidden">
+              <div className="aspect-video bg-black rounded-xl overflow-hidden border border-white/10">
                 {/* Placeholder for video - replace with actual video component */}
                 <div className="w-full h-full flex items-center justify-center">
                   <div className="text-center">
@@ -351,7 +403,7 @@ const HeroSection = () => {
               </div>
               <button
                 onClick={() => setVideoPlaying(false)}
-                className="absolute -top-12 right-0 text-white hover:text-gray-300"
+                className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
               >
                 Close
               </button>
@@ -361,16 +413,16 @@ const HeroSection = () => {
       </AnimatePresence>
 
       {/* Pulse Effect */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px]">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] pointer-events-none">
         <motion.div
-          className="absolute inset-0 rounded-full border border-blue-400/20"
-          animate={{ scale: [1, 1.5, 2], opacity: [0.5, 0.2, 0] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+          className="absolute inset-0 rounded-full border border-blue-500/10"
+          animate={{ scale: [1, 1.5, 2], opacity: [0.3, 0.15, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute inset-0 rounded-full border border-emerald-400/20"
-          animate={{ scale: [1, 1.8, 2.3], opacity: [0.5, 0.2, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "linear", delay: 1 }}
+          className="absolute inset-0 rounded-full border border-emerald-500/10"
+          animate={{ scale: [1, 1.8, 2.3], opacity: [0.3, 0.15, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
         />
       </div>
     </div>
