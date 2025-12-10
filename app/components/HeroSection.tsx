@@ -52,6 +52,7 @@ const HeroSection = () => {
       setActiveWord((prev) => (prev + 1) % heroWords.length);
     }, 2000);
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Canvas animation

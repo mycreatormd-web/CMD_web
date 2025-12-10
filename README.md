@@ -2,25 +2,48 @@
 
 A Next.js website for CreatorMD - Medical Content Acceleration System.
 
-## Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
 
-Make sure you have Node.js installed on your system. You can download it from [nodejs.org](https://nodejs.org/).
+- Node.js 18+ ([Download here](https://nodejs.org/))
+- npm 9+ (comes with Node.js)
 
-### Installation
+### Installation & Running
 
-1. Install dependencies:
 ```bash
+# Install dependencies
 npm install
-```
 
-2. Run the development server:
-```bash
+# Run development server
 npm run dev
 ```
 
-3. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the site.
+
+## 📦 Deployment
+
+### Deploy to Netlify (Recommended)
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start)
+
+**Simple Steps:**
+1. Push code to GitHub
+2. Connect repository to Netlify
+3. Deploy automatically detects settings
+4. Done! ✨
+
+**See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions.**
+
+### Build for Production
+
+```bash
+# Build the project
+npm run build
+
+# Test production build locally
+npm start
+```
 
 ## Project Structure
 
