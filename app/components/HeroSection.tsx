@@ -121,7 +121,7 @@ const HeroSection = () => {
   return (
     <div 
       ref={containerRef}
-      className="relative min-h-screen overflow-hidden bg-gradient-to-br from-black via-gray-950 to-black"
+      className="relative h-screen overflow-hidden bg-gradient-to-br from-black via-gray-950 to-black"
     >
       {/* Animated Background Canvas */}
       <canvas
@@ -160,14 +160,14 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
 
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-4 pt-32 pb-16">
+      <div className="relative z-10 container mx-auto px-4 py-8 md:py-12 h-full flex flex-col justify-center">
         <div className="max-w-7xl mx-auto">
           {/* Animated Logo Intro */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex items-center justify-center gap-2 md:gap-3 mb-8 md:mb-12 px-4"
+            className="flex items-center justify-center gap-2 md:gap-3 mb-4 md:mb-6 px-4"
           >
             <motion.div
               animate={{ 
@@ -214,7 +214,7 @@ const HeroSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-6 md:mb-10 px-4"
+            className="text-center mb-4 md:mb-6 px-4"
           >
             <span className="inline-block px-4 py-2 md:px-6 md:py-2.5 bg-gradient-to-r from-blue-950/50 to-emerald-950/50 backdrop-blur-md rounded-full border border-blue-800/20 text-blue-300 text-xs sm:text-sm font-medium shadow-lg">
               Built by medics, for medics.
@@ -222,16 +222,23 @@ const HeroSection = () => {
           </motion.div>
 
           {/* Main Headline */}
-          <div className="text-center mb-12 px-4">
+          <div className="text-center mb-6 md:mb-8 px-4">
             <motion.h2 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.2]"
             >
-              <span className="block mb-3 md:mb-4 text-white">Turn Your Medical Knowledge</span>
-              <span className="flex flex-wrap items-center justify-center gap-2 md:gap-3">
-                <span className="text-white">Into</span>
+              {/* Mobile: 3 lines */}
+              <span className="block md:hidden text-white">Turn Your Medical</span>
+              <span className="block md:hidden text-white">Knowledge Into</span>
+              
+              {/* Desktop: 2 lines */}
+              <span className="hidden md:block text-white">Turn Your Medical Knowledge</span>
+              
+              {/* Changing word line */}
+              <span className="flex items-center justify-center gap-2 md:gap-3">
+                <span className="hidden md:inline text-white">Into</span>
                 <span className="relative inline-block h-[1.2em]">
                   <AnimatePresence mode="wait">
                     <motion.span
@@ -258,7 +265,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 max-w-4xl mx-auto leading-relaxed px-4 md:px-6"
+              className="text-sm sm:text-base md:text-lg lg:text-xl mb-4 md:mb-6 max-w-3xl mx-auto leading-relaxed px-4 md:px-6"
             >
               <span className="text-gray-300">
                 CreatorMD helps medics create <span className="font-semibold text-white">clear, credible health content</span>, build <span className="font-semibold text-blue-300">digital authority</span>, and open <span className="font-semibold text-emerald-300">new opportunities</span> — without burnout or confusion.
@@ -271,10 +278,10 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-12 md:mb-16 max-w-3xl mx-auto px-4"
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6 md:mb-8 max-w-3xl mx-auto px-4"
           >
             {[
-              { label: "Trained Medics", value: "500+", icon: Sparkles },
+              { label: "Trained Medics", value: "600+", icon: Sparkles },
               { label: "Countries", value: "25+", icon: Target },
               { label: "Content Hours", value: "10K+", icon: Zap },
               { label: "Success Rate", value: "98%", icon: Play },
@@ -309,7 +316,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-stretch sm:items-center mb-16 md:mb-20 px-4"
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-stretch sm:items-center px-4"
           >
             <motion.button
               whileHover={{ 
