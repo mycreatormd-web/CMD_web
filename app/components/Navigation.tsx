@@ -82,9 +82,8 @@ const Navigation = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05, duration: 0.3 }}
                   className="px-4 py-2 text-gray-300 hover:text-white transition-colors duration-200 relative group"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.15 }}
+                  whileHover={{ scale: 1.05, transition: { duration: 0.15 } }}
+                  whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
                 >
                   {item.label}
                   <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 to-emerald-400 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-200 ease-out" />
