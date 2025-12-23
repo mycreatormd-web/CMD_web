@@ -527,7 +527,7 @@ const About = () => {
         </motion.div>
 
         {/* Meet The Founder - Redesigned Dropdown */}
-        <div id="founder" className="relative py-20">
+        <div id="founder" className="relative py-4 mt-8">
           <FounderDropdown />
         </div>
 

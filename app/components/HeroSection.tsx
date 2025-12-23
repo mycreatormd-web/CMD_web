@@ -239,13 +239,13 @@ const HeroSection = () => {
               {/* Changing word line */}
               <span className="flex items-center justify-center gap-2 md:gap-3">
                 <span className="hidden md:inline text-white">Into</span>
-                <span className="relative inline-block h-[1.2em]">
+                <span className="relative inline-block min-h-[1.2em] flex items-center">
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={activeWord}
-                      initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+                      initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
                       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                      exit={{ opacity: 0, y: -40, filter: "blur(8px)" }}
+                      exit={{ opacity: 0, y: -20, filter: "blur(8px)" }}
                       transition={{ 
                         duration: 0.7, 
                         ease: [0.22, 1, 0.36, 1] 
@@ -256,7 +256,7 @@ const HeroSection = () => {
                     </motion.span>
                   </AnimatePresence>
                 </span>
-                <span className="text-white">.</span>
+                <span className="text-white ml-1">.</span>
               </span>
             </motion.h2>
 
