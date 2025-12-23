@@ -43,6 +43,19 @@ const FounderDropdown = () => {
   });
 
   useEffect(() => {
+    // Lock/unlock body scroll when modal opens/closes
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
     const handleScroll = () => {
       if (contentRef.current) {
         const scrollHeight = contentRef.current.scrollHeight - contentRef.current.clientHeight;
@@ -326,7 +339,7 @@ const FounderDropdown = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 backdrop-blur-md bg-black/40 z-40 cursor-pointer"
+              className="fixed inset-0 backdrop-blur-md bg-black/40 z-[60] cursor-pointer"
               transition={{ duration: 0.3 }}
             />
             
@@ -352,11 +365,11 @@ const FounderDropdown = () => {
                 ease: [0.22, 1, 0.36, 1]
               }}
               onClick={(e) => e.stopPropagation()}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4"
+              className="fixed inset-0 z-[70] flex items-center justify-center p-4"
             >
               {/* Centered Modal Box with Enhanced Styling */}
               <motion.div 
-                className="w-full max-w-3xl max-h-[85vh] bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-gray-100"
+                className="w-full max-w-3xl md:max-w-3xl sm:max-w-lg max-h-[85vh] bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-gray-100"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15, duration: 0.4 }}
@@ -377,9 +390,9 @@ const FounderDropdown = () => {
                       </motion.h3>
                       <button
                         onClick={() => setIsOpen(false)}
-                        className="p-1.5 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-gray-700 transition-colors"
+                        className="p-2.5 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-gray-700 transition-colors"
                       >
-                        <X className="w-4 h-4" />
+                        <X className="w-5 h-5" />
                       </button>
                     </div>
                     
