@@ -15,7 +15,7 @@ export const programs: ProgramsData = {
         'Ut labore et dolore magna aliqua'
       ],
       icon: 'Zap',
-      color: 'from-blue-500 to-cyan-500',
+      color: 'from-red-500 to-purple-500',
       status: 'available',
       duration: '8 weeks',
       level: 'Intermediate',
@@ -34,7 +34,7 @@ export const programs: ProgramsData = {
         'Ut labore et dolore magna aliqua'
       ],
       icon: 'BookOpen',
-      color: 'from-emerald-500 to-teal-500',
+      color: 'from-purple-500 to-red-500',
       status: 'available',
       duration: 'Self-paced',
       level: 'Beginner',
@@ -45,7 +45,7 @@ export const programs: ProgramsData = {
     {
       id: 'digital-courses',
       slug: 'digital-courses',
-      title: '1️⃣ Digital Courses (Self-paced)',
+      title: 'Digital Courses (Self-paced)',
       shortDescription: 'Self-paced learning designed for medics who want to master content creation, branding, and monetization.',
       fullDescription: 'Comprehensive self-paced courses covering everything from content creation to monetization. Includes CreatorMD Accelerator, Content Creation for Busy Medics, Branding for Medics 101, Monetization for Medics, Health Communication Mastery, and Smartphone Video Mastery for Medics.',
       benefits: [
@@ -64,7 +64,7 @@ export const programs: ProgramsData = {
     {
       id: 'live-training',
       slug: 'live-training',
-      title: '2️⃣ Live Training & Workshops',
+      title: 'Live Training & Workshops',
       shortDescription: 'Short, powerful, and interactive training sessions tailored for healthcare professionals.',
       fullDescription: 'Dynamic live workshops ranging from 3-hour sessions to full weekend bootcamps. Available as public workshops or custom corporate requests for hospitals and healthcare organizations.',
       benefits: [
@@ -84,7 +84,7 @@ export const programs: ProgramsData = {
     {
       id: 'coaching-programs',
       slug: 'coaching-programs',
-      title: '3️⃣ CreatorMD Coaching Programs',
+      title: 'CreatorMD Coaching Programs',
       shortDescription: 'Transformational, step-by-step coaching with personalized guidance and accountability.',
       fullDescription: 'Transformational coaching programs designed to accelerate your creator journey. Get daily guidance, templates, assignments, and personalized mentorship from CreatorMD experts.',
       benefits: [
@@ -102,7 +102,7 @@ export const programs: ProgramsData = {
     {
       id: 'done-with-you',
       slug: 'done-with-you',
-      title: '4️⃣ Done-With-You Services (CreatorMD Challenge)',
+      title: 'Done-With-You Services (CreatorMD Challenge)',
       shortDescription: 'You guide them, they execute with your supervision and expert feedback.',
       fullDescription: 'Done-With-You services where CreatorMD guides you through the process and you execute with professional supervision and ongoing feedback.',
       benefits: [
@@ -120,7 +120,7 @@ export const programs: ProgramsData = {
     {
       id: 'done-for-you',
       slug: 'done-for-you',
-      title: '5️⃣ Done-For-You Services (Premium)',
+      title: 'Done-For-You Services (Premium)',
       shortDescription: 'CreatorMD becomes your content arm with high-ticket premium solutions.',
       fullDescription: 'Premium done-for-you services where CreatorMD handles everything. We become your content creation and strategy partner.',
       benefits: [
@@ -139,7 +139,7 @@ export const programs: ProgramsData = {
     {
       id: 'community',
       slug: 'community',
-      title: '6️⃣ CreatorMD Community (Membership)',
+      title: 'CreatorMD Community (Membership)',
       shortDescription: 'A subscription-based support hub with weekly classes, challenges, and global accountability.',
       fullDescription: 'Join a thriving global community of medical professionals committed to building their content authority. Get ongoing support, resources, and accountability.',
       benefits: [
@@ -158,7 +158,7 @@ export const programs: ProgramsData = {
     {
       id: 'digital-products',
       slug: 'digital-products',
-      title: '7️⃣ CreatorMD Templates & Digital Products',
+      title: 'CreatorMD Templates & Digital Products',
       shortDescription: 'Fast, affordable digital downloads for immediate implementation.',
       fullDescription: 'Affordable digital products designed to accelerate your content creation. Ready-to-use templates, frameworks, and resource packs.',
       benefits: [
@@ -178,7 +178,7 @@ export const programs: ProgramsData = {
     {
       id: 'events',
       slug: 'events',
-      title: '8️⃣ CreatorMD Events',
+      title: 'CreatorMD Events',
       shortDescription: 'Building a brand that brings medical creators together for learning and networking.',
       fullDescription: 'In-person and virtual events designed to bring the CreatorMD community together and accelerate connections.',
       benefits: [
@@ -196,7 +196,7 @@ export const programs: ProgramsData = {
     {
       id: 'corporate',
       slug: 'corporate',
-      title: '9️⃣ Corporate & Hospital Partnerships',
+      title: 'Corporate & Hospital Partnerships',
       shortDescription: 'Where the real impact happens - training hospitals and healthcare organizations.',
       fullDescription: 'Specialized solutions for hospitals, clinics, and healthcare organizations looking to improve their digital communication and content strategy.',
       benefits: [
@@ -215,7 +215,7 @@ export const programs: ProgramsData = {
     {
       id: 'agency',
       slug: 'agency',
-      title: '🔟 CreatorMD Agency (Future)',
+      title: 'CreatorMD Agency (Future)',
       shortDescription: 'Full-service done-for-you agency for hospitals, clinics, startups, and health brands.',
       fullDescription: 'A complete creative agency dedicated to healthcare. We handle everything from content creation to strategy to execution.',
       benefits: [

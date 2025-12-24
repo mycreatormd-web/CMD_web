@@ -64,10 +64,10 @@ const Navigation = () => {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               >
-                <Brain className="w-8 h-8 text-blue-400 drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+                <Brain className="w-8 h-8 text-red-400 drop-shadow-[0_0_10px_rgba(220,38,38,0.5)]" />
               </motion.div>
               <div className="flex items-baseline gap-0.5">
-                <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-400 via-blue-300 to-emerald-400 bg-clip-text text-transparent">
+                <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-red-400 via-red-300 to-purple-400 bg-clip-text text-transparent">
                   Creator
                 </span>
                 <span className="text-xl md:text-2xl font-bold text-white">MD</span>
@@ -92,7 +92,7 @@ const Navigation = () => {
                   whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
                 >
                   {item.label}
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 to-emerald-400 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-200 ease-out" />
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-red-400 to-purple-400 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-200 ease-out" />
                 </motion.a>
               ))}
               
@@ -111,7 +111,7 @@ const Navigation = () => {
                   boxShadow: "0 10px 40px rgba(59, 130, 246, 0.4)"
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="ml-4 px-6 py-2.5 bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-semibold rounded-full shadow-lg hover:shadow-blue-500/50 transition-shadow"
+                className="ml-4 px-6 py-2.5 bg-gradient-to-r from-red-600 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:shadow-red-500/50 transition-shadow"
               >
                 Join the Community
               </motion.a>
@@ -119,7 +119,7 @@ const Navigation = () => {
 
             {/* Mobile Menu Button */}
             <motion.button
-              className="lg:hidden p-2 text-white hover:text-blue-400 transition-colors"
+              className="lg:hidden p-2 text-white hover:text-red-400 transition-colors"
               onClick={() => setIsOpen(!isOpen)}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -179,9 +179,9 @@ const Navigation = () => {
                 {/* Mobile Menu Header */}
                 <div className="flex items-center justify-between mb-8">
                   <div className="flex items-center gap-2">
-                    <Brain className="w-6 h-6 text-blue-400" />
+                    <Brain className="w-6 h-6 text-red-400" />
                     <span className="text-lg font-bold">
-                      <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">Creator</span>
+                      <span className="bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent">Creator</span>
                       <span className="text-white">MD</span>
                     </span>
                   </div>
@@ -214,7 +214,7 @@ const Navigation = () => {
                         <motion.span
                           initial={{ x: -5, opacity: 0 }}
                           whileHover={{ x: 0, opacity: 1 }}
-                          className="text-blue-400"
+                          className="text-red-400"
                         >
                           →
                         </motion.span>
@@ -232,7 +232,7 @@ const Navigation = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6, duration: 0.3 }}
-                    className="block mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-semibold rounded-full text-center shadow-lg hover:shadow-blue-500/50 transition-shadow"
+                    className="block mt-6 px-6 py-3 bg-gradient-to-r from-red-600 to-purple-600 text-white font-semibold rounded-full text-center shadow-lg hover:shadow-red-500/50 transition-shadow"
                     whileTap={{ scale: 0.98 }}
                   >
                     Join the Community

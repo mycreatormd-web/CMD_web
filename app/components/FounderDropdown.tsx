@@ -13,19 +13,19 @@ const chapters = [
   {
     id: 1,
     title: "The Struggle",
-    color: "from-blue-500 to-cyan-500",
+    color: "from-red-500 to-purple-500",
     icon: "📖"
   },
   {
     id: 2,
     title: "The Awakening",
-    color: "from-emerald-500 to-teal-500",
+    color: "from-purple-500 to-red-500",
     icon: "💡"
   },
   {
     id: 3,
     title: "The Invitation",
-    color: "from-blue-600 to-emerald-600",
+    color: "from-red-600 to-purple-600",
     icon: "🚀"
   }
 ];
@@ -121,13 +121,13 @@ const FounderDropdown = () => {
         <div className="absolute inset-0 rounded-4xl overflow-hidden">
           <motion.div 
             style={{ y: y1 }}
-            className="absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-emerald-400/20 rounded-full blur-3xl"
+            className="absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-br from-red-400/20 to-purple-400/20 rounded-full blur-3xl"
           />
           <motion.div 
             style={{ y: y2 }}
             className="absolute -bottom-40 -right-40 w-80 h-80 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/50 to-emerald-50/30 rounded-4xl" />
+          <div className="absolute inset-0 bg-gradient-to-br from-white via-red-50/50 to-purple-50/30 rounded-4xl" />
           <div className="absolute inset-0 border-2 border-white/50 rounded-4xl" />
         </div>
 
@@ -141,11 +141,11 @@ const FounderDropdown = () => {
               viewport={{ once: true }}
               className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 relative inline-block leading-tight"
             >
-              <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-purple-600 via-red-600 to-black bg-clip-text text-transparent">
                 Meet The Founder
               </span>
               <motion.span
-                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full"
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-purple-400 to-black rounded-full"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
@@ -173,11 +173,11 @@ const FounderDropdown = () => {
                       className="relative"
                     >
                       {/* Outer Glow */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-emerald-400 rounded-3xl blur-2xl opacity-30" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-red-400 to-purple-400 rounded-3xl blur-2xl opacity-30" />
                       
                       {/* Portrait Container */}
                       <div className="relative bg-white rounded-2xl p-3 shadow-2xl">
-                        <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-blue-50 to-emerald-50">
+                        <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-red-50 to-purple-50">
 
                           {/* Portrait - Image or Placeholder */}
                           <div className="w-full h-full flex items-center justify-center">
@@ -185,7 +185,7 @@ const FounderDropdown = () => {
                               <motion.div
                                 animate={{ scale: [1, 1.02, 1] }}
                                 transition={{ duration: 4, repeat: Infinity }}
-                                className="w-32 md:w-40 h-32 md:h-40 rounded-full bg-gradient-to-br from-blue-100 to-emerald-100 border-4 md:border-6 border-white shadow-2xl flex items-center justify-center overflow-hidden"
+                                className="w-32 md:w-40 h-32 md:h-40 rounded-full bg-gradient-to-br from-red-100 to-purple-100 border-4 md:border-6 border-white shadow-2xl flex items-center justify-center overflow-hidden"
                               >
                                 <img src="/founder-image.jpg" alt="Dr. Valerie Okorie" className="w-full h-full object-cover" />
                               </motion.div>
@@ -194,7 +194,7 @@ const FounderDropdown = () => {
                               <motion.div
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                                className="absolute inset-0 rounded-full border-4 border-transparent border-t-blue-400 border-r-emerald-400"
+                                className="absolute inset-0 rounded-full border-4 border-transparent border-t-red-400 border-r-purple-400"
                               />
                             </div>
                           </div>
@@ -205,8 +205,8 @@ const FounderDropdown = () => {
                     {/* Badges */}
                     <div className="flex justify-center gap-2 mt-3 md:mt-4 flex-wrap px-2">
                       {[
-                        { text: "MD", color: "bg-blue-500" },
-                        { text: "Creator", color: "bg-emerald-500" },
+                        { text: "MD", color: "bg-red-500" },
+                        { text: "Creator", color: "bg-purple-500" },
                         { text: "Founder", color: "bg-purple-500" },
                       ].map((badge, idx) => (
                         <motion.div
@@ -238,7 +238,7 @@ const FounderDropdown = () => {
                         Doctor • Creator • Founder
                       </p>
                       
-                      <div className="bg-gradient-to-r from-blue-50 to-emerald-50 rounded-lg p-2 sm:p-2.5 md:p-3 border-l-4 border-blue-500 mb-3">
+                      <div className="bg-gradient-to-r from-red-50 to-purple-50 rounded-lg p-2 sm:p-2.5 md:p-3 border-l-4 border-red-500 mb-3">
                         <p className="text-xs sm:text-sm text-gray-900 font-semibold leading-relaxed">
                           "From confusion to clarity—this is why CreatorMD exists."
                         </p>
@@ -254,7 +254,7 @@ const FounderDropdown = () => {
                         className={`w-full px-3 sm:px-4 py-2 rounded-lg font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all ${
                           isOpen 
                             ? 'bg-gradient-to-r from-gray-900 to-gray-700 text-white shadow-2xl' 
-                            : 'bg-gradient-to-r from-blue-600 via-emerald-600 to-cyan-600 text-white shadow-2xl hover:shadow-3xl'
+                            : 'bg-gradient-to-r from-red-600 via-purple-600 to-black text-white shadow-2xl hover:shadow-3xl'
                         }`}
                       >
                         {isOpen ? (
@@ -336,12 +336,12 @@ const FounderDropdown = () => {
                 transition={{ delay: 0.15, duration: 0.4 }}
               >
                 {/* Progress Indicator with Chapter Titles */}
-                <div className="flex-shrink-0 bg-gradient-to-r from-white via-blue-50/30 to-white border-b border-gray-200 px-6 py-5">
+                <div className="flex-shrink-0 bg-gradient-to-r from-white via-red-50/30 to-white border-b border-gray-200 px-6 py-5">
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <motion.h3 
                         key={`chapter-${activeChapter}`}
-                        className="text-sm font-bold text-transparent bg-gradient-to-r from-blue-600 via-emerald-600 to-cyan-600 bg-clip-text"
+                        className="text-sm font-bold text-transparent bg-gradient-to-r from-red-600 via-purple-600 to-black bg-clip-text"
                         initial={{ opacity: 0, x: -15 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 15 }}
@@ -393,14 +393,14 @@ const FounderDropdown = () => {
                         <span className="text-2xl">📖</span>
                         <h3 className="text-2xl font-bold text-gray-900">The Struggle</h3>
                       </div>
-                      <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full" />
+                      <div className="w-16 h-1 bg-gradient-to-r from-red-500 to-purple-500 rounded-full" />
                       
                       <p className="text-lg text-gray-700 leading-relaxed text-justify">
                         Hi, I'm Dr. Valerie Okorie — doctor, content creator, and founder of CreatorMD.
                       </p>
 
                       <p className="text-lg text-gray-700 leading-relaxed text-justify">
-                        CreatorMD didn't start as a brand. It started as a <span className="font-bold text-blue-600">quiet struggle.</span>
+                        CreatorMD didn't start as a brand. It started as a <span className="font-bold text-red-600">quiet struggle.</span>
                       </p>
 
                       <p className="text-lg text-gray-700 leading-relaxed text-justify">
@@ -424,10 +424,10 @@ const FounderDropdown = () => {
                         <span className="text-2xl">💡</span>
                         <h3 className="text-2xl font-bold text-gray-900">The Awakening</h3>
                       </div>
-                      <div className="w-16 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full" />
+                      <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-red-500 rounded-full" />
 
                       <p className="text-lg text-gray-700 leading-relaxed text-justify">
-                        One night, I remember asking God a simple question: <span className="italic font-semibold text-blue-600">"I know I'm meant to create — but where do I even start?"</span> That question changed everything.
+                        One night, I remember asking God a simple question: <span className="italic font-semibold text-red-600">"I know I'm meant to create — but where do I even start?"</span> That question changed everything.
                       </p>
 
                       <p className="text-lg text-gray-700 leading-relaxed text-justify">
@@ -438,9 +438,9 @@ const FounderDropdown = () => {
                         And I realized something powerful: <span className="font-bold">so many medics are exactly where I was.</span>
                       </p>
 
-                      <div className="bg-gradient-to-br from-blue-50 via-emerald-50 to-cyan-50 rounded-2xl p-6 border border-blue-200/50 my-6">
+                      <div className="bg-gradient-to-br from-red-50 via-purple-50 to-black/5 rounded-2xl p-6 border border-red-200/50 my-6">
                         <p className="text-base text-gray-800 leading-relaxed">
-                          <span className="font-bold text-emerald-700">Brilliant. Passionate.</span> <span className="font-bold text-red-600">Underpaid. Burnt out.</span> With stories, skills, and expertise the world needs — but no roadmap.
+                          <span className="font-bold text-purple-700">Brilliant. Passionate.</span> <span className="font-bold text-red-600">Underpaid. Burnt out.</span> With stories, skills, and expertise the world needs — but no roadmap.
                         </p>
                       </div>
                     </motion.section>
@@ -457,25 +457,25 @@ const FounderDropdown = () => {
                         <span className="text-2xl">🚀</span>
                         <h3 className="text-2xl font-bold text-gray-900">The Invitation</h3>
                       </div>
-                      <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-emerald-600 rounded-full" />
+                      <div className="w-16 h-1 bg-gradient-to-r from-red-600 to-purple-600 rounded-full" />
 
                       <p className="text-lg text-gray-700 leading-relaxed text-justify">
                         That's why I built CreatorMD. CreatorMD exists to help medical professionals turn their knowledge into <span className="font-bold">impact, influence, and income</span> online — without losing their integrity, identity, or love for medicine.
                       </p>
 
                       <p className="text-lg text-gray-700 leading-relaxed text-justify">
-                        This isn't about chasing clout. It's about <span className="font-bold bg-gradient-to-r from-blue-600 via-emerald-600 to-cyan-600 bg-clip-text text-transparent">clarity. Confidence. Community.</span> And building something meaningful with the degree you already worked so hard for.
+                        This isn't about chasing clout. It's about <span className="font-bold bg-gradient-to-r from-red-600 via-purple-600 to-black bg-clip-text text-transparent">clarity. Confidence. Community.</span> And building something meaningful with the degree you already worked so hard for.
                       </p>
 
                       <p className="text-lg text-gray-700 leading-relaxed text-justify">
-                        If you're a medic who feels called to create, teach, and build beyond the hospital walls — you're not late. You're not confused. <span className="font-bold bg-gradient-to-r from-blue-600 via-emerald-600 to-cyan-600 bg-clip-text text-transparent">You're just early.</span>
+                        If you're a medic who feels called to create, teach, and build beyond the hospital walls — you're not late. You're not confused. <span className="font-bold bg-gradient-to-r from-red-600 via-purple-600 to-black bg-clip-text text-transparent">You're just early.</span>
                       </p>
 
-                      <div className="bg-gradient-to-br from-blue-500 via-emerald-500 to-cyan-600 rounded-2xl p-8 text-white text-center mt-8">
+                      <div className="bg-gradient-to-br from-red-500 via-purple-500 to-black rounded-2xl p-8 text-white text-center mt-8">
                         <p className="text-2xl md:text-3xl font-bold">
                           Welcome to CreatorMD.
                         </p>
-                        <p className="text-lg mt-2 text-blue-50">
+                        <p className="text-lg mt-2 text-red-50">
                           Let's build this together.
                         </p>
                       </div>

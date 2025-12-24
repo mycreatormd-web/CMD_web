@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Navigation from '@/app/components/Navigation';
 import { programs } from '@/app/data/programs';
@@ -30,13 +30,13 @@ const iconMap: Record<string, React.ReactNode> = {
 // Enhanced color mapping for dark theme
 const getColorClasses = (color: string) => {
   const colorMap: Record<string, { bg: string; text: string; border: string; glow: string }> = {
-    'from-blue-500 to-cyan-500': {
+    'from-red-500 to-purple-500': {
       bg: 'from-purple-700 to-purple-900',
       text: 'text-purple-400',
       border: 'border-purple-700',
       glow: 'shadow-lg shadow-purple-500/20'
     },
-    'from-emerald-500 to-teal-500': {
+    'from-purple-500 to-red-500': {
       bg: 'from-red-700 to-red-900',
       text: 'text-red-400',
       border: 'border-red-700',
@@ -61,11 +61,13 @@ const getColorClasses = (color: string) => {
 const ComingSoonCard = ({ 
   program, 
   onPreview,
-  isVisible = true
+  isVisible = true,
+  isClient = false
 }: { 
   program: Program; 
   onPreview: (program: Program) => void;
   isVisible?: boolean;
+  isClient?: boolean;
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const colorClasses = getColorClasses(program.color);
@@ -80,10 +82,10 @@ const ComingSoonCard = ({
     >
       <motion.div
         layout
-        className="group relative h-full bg-gradient-to-br from-gray-900 to-black border border-red-700/20 rounded-xl sm:rounded-2xl overflow-hidden hover:border-red-600/50 transition-all duration-300 hover:shadow-xl hover:shadow-red-500/20"
+        className="group relative h-full bg-gradient-to-br from-purple-950/40 via-black to-red-950/30 border border-purple-600/40 rounded-xl sm:rounded-2xl overflow-hidden hover:border-purple-500/60 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/20 backdrop-blur-sm"
       >
         {/* Animated gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-red-600/0 to-purple-600/0 group-hover:from-red-600/5 group-hover:to-purple-600/5 transition-all duration-500 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 to-purple-600/5 group-hover:from-red-600/10 group-hover:to-purple-600/10 transition-all duration-500 pointer-events-none"></div>
 
         {/* Coming Soon Badge */}
         <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10">
@@ -91,7 +93,7 @@ const ComingSoonCard = ({
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 bg-gradient-to-r from-red-900/80 to-red-900/40 text-red-300 text-xs font-bold rounded-full border border-red-600/50 backdrop-blur-sm"
+            className="inline-flex items-center gap-1 sm:gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-red-900/90 to-red-800/70 text-red-200 text-xs sm:text-sm font-bold rounded-full border border-red-500/60 backdrop-blur-sm shadow-lg shadow-red-600/30"
           >
             <motion.span 
               className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-500"
@@ -104,29 +106,30 @@ const ComingSoonCard = ({
         </div>
 
         {/* Icon Section - Mobile Optimized */}
-        <div className={`bg-gradient-to-br ${colorClasses.bg} p-6 sm:p-8 flex items-center justify-center relative overflow-hidden opacity-70 group-hover:opacity-100 transition-opacity duration-300 group-hover:scale-105 transform`}>
-          <div className="absolute inset-0 opacity-15 group-hover:opacity-25 transition-opacity duration-300">
-            <div className="absolute top-0 right-0 w-32 sm:w-40 h-32 sm:h-40 bg-white/10 rounded-full blur-3xl"></div>
+        <div className={`bg-gradient-to-br ${colorClasses.bg} p-6 sm:p-8 flex items-center justify-center relative overflow-hidden opacity-80 group-hover:opacity-100 transition-opacity duration-300 group-hover:scale-110 transform shadow-inner`}>
+          <div className="absolute inset-0 opacity-20 group-hover:opacity-35 transition-opacity duration-300">
+            <div className="absolute top-0 right-0 w-40 sm:w-48 h-40 sm:h-48 bg-white/15 rounded-full blur-3xl"></div>
           </div>
-          <div className={`relative z-10 ${colorClasses.text}`}>
-            {iconMap[program.icon] || <Zap className="w-12 sm:w-16 h-12 sm:h-16" />}
+          <div className={`relative z-10 ${colorClasses.text} drop-shadow-lg`}>
+            {isClient && (iconMap[program.icon] || <Zap className="w-14 sm:w-20 h-14 sm:h-20" />)}
+            {!isClient && <Zap className="w-14 sm:w-20 h-14 sm:h-20" />}
           </div>
         </div>
 
         {/* Content - Mobile Optimized */}
         <motion.div layout className="p-4 sm:p-6 md:p-8 flex flex-col h-full relative z-10">
-          <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white mb-2 sm:mb-3 group-hover:text-red-300 transition-colors duration-300 line-clamp-2">
+          <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white mb-2 sm:mb-3 group-hover:text-red-300 transition-colors duration-300 line-clamp-2 bg-gradient-to-r from-red-200 via-purple-200 to-white bg-clip-text group-hover:text-transparent">
             {program.title}
           </h3>
 
           {/* Description - Single Line with Truncation */}
           <motion.div
             initial={false}
-            animate={{ height: isExpanded ? "auto" : "1.25rem" }}
+            animate={{ height: isExpanded ? "auto" : "1.5rem" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="overflow-hidden mb-3 sm:mb-4"
+            className="overflow-hidden mb-4 sm:mb-5"
           >
-            <p className={`text-gray-400 text-xs sm:text-sm md:text-base leading-relaxed group-hover:text-gray-300 transition-colors ${!isExpanded ? 'line-clamp-1' : ''}`}>
+            <p className={`text-gray-200 text-sm sm:text-base leading-relaxed group-hover:text-gray-50 transition-colors ${!isExpanded ? 'line-clamp-1' : ''}`}>
               {program.shortDescription}
             </p>
           </motion.div>
@@ -134,11 +137,11 @@ const ComingSoonCard = ({
           {/* Expand/Collapse Button */}
           <motion.button
             onClick={() => setIsExpanded(!isExpanded)}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="mb-3 sm:mb-4 text-red-400 hover:text-red-300 transition-colors text-xs sm:text-sm font-semibold flex items-center gap-1 group/btn"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.92 }}
+            className="mb-4 sm:mb-5 text-purple-300 hover:text-purple-100 transition-colors text-sm sm:text-base font-bold flex items-center gap-2 group/btn px-2 py-1.5 rounded-lg hover:bg-purple-600/15"
           >
-            <span>{isExpanded ? 'Show Less' : 'Show More'}</span>
+            <span>{isExpanded ? 'Show Less Details' : 'Show Full Details'}</span>
             <motion.span
               animate={{ rotate: isExpanded ? 180 : 0 }}
               transition={{ type: "spring", stiffness: 400, damping: 30 }}
@@ -159,17 +162,17 @@ const ComingSoonCard = ({
             className="overflow-hidden"
           >
             {(program.duration || program.level) && (
-              <div className="flex flex-wrap gap-2 sm:gap-4 mb-3 sm:mb-4 pb-3 sm:pb-4 border-t border-red-700/30">
+              <div className="flex flex-wrap gap-3 sm:gap-6 mb-4 sm:mb-5 pb-4 sm:pb-5 border-t border-purple-700/30">
                 {program.duration && (
                   <div>
-                    <span className="text-xs font-bold text-red-400 uppercase tracking-widest block">Duration</span>
-                    <p className="text-xs sm:text-sm font-bold text-white mt-0.5 sm:mt-1">{program.duration}</p>
+                    <span className="text-xs font-bold text-purple-400 uppercase tracking-widest block mb-1">Duration</span>
+                    <p className="text-sm sm:text-base font-bold text-white">{program.duration}</p>
                   </div>
                 )}
                 {program.level && (
                   <div>
-                    <span className="text-xs font-bold text-red-400 uppercase tracking-widest block">Level</span>
-                    <p className="text-xs sm:text-sm font-bold text-white mt-0.5 sm:mt-1">{program.level}</p>
+                    <span className="text-xs font-bold text-purple-400 uppercase tracking-widest block mb-1">Level</span>
+                    <p className="text-sm sm:text-base font-bold text-white">{program.level}</p>
                   </div>
                 )}
               </div>
@@ -186,20 +189,20 @@ const ComingSoonCard = ({
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
             className="overflow-hidden"
           >
-            <div className="flex flex-col gap-2 mt-auto">
+            <div className="flex flex-col gap-3 mt-auto">
               <motion.button
                 onClick={() => onPreview(program)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-gradient-to-r from-gray-800 to-gray-900 border border-gray-700 text-gray-300 font-bold rounded-lg hover:from-gray-700 hover:to-gray-800 hover:border-gray-600 transition-all text-xs sm:text-sm hover:shadow-lg hover:shadow-gray-700/30"
+                className="w-full px-4 sm:px-5 py-2.5 sm:py-3 bg-gradient-to-r from-purple-700 to-purple-900 border border-purple-600 text-purple-100 font-bold rounded-lg hover:from-purple-600 hover:to-purple-800 hover:border-purple-500 transition-all text-sm sm:text-base hover:shadow-lg hover:shadow-purple-600/30"
               >
-                Preview
+                Preview Program
               </motion.button>
               <motion.button
                 onClick={() => onPreview(program)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border-2 border-red-600/50 text-red-300 font-bold rounded-lg bg-red-600/10 hover:bg-red-600/20 hover:border-red-600 transition-all text-xs sm:text-sm hover:shadow-lg hover:shadow-red-600/30"
+                className="w-full px-4 sm:px-5 py-2.5 sm:py-3 border-2 border-red-600/60 text-red-300 font-bold rounded-lg bg-red-600/15 hover:bg-red-600/25 hover:border-red-600 transition-all text-sm sm:text-base hover:shadow-lg hover:shadow-red-600/30"
               >
                 Join Waitlist
               </motion.button>
@@ -211,21 +214,15 @@ const ComingSoonCard = ({
   );
 };
 
-// Helper function to shuffle array
-const shuffleArray = <T,>(array: T[]): T[] => {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-};
-
 export default function ProgramsPageClient() {
   const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showAllComingSoon, setShowAllComingSoon] = useState(false);
-  const [shuffledComingSoon] = useState(() => shuffleArray(programs.comingSoon));
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const handlePreviewClick = (program: Program) => {
     setSelectedProgram(program);
@@ -237,10 +234,11 @@ export default function ProgramsPageClient() {
     setTimeout(() => setSelectedProgram(null), 300);
   };
 
-  // Display only 3 cards initially, show all when expanded (randomized order)
+  // Display coming soon programs without randomization to avoid hydration errors
+  // Show only 3 cards initially, show all when expanded
   const visibleComingSoonPrograms = showAllComingSoon 
-    ? shuffledComingSoon 
-    : shuffledComingSoon.slice(0, 3);
+    ? programs.comingSoon
+    : programs.comingSoon.slice(0, 3);
 
   return (
     <main className="relative bg-white">
@@ -312,92 +310,93 @@ export default function ProgramsPageClient() {
                   whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                   transition={{ duration: 0.6, delay: idx * 0.12, ease: "easeOut" }}
                   viewport={{ once: true }}
-                  whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                  whileHover={{ y: -12, transition: { duration: 0.3 } }}
                 >
-                  <div className={`group relative h-full bg-gradient-to-br from-gray-900 via-purple-900/30 to-black rounded-2xl border border-purple-700/30 overflow-hidden hover:border-red-600/50 transition-all duration-300 ${colorClasses.glow} hover:shadow-2xl hover:shadow-red-500/30`}>
-                    {/* Animated gradient overlay on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-red-600/0 via-purple-600/0 to-black/0 group-hover:from-red-600/10 group-hover:via-purple-600/10 transition-all duration-500 pointer-events-none"></div>
+                  <div className={`group relative bg-black rounded-3xl border border-purple-900/40 overflow-hidden hover:border-red-600/60 transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/20 flex flex-col h-full`}>
+                    {/* Gradient border effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-red-600/0 via-purple-600/0 to-black/0 group-hover:from-red-600/5 group-hover:via-purple-600/5 transition-all duration-500 pointer-events-none rounded-3xl"></div>
 
-                    {/* Icon Section - Gradient Background */}
-                    <div className={`bg-gradient-to-br ${colorClasses.bg} p-6 sm:p-8 flex items-center justify-center relative overflow-hidden group-hover:scale-110 transition-transform duration-500`}>
-                      <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-300">
-                        <div className="absolute top-0 right-0 w-32 sm:w-40 h-32 sm:h-40 bg-white/10 rounded-full blur-3xl group-hover:bg-white/20"></div>
-                        <div className="absolute bottom-0 left-0 w-24 sm:w-32 h-24 sm:h-32 bg-red-500/10 rounded-full blur-3xl group-hover:bg-red-500/20"></div>
-                      </div>
-                      <div className={`relative z-10 ${colorClasses.text}`}>
-                        {iconMap[program.icon] || <Zap className="w-12 sm:w-16 h-12 sm:h-16" />}
+                    {/* Top gradient accent bar */}
+                    <div className={`h-1 bg-gradient-to-r ${program.color}`}></div>
+
+                    {/* Icon Section */}
+                    <div className="px-6 sm:px-8 pt-6 sm:pt-8 pb-4 flex items-start">
+                      <div className={`bg-gradient-to-br ${colorClasses.bg} p-3 sm:p-4 rounded-2xl group-hover:scale-110 transition-transform duration-300`}>
+                        <div className={`relative z-10 ${colorClasses.text}`}>
+                          {isClient && (iconMap[program.icon] || <Zap className="w-8 sm:w-10 h-8 sm:h-10" />)}
+                          {!isClient && <Zap className="w-8 sm:w-10 h-8 sm:h-10" />}
+                        </div>
                       </div>
                     </div>
 
                     {/* Content */}
-                    <div className="p-5 sm:p-8 flex flex-col h-full relative z-10">
+                    <div className="px-6 sm:px-8 pb-6 sm:pb-8 flex flex-col flex-grow relative z-10">
                       {/* Title */}
-                      <h3 className="text-lg sm:text-2xl md:text-3xl font-black text-white mb-2 sm:mb-3 group-hover:text-red-300 transition-colors duration-300 line-clamp-2">
+                      <h3 className="text-xl sm:text-2xl font-black text-white mb-3 group-hover:text-red-300 transition-colors duration-300 leading-tight">
                         {program.title}
                       </h3>
 
                       {/* Description */}
-                      <p className="text-gray-400 text-sm sm:text-base mb-4 sm:mb-6 flex-grow leading-relaxed group-hover:text-gray-300 transition-colors">
+                      <p className="text-gray-400 text-sm sm:text-base mb-6 flex-grow leading-relaxed group-hover:text-gray-300 transition-colors">
                         {program.shortDescription}
                       </p>
 
-                      {/* Metadata - Styled */}
+                      {/* Metadata - Compact row */}
                       {(program.duration || program.level) && (
-                        <div className="flex flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b border-purple-700/30 group-hover:border-red-600/30 transition-colors">
+                        <div className="flex gap-4 mb-6 text-xs sm:text-sm">
                           {program.duration && (
-                            <div>
-                              <span className="text-xs font-bold text-red-400 uppercase tracking-widest block">Duration</span>
-                              <p className="text-sm sm:text-lg font-bold text-white mt-0.5 sm:mt-1">{program.duration}</p>
+                            <div className="flex items-center gap-2">
+                              <span className="text-red-400 font-bold">⏱</span>
+                              <span className="text-gray-300">{program.duration}</span>
                             </div>
                           )}
                           {program.level && (
-                            <div>
-                              <span className="text-xs font-bold text-red-400 uppercase tracking-widest block">Level</span>
-                              <p className="text-sm sm:text-lg font-bold text-white mt-0.5 sm:mt-1">{program.level}</p>
+                            <div className="flex items-center gap-2">
+                              <span className="text-red-400 font-bold">📊</span>
+                              <span className="text-gray-300">{program.level}</span>
                             </div>
                           )}
                         </div>
                       )}
 
                       {/* Actions */}
-                      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                      <div className="flex flex-col gap-3 pt-2 border-t border-purple-900/30">
                         <motion.button
                           onClick={() => handlePreviewClick(program)}
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3.5 bg-gradient-to-r from-purple-900/50 to-red-900/50 border border-purple-600/50 text-purple-200 font-bold rounded-lg sm:rounded-xl hover:from-purple-800/70 hover:to-red-800/70 hover:border-red-600/70 transition-all duration-300 text-xs sm:text-base hover:shadow-lg hover:shadow-purple-600/30"
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="w-full px-4 sm:px-6 py-3 bg-gradient-to-r from-purple-900/40 to-red-900/40 border border-purple-600/40 text-purple-200 font-bold rounded-xl hover:from-purple-800/60 hover:to-red-800/60 hover:border-red-600/60 transition-all duration-300 text-sm hover:shadow-lg hover:shadow-purple-600/20"
                         >
                           Quick Preview
                         </motion.button>
-                        {program.status === 'available' ? (
-                          program.externalLink ? (
-                            <motion.a
-                              href={program.externalLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              whileHover={{ scale: 1.05 }}
-                              whileTap={{ scale: 0.95 }}
-                              className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3.5 bg-gradient-to-r from-red-600 to-purple-600 text-white font-bold rounded-lg sm:rounded-xl hover:from-red-700 hover:to-purple-700 transition-all duration-300 text-xs sm:text-base text-center hover:shadow-lg hover:shadow-red-600/50"
-                            >
-                              Access Course
-                            </motion.a>
-                          ) : (
-                            <motion.a
-                              href={program.internalPath || '#'}
-                              whileHover={{ scale: 1.05 }}
-                              whileTap={{ scale: 0.95 }}
-                              className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3.5 bg-gradient-to-r from-red-600 to-purple-600 text-white font-bold rounded-lg sm:rounded-xl hover:from-red-700 hover:to-purple-700 transition-all duration-300 text-xs sm:text-base text-center hover:shadow-lg hover:shadow-red-600/50"
-                            >
-                              Access Course
-                            </motion.a>
-                          )
-                        ) : (
-                          <motion.button
-                            className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3.5 border-2 border-gray-700 text-gray-500 font-bold rounded-lg sm:rounded-xl bg-gray-900/50 text-xs sm:text-base cursor-not-allowed"
+                        {program.status === 'available' && program.externalLink && (
+                          <button
+                            onClick={() => window.open(program.externalLink, '_blank')}
+                            className="w-full px-4 sm:px-6 py-3 bg-gradient-to-r from-red-600 to-purple-600 text-white font-bold rounded-xl hover:from-red-700 hover:to-purple-700 transition-all duration-300 text-sm hover:shadow-lg hover:shadow-red-600/40 flex items-center justify-center gap-2"
+                          >
+                            <span>Access Course</span>
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          </button>
+                        )}
+                        {program.status === 'available' && program.internalPath && !program.externalLink && (
+                          <motion.a
+                            href={program.internalPath}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="w-full block px-4 sm:px-6 py-3 bg-gradient-to-r from-red-600 to-purple-600 text-white font-bold rounded-xl hover:from-red-700 hover:to-purple-700 transition-all duration-300 text-sm text-center hover:shadow-lg hover:shadow-red-600/40"
+                          >
+                            Access Course
+                          </motion.a>
+                        )}
+                        {program.status !== 'available' && (
+                          <button
+                            className="w-full px-4 sm:px-6 py-3 border-2 border-gray-700 text-gray-500 font-bold rounded-xl bg-gray-900/30 text-sm cursor-not-allowed"
                             disabled
                           >
                             Coming Soon
-                          </motion.button>
+                          </button>
                         )}
                       </div>
                     </div>
@@ -436,6 +435,7 @@ export default function ProgramsPageClient() {
                 program={program} 
                 onPreview={handlePreviewClick}
                 isVisible={true}
+                isClient={isClient}
               />
             ))}
           </div>
@@ -491,6 +491,7 @@ export default function ProgramsPageClient() {
                     program={program} 
                     onPreview={handlePreviewClick}
                     isVisible={showAllComingSoon}
+                    isClient={isClient}
                   />
                 </motion.div>
               ))}
