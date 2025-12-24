@@ -309,177 +309,290 @@ const About = () => {
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-purple-200/20 rounded-full blur-3xl" 
       />
       
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-12 sm:mb-16 md:mb-24"
-        >
+      <div className="relative z-10">
+        {/* Desktop Header */}
+        <div className="hidden md:block container mx-auto px-6">
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="inline-block mb-6"
-          >
-            <span className="px-4 sm:px-6 py-2 sm:py-2.5 bg-white/80 backdrop-blur-md rounded-full border border-blue-200 text-blue-600 text-xs sm:text-sm font-semibold shadow-lg">
-              About CreatorMD
-            </span>
-          </motion.div>
-          
-          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-6 relative inline-block">
-            <span className="bg-gradient-to-r from-blue-600 via-emerald-600 to-cyan-600 bg-clip-text text-transparent">
-              Who We Are
-            </span>
-            {/* Shimmer underline */}
-            <motion.span
-              className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 via-emerald-400 to-cyan-400 rounded-full"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            />
-            <motion.span
-              className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-white via-white to-transparent rounded-full opacity-60"
-              animate={{ x: ['-100%', '200%'] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'linear', repeatDelay: 1 }}
-            />
-          </h2>
-          
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="space-y-5 max-w-4xl mx-auto"
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="text-center mb-12 sm:mb-16 md:mb-24"
           >
-            <motion.p
-              className="text-lg md:text-xl text-gray-700 leading-relaxed text-justify"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.8 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="inline-block mb-6"
             >
-              CreatorMD is a <span className="text-gray-900 font-bold">focused space where medics turn medical knowledge into impact, influence, and income</span> — without sacrificing integrity, identity, or the love of medicine.
-            </motion.p>
-            <motion.p
-              className="text-lg md:text-xl text-gray-700 leading-relaxed text-justify"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              <span className="px-4 sm:px-6 py-2 sm:py-2.5 bg-white/80 backdrop-blur-md rounded-full border border-blue-200 text-blue-600 text-xs sm:text-sm font-semibold shadow-lg">
+                About CreatorMD
+              </span>
+            </motion.div>
+            
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-6 relative inline-block">
+              <span className="bg-gradient-to-r from-blue-600 via-emerald-600 to-cyan-600 bg-clip-text text-transparent">
+                Who We Are
+              </span>
+              {/* Shimmer underline */}
+              <motion.span
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 via-emerald-400 to-cyan-400 rounded-full"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <motion.span
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-white via-white to-transparent rounded-full opacity-60"
+                animate={{ x: ['-100%', '200%'] }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'linear', repeatDelay: 1 }}
+              />
+            </h2>
+            
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.6, duration: 0.8 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="space-y-5 max-w-4xl mx-auto"
             >
-              We break content and personal-brand work into <span className="text-emerald-600 font-bold">practical, bite-size steps that fit the realities of clinical life</span>.
-            </motion.p>
-            <motion.p
-              className="text-lg md:text-xl text-gray-700 leading-relaxed text-justify font-semibold"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.7, duration: 0.8 }}
-            >
-              More than a platform: <span className="bg-gradient-to-r from-blue-600 via-emerald-600 to-cyan-600 bg-clip-text text-transparent">build with us, and you become a CreatorMD</span>.
-            </motion.p>
+              <motion.p
+                className="text-lg md:text-xl text-gray-700 leading-relaxed text-justify"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+              >
+                CreatorMD is a <span className="text-gray-900 font-bold">focused space where medics turn medical knowledge into impact, influence, and income</span> — without sacrificing integrity, identity, or the love of medicine.
+              </motion.p>
+              <motion.p
+                className="text-lg md:text-xl text-gray-700 leading-relaxed text-justify"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6, duration: 0.8 }}
+              >
+                We break content and personal-brand work into <span className="text-emerald-600 font-bold">practical, bite-size steps that fit the realities of clinical life</span>.
+              </motion.p>
+              <motion.p
+                className="text-lg md:text-xl text-gray-700 leading-relaxed text-justify font-semibold"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.7, duration: 0.8 }}
+              >
+                More than a platform: <span className="bg-gradient-to-r from-blue-600 via-emerald-600 to-cyan-600 bg-clip-text text-transparent">build with us, and you become a CreatorMD</span>.
+              </motion.p>
+            </motion.div>
           </motion.div>
+        </div>
+
+
+
+        {/* Mobile: Who We Are Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="md:hidden mb-4 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl border-2 border-blue-200 shadow-lg mx-0"
+        >
+          <div className="p-6">
+            <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-emerald-600 to-cyan-600 bg-clip-text text-transparent">
+              Who We Are
+            </h2>
+            <div className="space-y-4">
+              <p className="text-base text-gray-700 leading-relaxed">
+                CreatorMD is a <span className="text-gray-900 font-bold">focused space where medics turn medical knowledge into impact, influence, and income</span> — without sacrificing integrity, identity, or the love of medicine.
+              </p>
+              <p className="text-base text-gray-700 leading-relaxed">
+                We break content and personal-brand work into <span className="text-emerald-600 font-bold">practical, bite-size steps that fit the realities of clinical life</span>.
+              </p>
+              <p className="text-base text-gray-700 leading-relaxed font-semibold">
+                More than a platform: <span className="bg-gradient-to-r from-blue-600 via-emerald-600 to-cyan-600 bg-clip-text text-transparent">build with us, and you become a CreatorMD</span>.
+              </p>
+            </div>
+          </div>
         </motion.div>
 
-
-        {/* Vision & Mission - Side by Side */}
-        <div id="vision" className="max-w-7xl mx-auto mb-16 md:mb-24">
-          <div className="grid lg:grid-cols-2 gap-8">
-            {/* Vision */}
-            <motion.div
-              initial={{ opacity: 0, x: -100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-3xl p-8 md:p-10 border-2 border-purple-200 shadow-xl hover:shadow-2xl transition-shadow"
-            >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="p-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl shadow-lg">
-                  <Target className="w-8 h-8 text-white" />
+        {/* Vision & Mission - Horizontal Scroll on Mobile Only */}
+        <div className="md:hidden mb-4">
+          <div className="overflow-x-auto -mx-4 px-4 pb-2">
+            <div className="flex gap-4 w-max">
+              {/* Vision Card */}
+              <motion.div
+                initial={{ opacity: 0, x: -100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6 }}
+                className="flex-shrink-0 w-80 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl p-6 border-2 border-purple-200 shadow-lg"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg shadow-lg flex-shrink-0">
+                    <Target className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900">Our Vision</h3>
                 </div>
-                <h3 className="text-3xl md:text-4xl font-bold text-gray-900 relative inline-block">
-                  Our Vision
-                  <motion.span
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3, duration: 0.6 }}
-                  />
-                </h3>
-              </div>
-              <p className="text-lg text-gray-700 leading-relaxed text-justify">
-                We aim to create the <span className="text-purple-600 font-bold">world's largest community</span> of medics who confidently share their voice through compelling content—<span className="text-pink-600 font-bold">shaping public health narratives</span> and leading the digital evolution of medicine.
-              </p>
-            </motion.div>
+                <p className="text-base text-gray-700 leading-relaxed">
+                  We aim to create the <span className="text-purple-600 font-bold">world's largest community</span> of medics who confidently share their voice through compelling content—<span className="text-pink-600 font-bold">shaping public health narratives</span> and leading the digital evolution of medicine.
+                </p>
+              </motion.div>
 
-            {/* Mission */}
-            <motion.div
-              initial={{ opacity: 0, x: 100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="bg-gradient-to-br from-blue-100 to-emerald-100 rounded-3xl p-8 md:p-10 border-2 border-blue-200 shadow-xl hover:shadow-2xl transition-shadow"
-            >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="p-4 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-2xl shadow-lg">
-                  <Sparkles className="w-8 h-8 text-white" />
+              {/* Mission Card */}
+              <motion.div
+                initial={{ opacity: 0, x: 100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6 }}
+                className="flex-shrink-0 w-80 bg-gradient-to-br from-blue-100 to-emerald-100 rounded-2xl p-6 border-2 border-blue-200 shadow-lg"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-3 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-lg shadow-lg flex-shrink-0">
+                    <Sparkles className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900">Our Mission</h3>
                 </div>
-                <h3 className="text-3xl md:text-4xl font-bold text-gray-900 relative inline-block">
-                  Our Mission
-                  <motion.span
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 to-emerald-400 rounded-full"
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3, duration: 0.6 }}
-                  />
-                </h3>
-              </div>
-              <div className="space-y-4">
-                {missionItems.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.15, duration: 0.5 }}
-                    className="flex items-start gap-3"
-                  >
-                    <div className={`p-2 bg-gradient-to-br ${item.gradient} rounded-lg shadow-md flex-shrink-0 mt-1`}>
-                      <item.icon className="w-4 h-4 text-white" />
-                    </div>
-                    <div>
-                      <p className="text-base font-semibold text-gray-900 mb-1 text-justify">
-                        {item.title}
-                      </p>
-                      <p className="text-sm text-gray-600 text-justify">
-                        {item.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+                <div className="space-y-3">
+                  {missionItems.map((item, index) => (
+                    <motion.div
+                      key={index}
+                      className="flex items-start gap-2"
+                    >
+                      <div className={`p-2 bg-gradient-to-br ${item.gradient} rounded-lg shadow-md flex-shrink-0 mt-0.5`}>
+                        <item.icon className="w-3 h-3 text-white" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm font-semibold text-gray-900">
+                          {item.title}
+                        </p>
+                        <p className="text-xs text-gray-600">
+                          {item.description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
 
-        {/* What Drives Us */}
+        {/* Desktop: Vision & Mission - Side by Side */}
+        <div className="hidden md:block container mx-auto px-6">
+          <div id="vision" className="max-w-7xl mx-auto mb-16 md:mb-24">
+            <div className="grid lg:grid-cols-2 gap-8">
+              {/* Vision */}
+              <motion.div
+                initial={{ opacity: 0, x: -100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-3xl p-8 md:p-10 border-2 border-purple-200 shadow-xl hover:shadow-2xl transition-shadow"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl shadow-lg">
+                    <Target className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-bold text-gray-900 relative inline-block">
+                    Our Vision
+                    <motion.span
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.3, duration: 0.6 }}
+                    />
+                  </h3>
+                </div>
+                <p className="text-lg text-gray-700 leading-relaxed text-justify">
+                  We aim to create the <span className="text-purple-600 font-bold">world's largest community</span> of medics who confidently share their voice through compelling content—<span className="text-pink-600 font-bold">shaping public health narratives</span> and leading the digital evolution of medicine.
+                </p>
+              </motion.div>
+
+              {/* Mission */}
+              <motion.div
+                initial={{ opacity: 0, x: 100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                className="bg-gradient-to-br from-blue-100 to-emerald-100 rounded-3xl p-8 md:p-10 border-2 border-blue-200 shadow-xl hover:shadow-2xl transition-shadow"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-4 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-2xl shadow-lg">
+                    <Sparkles className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-bold text-gray-900 relative inline-block">
+                    Our Mission
+                    <motion.span
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 to-emerald-400 rounded-full"
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.3, duration: 0.6 }}
+                    />
+                  </h3>
+                </div>
+                <div className="space-y-4">
+                  {missionItems.map((item, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: 50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.15, duration: 0.5 }}
+                      className="flex items-start gap-3"
+                    >
+                      <div className={`p-2 bg-gradient-to-br ${item.gradient} rounded-lg shadow-md flex-shrink-0 mt-1`}>
+                        <item.icon className="w-4 h-4 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-base font-semibold text-gray-900 mb-1 text-justify">
+                          {item.title}
+                        </p>
+                        <p className="text-sm text-gray-600 text-justify">
+                          {item.description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+
+        {/* What Drives Us - Card on Mobile */}
         <motion.div
           id="drives"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="max-w-7xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="md:hidden mb-4 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-2xl border-2 border-emerald-200 shadow-lg mx-0"
         >
+          <div className="p-6">
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
+              What Drives Us
+            </h3>
+            <p className="text-base text-gray-700 leading-relaxed">
+              CreatorMD was created by medics, for medics. This insider perspective fuels every framework, course, and service we offer. Rather than overwhelming you with needless jargon or complicated strategies, we focus on simplicity, clarity, and real-world results. Our approach revolves around strengthening your storytelling and authority, backed by ongoing community support and practical modules that get you creating content from day one.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Desktop: What Drives Us */}
+        <div className="hidden md:block container mx-auto px-6">
+          <motion.div
+            id="drives"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="max-w-7xl mx-auto"
+          >
           <div className="text-center mb-12 md:mb-16">
             <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 relative inline-block">
               <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
@@ -499,14 +612,35 @@ const About = () => {
           </div>
         </motion.div>
 
-        {/* Our Commitment */}
+        {/* Our Commitment - Card on Mobile */}
         <motion.div
           id="commitment"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="max-w-7xl mx-auto mt-8 md:mt-12">
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="md:hidden mb-4 bg-gradient-to-br from-cyan-100 to-blue-100 rounded-2xl border-2 border-cyan-200 shadow-lg mx-0"
+        >
+          <div className="p-6">
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
+              Our Commitment
+            </h3>
+            <p className="text-base text-gray-700 leading-relaxed">
+              We promise to help you show up online with confidence, communicate your expertise with clarity, and build a digital presence that not only changes lives but also advances your career. With CreatorMD, your knowledge becomes your greatest asset, and your influence grows naturally and sustainably.
+            </p>
+          </div>
+        </motion.div>
+        </div>
+
+        {/* Desktop: Our Commitment */}
+        <div className="hidden md:block container mx-auto px-6">
+          <motion.div
+            id="commitment"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="max-w-7xl mx-auto mt-8 md:mt-12">
           <div className="text-center mb-8 md:mb-12">
             <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 relative inline-block">
               <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
@@ -525,9 +659,10 @@ const About = () => {
             </p>
           </div>
         </motion.div>
+        </div>
 
         {/* Meet The Founder - Redesigned Dropdown */}
-        <div id="founder" className="relative py-4 mt-8">
+        <div id="founder" className="relative py-4 mt-8 px-4 md:px-0 md:container md:mx-auto md:px-6">
           <FounderDropdown />
         </div>
 
@@ -537,7 +672,7 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.6 }}
-          className="text-center mt-16 md:mt-24"
+          className="text-center mt-16 md:mt-24 px-4 md:px-0"
         >
           <motion.a
             href="#join"

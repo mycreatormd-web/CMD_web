@@ -19,129 +19,213 @@ import {
 
 // Icon mapping
 const iconMap: Record<string, React.ReactNode> = {
-  Zap: <Zap className="w-12 h-12" />,
-  BookOpen: <BookOpen className="w-12 h-12" />,
-  Users: <Users className="w-12 h-12" />,
-  Heart: <Heart className="w-12 h-12" />,
-  Briefcase: <Briefcase className="w-12 h-12" />,
+  Zap: <Zap className="w-16 h-16" />,
+  BookOpen: <BookOpen className="w-16 h-16" />,
+  Users: <Users className="w-16 h-16" />,
+  Heart: <Heart className="w-16 h-16" />,
+  Briefcase: <Briefcase className="w-16 h-16" />,
+  Target: <Briefcase className="w-16 h-16" />,
 };
 
+// Enhanced color mapping for dark theme
 const getColorClasses = (color: string) => {
-  const colorMap: Record<string, string> = {
-    'from-blue-500 to-cyan-500': 'text-blue-500 bg-blue-50',
-    'from-emerald-500 to-teal-500': 'text-emerald-500 bg-emerald-50',
-    'from-purple-500 to-pink-500': 'text-purple-500 bg-purple-50',
-    'from-cyan-500 to-blue-500': 'text-cyan-500 bg-cyan-50',
-    'from-amber-500 to-orange-500': 'text-amber-500 bg-amber-50',
+  const colorMap: Record<string, { bg: string; text: string; border: string; glow: string }> = {
+    'from-blue-500 to-cyan-500': {
+      bg: 'from-purple-700 to-purple-900',
+      text: 'text-purple-400',
+      border: 'border-purple-700',
+      glow: 'shadow-lg shadow-purple-500/20'
+    },
+    'from-emerald-500 to-teal-500': {
+      bg: 'from-red-700 to-red-900',
+      text: 'text-red-400',
+      border: 'border-red-700',
+      glow: 'shadow-lg shadow-red-500/20'
+    },
+    'from-purple-500 to-pink-500': {
+      bg: 'from-purple-900 to-black',
+      text: 'text-red-400',
+      border: 'border-purple-700',
+      glow: 'shadow-lg shadow-purple-500/20'
+    },
   };
-  return colorMap[color] || 'text-gray-500 bg-gray-50';
+  return colorMap[color] || {
+    bg: 'from-gray-800 to-gray-900',
+    text: 'text-gray-400',
+    border: 'border-gray-700',
+    glow: 'shadow-lg shadow-gray-500/20'
+  };
 };
 
-const ProgramCard = ({ 
+// Expandable Coming Soon Card Component
+const ComingSoonCard = ({ 
   program, 
-  onPreview 
+  onPreview,
+  isVisible = true
 }: { 
   program: Program; 
   onPreview: (program: Program) => void;
+  isVisible?: boolean;
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const colorClasses = getColorClasses(program.color);
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45 }}
-      viewport={{ once: true }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow"
+      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+      animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.95 }}
+      exit={{ opacity: 0, y: 20, scale: 0.95 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="w-full"
     >
-      {/* Icon Section */}
-      <div className={`${colorClasses} p-6 flex items-center justify-center`}>
-        {iconMap[program.icon] || <Zap className="w-12 h-12" />}
-      </div>
+      <motion.div
+        layout
+        className="group relative h-full bg-gradient-to-br from-gray-900 to-black border border-red-700/20 rounded-xl sm:rounded-2xl overflow-hidden hover:border-red-600/50 transition-all duration-300 hover:shadow-xl hover:shadow-red-500/20"
+      >
+        {/* Animated gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-red-600/0 to-purple-600/0 group-hover:from-red-600/5 group-hover:to-purple-600/5 transition-all duration-500 pointer-events-none"></div>
 
-      {/* Content */}
-      <div className="p-6 flex flex-col h-full">
-        {/* Title */}
-        <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-          {program.title}
-        </h3>
-
-        {/* Status Badge */}
-        {program.status === 'coming-soon' && (
-          <span className="inline-block w-fit mb-3 px-2.5 py-1 bg-amber-100 text-amber-700 text-xs font-semibold rounded-full">
-            Coming Soon
-          </span>
-        )}
-
-        {/* Description */}
-        <p className="text-gray-600 text-sm sm:text-base mb-6 flex-grow">
-          {program.shortDescription}
-        </p>
-
-        {/* Metadata */}
-        {(program.duration || program.level) && (
-          <div className="flex flex-wrap gap-3 mb-6 pb-6 border-b border-gray-100">
-            {program.duration && (
-              <div className="text-xs">
-                <span className="text-gray-500">Duration:</span>
-                <p className="font-semibold text-gray-900">{program.duration}</p>
-              </div>
-            )}
-            {program.level && (
-              <div className="text-xs">
-                <span className="text-gray-500">Level:</span>
-                <p className="font-semibold text-gray-900">{program.level}</p>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Actions */}
-        <div className="flex flex-col sm:flex-row gap-2">
-          <button
-            onClick={() => onPreview(program)}
-            className="flex-1 px-4 py-2.5 bg-blue-50 text-blue-600 font-semibold rounded-lg hover:bg-blue-100 transition-colors text-sm"
+        {/* Coming Soon Badge */}
+        <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10">
+          <motion.span 
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 bg-gradient-to-r from-red-900/80 to-red-900/40 text-red-300 text-xs font-bold rounded-full border border-red-600/50 backdrop-blur-sm"
           >
-            Preview
-          </button>
-          {program.status === 'available' ? (
-            program.externalLink ? (
-              <a
-                href={program.externalLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 px-4 py-2.5 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors text-sm text-center"
-              >
-                Learn
-              </a>
-            ) : (
-              <a
-                href={program.internalPath || '#'}
-                className="flex-1 px-4 py-2.5 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors text-sm text-center"
-              >
-                Learn
-              </a>
-            )
-          ) : (
-            <button
-              className="flex-1 px-4 py-2.5 border border-gray-300 text-gray-600 font-semibold rounded-lg hover:bg-gray-50 transition-colors text-sm"
-              disabled
-            >
-              Coming Soon
-            </button>
-          )}
+            <motion.span 
+              className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-500"
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            ></motion.span>
+            <span className="hidden sm:inline">Coming Soon</span>
+            <span className="sm:hidden">New</span>
+          </motion.span>
         </div>
-      </div>
+
+        {/* Icon Section - Mobile Optimized */}
+        <div className={`bg-gradient-to-br ${colorClasses.bg} p-6 sm:p-8 flex items-center justify-center relative overflow-hidden opacity-70 group-hover:opacity-100 transition-opacity duration-300 group-hover:scale-105 transform`}>
+          <div className="absolute inset-0 opacity-15 group-hover:opacity-25 transition-opacity duration-300">
+            <div className="absolute top-0 right-0 w-32 sm:w-40 h-32 sm:h-40 bg-white/10 rounded-full blur-3xl"></div>
+          </div>
+          <div className={`relative z-10 ${colorClasses.text}`}>
+            {iconMap[program.icon] || <Zap className="w-12 sm:w-16 h-12 sm:h-16" />}
+          </div>
+        </div>
+
+        {/* Content - Mobile Optimized */}
+        <motion.div layout className="p-4 sm:p-6 md:p-8 flex flex-col h-full relative z-10">
+          <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white mb-2 sm:mb-3 group-hover:text-red-300 transition-colors duration-300 line-clamp-2">
+            {program.title}
+          </h3>
+
+          {/* Description - Single Line with Truncation */}
+          <motion.div
+            initial={false}
+            animate={{ height: isExpanded ? "auto" : "1.25rem" }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className="overflow-hidden mb-3 sm:mb-4"
+          >
+            <p className={`text-gray-400 text-xs sm:text-sm md:text-base leading-relaxed group-hover:text-gray-300 transition-colors ${!isExpanded ? 'line-clamp-1' : ''}`}>
+              {program.shortDescription}
+            </p>
+          </motion.div>
+
+          {/* Expand/Collapse Button */}
+          <motion.button
+            onClick={() => setIsExpanded(!isExpanded)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="mb-3 sm:mb-4 text-red-400 hover:text-red-300 transition-colors text-xs sm:text-sm font-semibold flex items-center gap-1 group/btn"
+          >
+            <span>{isExpanded ? 'Show Less' : 'Show More'}</span>
+            <motion.span
+              animate={{ rotate: isExpanded ? 180 : 0 }}
+              transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              className="text-xs"
+            >
+              ▼
+            </motion.span>
+          </motion.button>
+
+          {/* Metadata - Only show when expanded */}
+          <motion.div
+            initial={false}
+            animate={{ 
+              opacity: isExpanded ? 1 : 0,
+              height: isExpanded ? "auto" : 0
+            }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className="overflow-hidden"
+          >
+            {(program.duration || program.level) && (
+              <div className="flex flex-wrap gap-2 sm:gap-4 mb-3 sm:mb-4 pb-3 sm:pb-4 border-t border-red-700/30">
+                {program.duration && (
+                  <div>
+                    <span className="text-xs font-bold text-red-400 uppercase tracking-widest block">Duration</span>
+                    <p className="text-xs sm:text-sm font-bold text-white mt-0.5 sm:mt-1">{program.duration}</p>
+                  </div>
+                )}
+                {program.level && (
+                  <div>
+                    <span className="text-xs font-bold text-red-400 uppercase tracking-widest block">Level</span>
+                    <p className="text-xs sm:text-sm font-bold text-white mt-0.5 sm:mt-1">{program.level}</p>
+                  </div>
+                )}
+              </div>
+            )}
+          </motion.div>
+
+          {/* Actions - Only show when expanded */}
+          <motion.div
+            initial={false}
+            animate={{ 
+              opacity: isExpanded ? 1 : 0,
+              height: isExpanded ? "auto" : 0
+            }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className="overflow-hidden"
+          >
+            <div className="flex flex-col gap-2 mt-auto">
+              <motion.button
+                onClick={() => onPreview(program)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-gradient-to-r from-gray-800 to-gray-900 border border-gray-700 text-gray-300 font-bold rounded-lg hover:from-gray-700 hover:to-gray-800 hover:border-gray-600 transition-all text-xs sm:text-sm hover:shadow-lg hover:shadow-gray-700/30"
+              >
+                Preview
+              </motion.button>
+              <motion.button
+                onClick={() => onPreview(program)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border-2 border-red-600/50 text-red-300 font-bold rounded-lg bg-red-600/10 hover:bg-red-600/20 hover:border-red-600 transition-all text-xs sm:text-sm hover:shadow-lg hover:shadow-red-600/30"
+              >
+                Join Waitlist
+              </motion.button>
+            </div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
     </motion.div>
   );
+};
+
+// Helper function to shuffle array
+const shuffleArray = <T,>(array: T[]): T[] => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
 };
 
 export default function ProgramsPageClient() {
   const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showAllComingSoon, setShowAllComingSoon] = useState(false);
+  const [shuffledComingSoon] = useState(() => shuffleArray(programs.comingSoon));
 
   const handlePreviewClick = (program: Program) => {
     setSelectedProgram(program);
@@ -153,210 +237,432 @@ export default function ProgramsPageClient() {
     setTimeout(() => setSelectedProgram(null), 300);
   };
 
+  // Display only 3 cards initially, show all when expanded (randomized order)
+  const visibleComingSoonPrograms = showAllComingSoon 
+    ? shuffledComingSoon 
+    : shuffledComingSoon.slice(0, 3);
+
   return (
-    <main className="relative">
+    <main className="relative bg-white">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-blue-50 to-white">
-        <div className="max-w-6xl mx-auto">
+      {/* Hero Section - Premium Design - Mobile Optimized */}
+      <section className="relative py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32 px-4 sm:px-6 md:px-8 overflow-hidden bg-black">
+        {/* Gradient Background */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-br from-red-900/40 via-purple-900/30 to-transparent rounded-full blur-3xl opacity-60"></div>
+          <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tl from-purple-900/40 to-transparent rounded-full blur-3xl opacity-50"></div>
+          <div className="absolute bottom-1/2 left-1/4 w-72 h-72 bg-gradient-to-tr from-red-900/30 to-transparent rounded-full blur-3xl opacity-40"></div>
+        </div>
+
+        <div className="max-w-6xl mx-auto relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
+            transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6">
-              Programs designed for medics at every stage
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-900/30 to-purple-900/30 rounded-full mb-6 border border-red-700/50 backdrop-blur-sm"
+            >
+              <span className="w-2 h-2 rounded-full bg-gradient-to-r from-red-500 to-purple-500 animate-pulse"></span>
+              <span className="text-sm font-bold text-red-300">Professional Learning Paths</span>
+            </motion.div>
+
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-4 sm:mb-6 leading-tight">
+              Transform Your <span className="bg-gradient-to-r from-red-500 via-purple-500 to-red-600 bg-clip-text text-transparent">Medical Career</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-              Self-paced courses, live bootcamps, mentorship & hands-on support — practical learning, no pressure.
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium px-2">
+              Expert-designed programs combining self-paced learning, live bootcamps, and personalized mentorship. Take control of your professional development.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Available Now Section */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 bg-white">
+      {/* Available Now Section - Premium Cards - Mobile Optimized */}
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-black via-purple-950/20 to-black">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.45 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="mb-8 sm:mb-12"
+            className="mb-8 sm:mb-12 md:mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-              Available Now
-            </h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full" />
+            <div className="inline-flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+              <div className="w-1 h-6 sm:h-8 bg-gradient-to-b from-red-600 to-purple-600 rounded-full"></div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white">
+                Available Now
+              </h2>
+            </div>
+            <p className="text-gray-400 text-sm sm:text-base md:text-lg mt-2 sm:mt-3">Start your transformation today with our most popular programs</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {programs.availableNow.map((program, idx) => (
-              <motion.div
-                key={program.id}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.45, delay: idx * 0.06 }}
-                viewport={{ once: true }}
-              >
-                <ProgramCard 
-                  program={program} 
-                  onPreview={handlePreviewClick}
-                />
-              </motion.div>
-            ))}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
+            {programs.availableNow.map((program, idx) => {
+              const colorClasses = getColorClasses(program.color);
+              return (
+                <motion.div
+                  key={program.id}
+                  initial={{ opacity: 0, y: 20, rotateX: 10 }}
+                  whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                  transition={{ duration: 0.6, delay: idx * 0.12, ease: "easeOut" }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                >
+                  <div className={`group relative h-full bg-gradient-to-br from-gray-900 via-purple-900/30 to-black rounded-2xl border border-purple-700/30 overflow-hidden hover:border-red-600/50 transition-all duration-300 ${colorClasses.glow} hover:shadow-2xl hover:shadow-red-500/30`}>
+                    {/* Animated gradient overlay on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-red-600/0 via-purple-600/0 to-black/0 group-hover:from-red-600/10 group-hover:via-purple-600/10 transition-all duration-500 pointer-events-none"></div>
+
+                    {/* Icon Section - Gradient Background */}
+                    <div className={`bg-gradient-to-br ${colorClasses.bg} p-6 sm:p-8 flex items-center justify-center relative overflow-hidden group-hover:scale-110 transition-transform duration-500`}>
+                      <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-300">
+                        <div className="absolute top-0 right-0 w-32 sm:w-40 h-32 sm:h-40 bg-white/10 rounded-full blur-3xl group-hover:bg-white/20"></div>
+                        <div className="absolute bottom-0 left-0 w-24 sm:w-32 h-24 sm:h-32 bg-red-500/10 rounded-full blur-3xl group-hover:bg-red-500/20"></div>
+                      </div>
+                      <div className={`relative z-10 ${colorClasses.text}`}>
+                        {iconMap[program.icon] || <Zap className="w-12 sm:w-16 h-12 sm:h-16" />}
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-5 sm:p-8 flex flex-col h-full relative z-10">
+                      {/* Title */}
+                      <h3 className="text-lg sm:text-2xl md:text-3xl font-black text-white mb-2 sm:mb-3 group-hover:text-red-300 transition-colors duration-300 line-clamp-2">
+                        {program.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-gray-400 text-sm sm:text-base mb-4 sm:mb-6 flex-grow leading-relaxed group-hover:text-gray-300 transition-colors">
+                        {program.shortDescription}
+                      </p>
+
+                      {/* Metadata - Styled */}
+                      {(program.duration || program.level) && (
+                        <div className="flex flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b border-purple-700/30 group-hover:border-red-600/30 transition-colors">
+                          {program.duration && (
+                            <div>
+                              <span className="text-xs font-bold text-red-400 uppercase tracking-widest block">Duration</span>
+                              <p className="text-sm sm:text-lg font-bold text-white mt-0.5 sm:mt-1">{program.duration}</p>
+                            </div>
+                          )}
+                          {program.level && (
+                            <div>
+                              <span className="text-xs font-bold text-red-400 uppercase tracking-widest block">Level</span>
+                              <p className="text-sm sm:text-lg font-bold text-white mt-0.5 sm:mt-1">{program.level}</p>
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Actions */}
+                      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                        <motion.button
+                          onClick={() => handlePreviewClick(program)}
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3.5 bg-gradient-to-r from-purple-900/50 to-red-900/50 border border-purple-600/50 text-purple-200 font-bold rounded-lg sm:rounded-xl hover:from-purple-800/70 hover:to-red-800/70 hover:border-red-600/70 transition-all duration-300 text-xs sm:text-base hover:shadow-lg hover:shadow-purple-600/30"
+                        >
+                          Quick Preview
+                        </motion.button>
+                        {program.status === 'available' ? (
+                          program.externalLink ? (
+                            <motion.a
+                              href={program.externalLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                              className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3.5 bg-gradient-to-r from-red-600 to-purple-600 text-white font-bold rounded-lg sm:rounded-xl hover:from-red-700 hover:to-purple-700 transition-all duration-300 text-xs sm:text-base text-center hover:shadow-lg hover:shadow-red-600/50"
+                            >
+                              Access Course
+                            </motion.a>
+                          ) : (
+                            <motion.a
+                              href={program.internalPath || '#'}
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                              className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3.5 bg-gradient-to-r from-red-600 to-purple-600 text-white font-bold rounded-lg sm:rounded-xl hover:from-red-700 hover:to-purple-700 transition-all duration-300 text-xs sm:text-base text-center hover:shadow-lg hover:shadow-red-600/50"
+                            >
+                              Access Course
+                            </motion.a>
+                          )
+                        ) : (
+                          <motion.button
+                            className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3.5 border-2 border-gray-700 text-gray-500 font-bold rounded-lg sm:rounded-xl bg-gray-900/50 text-xs sm:text-base cursor-not-allowed"
+                            disabled
+                          >
+                            Coming Soon
+                          </motion.button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Coming Soon Section */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 bg-gray-50">
+      {/* Coming Soon Section - Optimized Grid with View More */}
+      <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-black via-purple-950/10 to-black">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.45 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="mb-8 sm:mb-12"
+            className="mb-12 sm:mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-              Coming Soon
-            </h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" />
+            <div className="inline-flex items-center gap-3 mb-4">
+              <div className="w-1 h-8 bg-gradient-to-b from-red-600 to-black rounded-full"></div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white">
+                Coming Soon
+              </h2>
+            </div>
+            <p className="text-gray-400 text-sm sm:text-base md:text-lg mt-3">Exciting new programs launching soon. Secure your spot with early access.</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {programs.comingSoon.map((program, idx) => (
-              <motion.div
+          {/* Grid - Shows 3 cards on first row, rest hidden until expanded */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-10">
+            {visibleComingSoonPrograms.map((program, idx) => (
+              <ComingSoonCard 
                 key={program.id}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.45, delay: idx * 0.06 }}
-                viewport={{ once: true }}
-              >
-                <ProgramCard 
-                  program={program} 
-                  onPreview={handlePreviewClick}
-                />
-              </motion.div>
+                program={program} 
+                onPreview={handlePreviewClick}
+                isVisible={true}
+              />
             ))}
           </div>
+
+          {/* View More / View Less Button */}
+          {programs.comingSoon.length > 3 && (
+            <motion.div
+              className="flex justify-center"
+              layout
+            >
+              <motion.button
+                onClick={() => setShowAllComingSoon(!showAllComingSoon)}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="px-8 sm:px-12 py-3 sm:py-4 border-2 border-red-600/60 text-red-300 hover:text-red-200 font-black rounded-xl hover:bg-red-600/20 hover:border-red-400 transition-all text-sm sm:text-base flex items-center gap-2"
+              >
+                <span>
+                  {showAllComingSoon 
+                    ? `Show Less (${programs.comingSoon.length - 3} hidden)` 
+                    : `View More Programs (+${programs.comingSoon.length - 3})`}
+                </span>
+                <motion.span
+                  animate={{ rotate: showAllComingSoon ? 180 : 0 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                >
+                  ▼
+                </motion.span>
+              </motion.button>
+            </motion.div>
+          )}
+
+          {/* All remaining cards - animated reveal */}
+          <motion.div
+            layout
+            initial={false}
+            animate={{ height: showAllComingSoon ? "auto" : 0, opacity: showAllComingSoon ? 1 : 0 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className="overflow-hidden"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mt-8 sm:mt-10">
+              {programs.comingSoon.slice(3).map((program, idx) => (
+                <motion.div
+                  key={program.id}
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                >
+                  <ComingSoonCard 
+                    program={program} 
+                    onPreview={handlePreviewClick}
+                    isVisible={showAllComingSoon}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 bg-white">
-        <div className="max-w-6xl mx-auto">
+      {/* How It Works Section - Premium */}
+      <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-gray-950 via-black to-gray-950 text-white relative overflow-hidden">
+        {/* Decorative Elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-purple-600/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-br from-red-600/5 to-purple-600/5 rounded-full blur-3xl"></div>
+
+        <div className="max-w-6xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.45 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="mb-8 sm:mb-12"
+            className="mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-              How It Works
-            </h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full" />
+            <div className="inline-flex items-center gap-3 mb-4">
+              <div className="w-1 h-8 bg-gradient-to-b from-red-500 to-purple-600 rounded-full"></div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black">
+                How It Works
+              </h2>
+            </div>
+            <p className="text-base sm:text-lg text-gray-400 mt-3 max-w-2xl">A simple 3-step process to accelerate your medical career</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
             {[
               {
+                step: '01',
                 title: 'Choose Your Path',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.',
+                description: 'Browse our comprehensive selection of programs designed specifically for healthcare professionals at every career stage.',
                 icon: MessageSquare,
               },
               {
+                step: '02',
                 title: 'Learn at Your Pace',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.',
+                description: 'Access interactive content, expert instruction, and practical resources that fit your schedule and learning style.',
                 icon: BookOpen,
               },
               {
-                title: 'Get Support',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.',
+                step: '03',
+                title: 'Get Expert Support',
+                description: 'Connect with experienced mentors, join our community, and get personalized guidance throughout your journey.',
                 icon: Users,
               },
             ].map((item, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, delay: idx * 0.06 }}
+                transition={{ duration: 0.6, delay: idx * 0.12 }}
                 viewport={{ once: true }}
-                className="text-center"
+                className="relative group"
               >
-                <div className="flex justify-center mb-4">
-                  <div className="p-4 bg-blue-50 rounded-full text-blue-600">
-                    <item.icon className="w-8 h-8" />
-                  </div>
+                <div className="bg-gradient-to-br from-purple-900/30 to-red-900/30 backdrop-blur-md border border-purple-700/30 rounded-2xl p-8 h-full hover:border-red-600/60 transition-all duration-400 hover:bg-gradient-to-br hover:from-purple-900/50 hover:to-red-900/50 hover:shadow-2xl hover:shadow-red-600/20 group-hover:-translate-y-2">
+                  {/* Step Number */}
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: idx * 0.12 + 0.2, duration: 0.6 }}
+                    viewport={{ once: true }}
+                    className="text-6xl font-black bg-gradient-to-r from-red-500 to-purple-500 bg-clip-text text-transparent mb-4 opacity-40 group-hover:opacity-100 transition-opacity duration-300"
+                  >
+                    {item.step}
+                  </motion.div>
+
+                  {/* Icon */}
+                  <motion.div 
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="w-14 h-14 rounded-xl bg-gradient-to-br from-red-600/30 to-purple-600/30 flex items-center justify-center mb-6 group-hover:from-red-600/50 group-hover:to-purple-600/50 transition-all border border-red-600/20 group-hover:border-red-600/50"
+                  >
+                    <item.icon className="w-7 h-7 text-red-400 group-hover:text-red-300 transition-colors" />
+                  </motion.div>
+
+                  {/* Title */}
+                  <h3 className="text-2xl sm:text-3xl font-black mb-4 text-white group-hover:text-red-300 transition-colors duration-300">
+                    {item.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-gray-400 leading-relaxed text-base group-hover:text-gray-300 transition-colors duration-300">
+                    {item.description}
+                  </p>
+
+                  {/* Connector Line (hidden on mobile) */}
+                  {idx < 2 && (
+                    <motion.div 
+                      initial={{ scaleX: 0, opacity: 0 }}
+                      whileInView={{ scaleX: 1, opacity: 1 }}
+                      transition={{ delay: idx * 0.12 + 0.4, duration: 0.6 }}
+                      viewport={{ once: true }}
+                      className="hidden md:block absolute -right-5 top-1/2 -translate-y-1/2 w-10 h-1 bg-gradient-to-r from-red-600 via-purple-600 to-transparent opacity-30 group-hover:opacity-70 transition-opacity origin-left"
+                    ></motion.div>
+                  )}
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600 text-sm sm:text-base">
-                  {item.description}
-                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQs Section */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 bg-gray-50">
+      {/* FAQs Section - Premium */}
+      <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 bg-black">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.45 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="mb-8 sm:mb-12"
+            className="mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-              Frequently Asked Questions
-            </h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full" />
+            <div className="inline-flex items-center gap-3 mb-4">
+              <div className="w-1 h-8 bg-gradient-to-b from-purple-600 to-red-600 rounded-full"></div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white">
+                Frequently Asked Questions
+              </h2>
+            </div>
+            <p className="text-gray-400 text-base sm:text-lg mt-3">Everything you need to know about our programs</p>
           </motion.div>
 
           <div className="space-y-4">
             {[
               {
                 q: 'Who are these programs for?',
-                a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                a: 'Our programs are designed for healthcare professionals including doctors, nurses, and medical students looking to advance their skills and career. Whether you\'re early in your career or seeking specialization, we have a path for you.',
               },
               {
                 q: 'Do I need prior experience?',
-                a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                a: 'Different programs cater to different levels. We offer beginner-friendly programs for those just starting out, as well as advanced programs for experienced professionals. Check each program details for specific prerequisites.',
               },
               {
                 q: 'What if I need to pause or cancel?',
-                a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                a: 'We understand life happens. Most of our programs offer flexible access and pause options. Contact our support team for specific details about your program.',
               },
               {
                 q: 'How do you provide support?',
-                a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                a: 'We provide support through live Q&A sessions, community forums, email support, and 1-on-1 mentorship for select programs. Our goal is your success.',
               },
             ].map((faq, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.45, delay: idx * 0.06 }}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-lg p-4 sm:p-6 border border-gray-200 hover:border-blue-300 transition-colors"
+                className="group"
               >
-                <div className="flex gap-4">
-                  <HelpCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="font-semibold text-gray-900 text-base sm:text-lg mb-2">
-                      {faq.q}
-                    </h3>
-                    <p className="text-gray-600 text-sm sm:text-base">
-                      {faq.a}
-                    </p>
+                <div className="bg-gradient-to-r from-gray-900 to-gray-950 rounded-2xl p-6 sm:p-8 border border-purple-700/20 hover:border-red-600/40 hover:shadow-lg hover:shadow-red-600/20 transition-all duration-300 group-hover:-translate-y-1">
+                  <div className="flex gap-4">
+                    <motion.div 
+                      whileHover={{ scale: 1.15, rotate: 10 }}
+                      className="flex-shrink-0 pt-1"
+                    >
+                      <div className="w-6 h-6 rounded-full bg-gradient-to-r from-red-600 to-purple-600 flex items-center justify-center">
+                        <HelpCircle className="w-4 h-4 text-white" />
+                      </div>
+                    </motion.div>
+                    <div className="flex-1">
+                      <h3 className="font-black text-white text-lg sm:text-xl mb-3 group-hover:text-red-300 transition-colors duration-300">
+                        {faq.q}
+                      </h3>
+                      <p className="text-gray-400 text-base leading-relaxed group-hover:text-gray-300 transition-colors">
+                        {faq.a}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -365,37 +671,81 @@ export default function ProgramsPageClient() {
         </div>
       </section>
 
-      {/* Contact/CTA Section */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
+      {/* Contact/CTA Section - Premium */}
+      <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-black via-black to-purple-950 text-white relative overflow-hidden">
+        {/* Decorative Gradients */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-600/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-br from-red-600/5 to-purple-600/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
-              Not sure where to start?
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black mb-6">
+              Ready to Transform Your <span className="bg-gradient-to-r from-red-500 to-purple-500 bg-clip-text text-transparent">Medical Career?</span>
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-8">
-              Join our community or get program updates delivered to your inbox.
+            <p className="text-lg sm:text-xl text-gray-300 mb-12 leading-relaxed max-w-2xl mx-auto">
+              Join thousands of healthcare professionals already accelerating their growth with our programs. Secure your spot today and start your journey to success.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <a
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center">
+              <motion.a
                 href="#"
-                className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base"
+                whileHover={{ scale: 1.08, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 bg-gradient-to-r from-red-600 to-purple-600 text-white font-black rounded-xl hover:shadow-2xl hover:shadow-red-600/50 transition-all text-base sm:text-lg border border-red-500/50 hover:border-red-400"
               >
-                Join Community
-              </a>
-              <a
+                Explore All Programs
+              </motion.a>
+              <motion.a
                 href="#"
-                className="px-6 py-3 border border-gray-300 text-gray-900 font-semibold rounded-lg hover:bg-gray-50 transition-colors text-sm sm:text-base flex items-center justify-center gap-2"
+                whileHover={{ scale: 1.08, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 border-2 border-red-600/60 text-red-300 font-black rounded-xl hover:bg-red-600/20 transition-all text-base sm:text-lg flex items-center justify-center gap-2 hover:border-red-400 hover:text-red-200"
               >
                 <Mail className="w-5 h-5" />
                 Get Updates
-              </a>
+              </motion.a>
             </div>
+
+            {/* Trust Indicators */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="mt-16 pt-12 border-t border-purple-700/30"
+            >
+              <p className="text-gray-400 text-sm font-semibold mb-6">Trusted by healthcare professionals worldwide</p>
+              <div className="flex flex-wrap justify-center gap-8 sm:gap-12 text-center">
+                {[
+                  { stat: '10K+', label: 'Active Learners' },
+                  { stat: '50+', label: 'Expert Instructors' },
+                  { stat: '98%', label: 'Satisfaction Rate' },
+                ].map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: 0.3 + idx * 0.1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.1 }}
+                    className="group"
+                  >
+                    <div className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-red-500 to-purple-500 bg-clip-text text-transparent group-hover:from-red-400 group-hover:to-purple-400 transition-all">
+                      {item.stat}
+                    </div>
+                    <p className="text-gray-400 text-xs sm:text-sm mt-2 group-hover:text-gray-300 transition-colors">{item.label}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>

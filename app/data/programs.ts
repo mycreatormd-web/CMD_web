@@ -38,7 +38,7 @@ export const programs: ProgramsData = {
       status: 'available',
       duration: 'Self-paced',
       level: 'Beginner',
-      externalLink: 'https://example.com/core-course'
+      externalLink: 'https://app.gohighlevel.com/v2/preview/XIxNxbeFj0B5mVXJyglB?notrack=true'
     }
   ],
   comingSoon: [
