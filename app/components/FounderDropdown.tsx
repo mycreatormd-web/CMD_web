@@ -132,14 +132,14 @@ const FounderDropdown = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 p-8 rounded-4xl">
+        <div className="relative z-10 p-4 sm:p-6 md:p-8 rounded-3xl sm:rounded-4xl">
           {/* Header - Matching Other Sections */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-6 sm:mb-8 px-2">
             <motion.h3 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 relative inline-block"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 relative inline-block leading-tight"
             >
               <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
                 Meet The Founder
@@ -163,8 +163,8 @@ const FounderDropdown = () => {
             className="max-w-3xl mx-auto"
           >
             <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl md:rounded-3xl border-2 border-gray-200 shadow-2xl overflow-hidden">
-              <div className="p-4 md:p-6">
-                <div className="grid md:grid-cols-2 gap-4 md:gap-6 items-start">
+              <div className="p-3 sm:p-4 md:p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 items-start">
                   {/* Left - Portrait */}
                   <div className="flex flex-col items-center">
                     <motion.div
@@ -231,15 +231,15 @@ const FounderDropdown = () => {
                       viewport={{ once: true }}
                       transition={{ delay: 0.4 }}
                     >
-                      <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-1">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1 leading-snug">
                         Dr. Valerie Okorie
                       </h3>
-                      <p className="text-xs md:text-sm text-gray-600 mb-3">
+                      <p className="text-xs sm:text-sm text-gray-600 mb-3">
                         Doctor • Creator • Founder
                       </p>
                       
-                      <div className="bg-gradient-to-r from-blue-50 to-emerald-50 rounded-lg p-2.5 md:p-3 border-l-4 border-blue-500 mb-3">
-                        <p className="text-xs md:text-sm text-gray-900 font-semibold">
+                      <div className="bg-gradient-to-r from-blue-50 to-emerald-50 rounded-lg p-2 sm:p-2.5 md:p-3 border-l-4 border-blue-500 mb-3">
+                        <p className="text-xs sm:text-sm text-gray-900 font-semibold leading-relaxed">
                           "From confusion to clarity—this is why CreatorMD exists."
                         </p>
                       </div>
@@ -251,7 +251,7 @@ const FounderDropdown = () => {
                           boxShadow: "0 20px 60px rgba(59, 130, 246, 0.4)"
                         }}
                         whileTap={{ scale: 0.95 }}
-                        className={`w-full px-4 py-2 rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition-all ${
+                        className={`w-full px-3 sm:px-4 py-2 rounded-lg font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all ${
                           isOpen 
                             ? 'bg-gradient-to-r from-gray-900 to-gray-700 text-white shadow-2xl' 
                             : 'bg-gradient-to-r from-blue-600 via-emerald-600 to-cyan-600 text-white shadow-2xl hover:shadow-3xl'

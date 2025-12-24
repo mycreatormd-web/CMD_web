@@ -222,12 +222,12 @@ const HeroSection = () => {
           </motion.div>
 
           {/* Main Headline */}
-          <div className="text-center mb-6 md:mb-8 px-4">
+          <div className="text-center mb-6 md:mb-8 px-3 sm:px-4">
             <motion.h2 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.2]"
+              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] sm:leading-[1.2]"
             >
               {/* Mobile: 3 lines */}
               <span className="block md:hidden text-white">Turn Your Medical</span>
@@ -265,7 +265,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-sm sm:text-base md:text-lg lg:text-xl mb-4 md:mb-6 max-w-3xl mx-auto leading-relaxed px-4 md:px-6"
+              className="text-xs sm:text-sm md:text-lg lg:text-xl mb-4 md:mb-6 max-w-3xl mx-auto leading-relaxed px-3 sm:px-4 md:px-6"
             >
               <span className="text-gray-300">
                 CreatorMD helps medics create <span className="font-semibold text-white">clear, credible health content</span>, build <span className="font-semibold text-blue-300">digital authority</span>, and open <span className="font-semibold text-emerald-300">new opportunities</span> — without burnout or confusion.
@@ -316,7 +316,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-stretch sm:items-center px-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center items-stretch sm:items-center px-3 sm:px-4"
           >
             <motion.button
               whileHover={{ 

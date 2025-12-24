@@ -2,6 +2,7 @@
 import Navigation from './components/Navigation';
 import HeroSection from './components/HeroSection';
 import About from './components/About';
+import ProgramsSection from './components/ProgramsSection';
 import ValueProps from './components/ValueProps';
 import SocialProof from './components/SocialProof';
 
@@ -11,6 +12,7 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <About />
+      <ProgramsSection />
       <ValueProps />
       <SocialProof />
       {/* Other sections will go here */}

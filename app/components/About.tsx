@@ -298,15 +298,15 @@ const About = () => {
       {/* Decorative Blobs with Parallax */}
       <motion.div 
         style={{ y: y1 }}
-        className="absolute top-20 left-10 w-72 h-72 bg-blue-200/30 rounded-full blur-3xl" 
+        className="absolute top-20 left-5 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-blue-200/30 rounded-full blur-3xl" 
       />
       <motion.div 
         style={{ y: y2 }}
-        className="absolute bottom-20 right-10 w-96 h-96 bg-emerald-200/30 rounded-full blur-3xl" 
+        className="absolute bottom-20 right-5 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-emerald-200/30 rounded-full blur-3xl" 
       />
       <motion.div 
         style={{ y: y3 }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-200/20 rounded-full blur-3xl" 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-purple-200/20 rounded-full blur-3xl" 
       />
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -316,7 +316,7 @@ const About = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-16 md:mb-24"
+          className="text-center mb-12 sm:mb-16 md:mb-24"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
@@ -325,12 +325,12 @@ const About = () => {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="inline-block mb-6"
           >
-            <span className="px-6 py-2.5 bg-white/80 backdrop-blur-md rounded-full border border-blue-200 text-blue-600 text-sm font-semibold shadow-lg">
+            <span className="px-4 sm:px-6 py-2 sm:py-2.5 bg-white/80 backdrop-blur-md rounded-full border border-blue-200 text-blue-600 text-xs sm:text-sm font-semibold shadow-lg">
               About CreatorMD
             </span>
           </motion.div>
           
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 relative inline-block">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-6 relative inline-block">
             <span className="bg-gradient-to-r from-blue-600 via-emerald-600 to-cyan-600 bg-clip-text text-transparent">
               Who We Are
             </span>
