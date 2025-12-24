@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  BookOpen, Target, Wrench, Trophy, Users, ArrowRight, ChevronDown
+  BookOpen, Target, Wrench, Trophy, Users, ArrowRight, ChevronDown, Zap, Heart, Briefcase
 } from 'lucide-react';
 
 const programs = [
@@ -21,7 +21,8 @@ const programs = [
     color: "from-blue-500 to-cyan-500",
     bgColor: "from-blue-50 to-cyan-50",
     borderColor: "border-blue-200",
-    lightColor: "bg-blue-50"
+    lightColor: "bg-blue-50",
+    accentColor: "text-blue-600"
   },
   {
     id: 2,
@@ -36,7 +37,8 @@ const programs = [
     color: "from-emerald-500 to-teal-500",
     bgColor: "from-emerald-50 to-teal-50",
     borderColor: "border-emerald-200",
-    lightColor: "bg-emerald-50"
+    lightColor: "bg-emerald-50",
+    accentColor: "text-emerald-600"
   },
   {
     id: 3,
@@ -51,7 +53,8 @@ const programs = [
     color: "from-purple-500 to-pink-500",
     bgColor: "from-purple-50 to-pink-50",
     borderColor: "border-purple-200",
-    lightColor: "bg-purple-50"
+    lightColor: "bg-purple-50",
+    accentColor: "text-purple-600"
   },
   {
     id: 4,
@@ -66,7 +69,8 @@ const programs = [
     color: "from-amber-500 to-orange-500",
     bgColor: "from-amber-50 to-orange-50",
     borderColor: "border-amber-200",
-    lightColor: "bg-amber-50"
+    lightColor: "bg-amber-50",
+    accentColor: "text-amber-600"
   },
   {
     id: 5,
@@ -81,7 +85,8 @@ const programs = [
     color: "from-cyan-500 to-blue-500",
     bgColor: "from-cyan-50 to-blue-50",
     borderColor: "border-cyan-200",
-    lightColor: "bg-cyan-50"
+    lightColor: "bg-cyan-50",
+    accentColor: "text-cyan-600"
   }
 ];
 
@@ -91,117 +96,119 @@ const ProgramCard = ({ program, idx, expandedId, setExpandedId }) => {
 
   return (
     <motion.div
-      key={program.id}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true, margin: "-40px" }}
       transition={{ 
-        delay: idx * 0.12,
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1]
+        delay: idx * 0.1,
+        duration: 0.5,
+        ease: "easeOut"
       }}
-      className="group col-span-full md:col-span-1"
+      className="h-full"
     >
       <motion.div
         layout
-        className={`relative bg-gradient-to-br ${program.bgColor} rounded-2xl border-2 ${program.borderColor} shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden`}
+        layoutId={`card-${program.id}`}
+        onClick={() => setExpandedId(isExpanded ? null : program.id)}
+        className={`relative h-full bg-white rounded-xl md:rounded-2xl border-2 ${program.borderColor} shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden cursor-pointer group`}
       >
-        {/* Card Button/Header */}
-        <motion.button
-          onClick={() => setExpandedId(isExpanded ? null : program.id)}
-          whileHover={{ y: -6 }}
-          transition={{ duration: 0.3 }}
-          className={`w-full p-4 sm:p-6 md:p-8 flex flex-col items-start text-left cursor-pointer`}
-        >
-          {/* Icon */}
-          <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.12 + 0.2, duration: 0.5 }}
-            className={`w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl bg-gradient-to-br ${program.color} flex items-center justify-center mb-3 sm:mb-4 shadow-md`}
-          >
-            <Icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white" />
-          </motion.div>
+        {/* Animated Background */}
+        <div className={`absolute inset-0 bg-gradient-to-br ${program.bgColor} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
-          {/* Title */}
-          <motion.h3 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.12 + 0.1, duration: 0.5 }}
-            className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 leading-snug"
-          >
-            {program.title}
-          </motion.h3>
-
-          {/* Microcopy */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.12 + 0.15, duration: 0.5 }}
-            className="text-xs sm:text-sm md:text-base text-gray-700 mb-3 sm:mb-4 flex-1 leading-relaxed"
-          >
-            {program.microcopy}
-          </motion.p>
-
-          {/* Learn More Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.12 + 0.25, duration: 0.5 }}
-            className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold text-gray-900 group/btn"
-          >
-            <span>{isExpanded ? "See Less" : "Learn More"}</span>
+        {/* Content Container */}
+        <div className="relative z-10">
+          {/* Card Header - Always Visible */}
+          <div className="p-3 sm:p-4 md:p-6 lg:p-8">
+            {/* Icon */}
             <motion.div
-              animate={{ rotate: isExpanded ? 180 : 0 }}
-              transition={{ duration: 0.3 }}
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
+              className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl bg-gradient-to-br ${program.color} flex items-center justify-center mb-2 sm:mb-3 md:mb-4 shadow-sm`}
             >
-              <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+              <Icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white" />
             </motion.div>
-          </motion.div>
-        </motion.button>
 
-        {/* Expanded Content - Inside the same card div */}
-        <AnimatePresence>
-          {isExpanded && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="overflow-hidden px-4 sm:px-5 md:px-8 pb-4 sm:pb-5 md:pb-8"
+            {/* Title */}
+            <motion.h3 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 + 0.1, duration: 0.4 }}
+              className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 sm:mb-2 md:mb-3 leading-snug"
             >
+              {program.title}
+            </motion.h3>
+
+            {/* Microcopy */}
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
+              className="text-xs sm:text-sm md:text-base text-gray-700 mb-3 sm:mb-4 md:mb-5 leading-relaxed"
+            >
+              {program.microcopy}
+            </motion.p>
+
+            {/* Learn More Button */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 + 0.2, duration: 0.4 }}
+              className={`flex items-center gap-1.5 text-xs sm:text-sm font-semibold ${program.accentColor} group/btn`}
+            >
+              <span className="group-hover/btn:translate-x-0.5 transition-transform">{isExpanded ? "Show Less" : "Show More"}</span>
               <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ delay: 0.1, duration: 0.3 }}
-                className={`pt-6 border-t-2 ${program.borderColor}`}
+                animate={{ rotate: isExpanded ? 180 : 0, y: isExpanded ? 2 : 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                <p className="text-xs sm:text-sm font-semibold text-gray-700 mb-2 sm:mb-3">What's Included:</p>
-                <ul className="space-y-2">
-                  {program.includes.map((item, i) => (
-                    <motion.li 
-                      key={i}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.15 + i * 0.08, duration: 0.3 }}
-                      className="text-xs sm:text-sm text-gray-700 flex items-start gap-2"
-                    >
-                      <span className={`bg-gradient-to-r ${program.color} bg-clip-text text-transparent font-bold flex-shrink-0 mt-0.5`}>
-                        ✓
-                      </span>
-                      <span>{item}</span>
-                    </motion.li>
-                  ))}
-                </ul>
+                <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5" />
               </motion.div>
             </motion.div>
-          )}
-        </AnimatePresence>
+          </div>
+
+          {/* Expanded Content */}
+          <AnimatePresence>
+            {isExpanded && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="overflow-hidden"
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: -15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ delay: 0.1, duration: 0.3 }}
+                  className={`px-3 sm:px-4 md:px-6 lg:px-8 pb-3 sm:pb-4 md:pb-6 lg:pb-8 border-t-2 ${program.borderColor} bg-gradient-to-br ${program.bgColor}`}
+                >
+                  <p className="text-xs sm:text-sm font-bold text-gray-800 mb-2.5 sm:mb-3 uppercase tracking-wide">What's Included:</p>
+                  <ul className="space-y-1.5 sm:space-y-2 md:space-y-2.5">
+                    {program.includes.map((item, i) => (
+                      <motion.li 
+                        key={i}
+                        initial={{ opacity: 0, x: -15 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.15 + i * 0.07, duration: 0.3 }}
+                        className="text-xs sm:text-sm md:text-base text-gray-700 flex items-start gap-2 group/item"
+                      >
+                        <span className={`bg-gradient-to-r ${program.color} bg-clip-text text-transparent font-black flex-shrink-0 mt-0.5 text-sm sm:text-base md:text-lg`}>
+                          •
+                        </span>
+                        <span className="leading-relaxed">{item}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </motion.div>
     </motion.div>
   );
@@ -211,67 +218,75 @@ const ProgramsSection = () => {
   const [expandedId, setExpandedId] = useState(null);
 
   return (
-    <section id="programs" className="relative py-12 sm:py-16 md:py-24 px-4 md:px-6">
-      {/* Animated Background */}
+    <section id="programs" className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8">
+      {/* Animated Background Blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 0.04, scale: 1 }}
+          initial={{ opacity: 0, scale: 0.5 }}
+          whileInView={{ opacity: 0.06, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.2 }}
-          className="absolute top-1/3 -right-1/4 w-full h-full bg-gradient-to-l from-blue-400 to-emerald-400 rounded-full blur-3xl"
+          transition={{ duration: 1 }}
+          className="absolute top-0 right-0 w-72 h-72 sm:w-96 sm:h-96 md:w-full md:h-full bg-gradient-to-l from-blue-200 to-emerald-200 rounded-full blur-3xl -z-10"
         />
         <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 0.03, scale: 1 }}
+          initial={{ opacity: 0, scale: 0.5 }}
+          whileInView={{ opacity: 0.05, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.2, delay: 0.2 }}
-          className="absolute -bottom-1/4 -left-1/4 w-full h-full bg-gradient-to-r from-cyan-400 to-emerald-400 rounded-full blur-3xl"
+          transition={{ duration: 1, delay: 0.1 }}
+          className="absolute bottom-0 left-0 w-80 h-80 sm:w-full sm:h-full bg-gradient-to-t from-cyan-200 to-blue-200 rounded-full blur-3xl -z-10"
         />
       </div>
 
-      {/* Content */}
+      {/* Content Container */}
       <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Section Intro */}
+        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-10 sm:mb-12 md:mb-16 px-2"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16"
         >
-          <motion.h2 
-            initial={{ opacity: 0, scale: 0.9 }}
+          {/* Subtitle Badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 relative inline-block"
+            transition={{ delay: 0.1, duration: 0.4 }}
+            className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-blue-100 to-cyan-100 rounded-full mb-3 sm:mb-4"
           >
-            <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
-              Our Programs
+            <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />
+            <span className="text-xs sm:text-sm font-semibold text-blue-700">PROGRAMS & PATHWAYS</span>
+          </motion.div>
+
+          {/* Main Heading */}
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15, duration: 0.6 }}
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-5"
+          >
+            Programs That Fit{" "}
+            <span className="bg-gradient-to-r from-blue-600 via-emerald-600 to-cyan-600 bg-clip-text text-transparent">
+              Your Goals
             </span>
-            <motion.span
-              className="absolute -bottom-1.5 sm:-bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.7 }}
-            />
           </motion.h2>
 
+          {/* Subheading */}
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-700 max-w-3xl mx-auto mt-4 sm:mt-5 md:mt-6 leading-relaxed"
+            className="text-sm sm:text-base md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed"
           >
-            A clear path from knowledge to digital impact. Self-paced learning, live training, coaching, and community — all built for busy medics.
+            Self-paced learning, live workshops, coaching, community support, and premium services — whatever level you're at, we have a clear path forward.
           </motion.p>
         </motion.div>
 
         {/* Programs Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-10 sm:mb-12 md:mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 mb-10 sm:mb-12 md:mb-16 lg:mb-20">
           {programs.map((program, idx) => (
             <ProgramCard 
               key={program.id}
@@ -283,57 +298,68 @@ const ProgramsSection = () => {
           ))}
         </div>
 
-        {/* CTA Section */}
+        {/* Bottom CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-center"
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 border-2 border-blue-200/50 text-center"
         >
+          <motion.h3
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+            className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-2 sm:mb-3"
+          >
+            Ready to explore all programs?
+          </motion.h3>
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.45, duration: 0.5 }}
+            className="text-sm sm:text-base text-gray-700 max-w-2xl mx-auto mb-6 sm:mb-8"
+          >
+            Check out our complete programs hub with detailed descriptions, pricing, and everything you need to choose your path.
+          </motion.p>
+
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="inline-flex flex-col md:flex-row gap-4 md:gap-6 mb-6"
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center"
           >
             {/* Primary CTA */}
-            <motion.button
+            <motion.a
+              href="/programs"
               whileHover={{ 
-                scale: 1.06,
-                boxShadow: "0 25px 50px rgba(59, 130, 246, 0.35)"
+                scale: 1.05,
+                boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)"
               }}
-              whileTap={{ scale: 0.94 }}
-              className="px-8 py-3 bg-gradient-to-r from-blue-600 via-emerald-600 to-cyan-600 text-white font-bold rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 flex items-center justify-center gap-2 whitespace-nowrap"
+              whileTap={{ scale: 0.98 }}
+              className="w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-blue-600 via-emerald-600 to-cyan-600 text-white font-bold rounded-lg md:rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
             >
-              <span>Explore CreatorMD Programs</span>
-              <ArrowRight className="w-5 h-5" />
-            </motion.button>
+              <span>Explore All Programs</span>
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+            </motion.a>
 
             {/* Secondary CTA */}
             <motion.button
               whileHover={{ 
-                scale: 1.06,
-                backgroundColor: "#e5e7eb"
+                scale: 1.05,
+                backgroundColor: "#f3f4f6"
               }}
-              whileTap={{ scale: 0.94 }}
-              className="px-8 py-3 bg-gray-100 text-gray-900 font-bold rounded-xl hover:bg-gray-200 transition-colors duration-300 flex items-center justify-center gap-2 whitespace-nowrap"
+              whileTap={{ scale: 0.98 }}
+              className="w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3 bg-white text-gray-900 font-bold rounded-lg md:rounded-xl border-2 border-gray-300 hover:bg-gray-100 transition-colors duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
             >
-              <Users className="w-5 h-5" />
-              <span>Join the Community</span>
+              <Users className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span>Join Community</span>
             </motion.button>
           </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="text-base text-gray-700 font-semibold"
-          >
-            However you want to grow as a medical creator, there's a clear path.
-          </motion.p>
         </motion.div>
       </div>
     </section>

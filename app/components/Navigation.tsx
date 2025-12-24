@@ -2,16 +2,18 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Brain } from 'lucide-react';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   const navItems = [
     { label: 'About', href: '#about' },
-    { label: 'Programs', href: '#programs' },
+    { label: 'Programs', href: pathname === '/' ? '#programs' : '/programs' },
     { label: 'Community', href: '#community' },
     { label: 'Resources', href: '#resources' },
     { label: 'Partnerships', href: '#partnerships' },
@@ -28,8 +30,12 @@ const Navigation = () => {
 
   const handleNavClick = (href: string) => {
     setIsOpen(false);
-    const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: 'smooth' });
+    // If it's a hash link, scroll to element
+    if (href.startsWith('#')) {
+      const element = document.querySelector(href);
+      element?.scrollIntoView({ behavior: 'smooth' });
+    }
+    // Otherwise, navigate naturally
   };
 
   return (
