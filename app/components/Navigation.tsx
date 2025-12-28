@@ -53,18 +53,20 @@ const Navigation = () => {
       >
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex items-center justify-between h-16 md:h-20">
-            {/* Logo */}
+            {/* Logo Container */}
             <motion.a
               href="#"
-              className="flex items-center gap-2 group"
+              className="flex items-center group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <img
-                src="/cmd_logo_3.svg"
-                alt="CreatorMD Logo"
-                className="h-12 md:h-14 w-auto drop-shadow-[0_0_15px_rgba(220,38,38,0.4)] hover:drop-shadow-[0_0_20px_rgba(220,38,38,0.6)] transition-all duration-300"
-              />
+              <div className="p-2 md:p-2.5 bg-gradient-to-br from-slate-800/60 to-slate-900/80 backdrop-blur-md rounded-xl border border-red-500/40 shadow-lg hover:shadow-red-600/30 transition-all duration-300 hover:border-red-500/60">
+                <img
+                  src="/cmd_logo_3.svg"
+                  alt="CreatorMD Logo"
+                  className="h-8 md:h-10 w-auto"
+                />
+              </div>
             </motion.a>
 
             {/* Desktop Navigation */}
@@ -171,11 +173,13 @@ const Navigation = () => {
               <div className="p-6">
                 {/* Mobile Menu Header */}
                 <div className="flex items-center justify-between mb-8">
-                  <img
-                    src="/cmd_logo_3.svg"
-                    alt="CreatorMD Logo"
-                    className="h-10 w-auto drop-shadow-[0_0_10px_rgba(220,38,38,0.4)]"
-                  />
+                  <div className="p-2 bg-gradient-to-br from-slate-800/60 to-slate-900/80 backdrop-blur-md rounded-lg border border-red-500/40 shadow-lg">
+                    <img
+                      src="/cmd_logo_3.svg"
+                      alt="CreatorMD Logo"
+                      className="h-8 w-auto"
+                    />
+                  </div>
                   <button
                     onClick={() => setIsOpen(false)}
                     className="p-2 hover:bg-white/5 rounded-lg transition-colors"
