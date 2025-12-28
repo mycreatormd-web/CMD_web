@@ -169,10 +169,10 @@ const HeroSection = () => {
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center justify-center mb-6 md:mb-8 px-4"
           >
-            <div className="relative p-2 sm:p-4 md:p-6 bg-gradient-to-br from-red-600/20 via-purple-600/15 to-black/20 backdrop-blur-2xl rounded-[50px] border-2 border-red-500/30 shadow-2xl shadow-red-600/20 hover:shadow-red-600/40 transition-all duration-300">
-              {/* Accent glow elements */}
-              <div className="absolute -top-2 -left-2 w-12 h-12 bg-red-500/20 rounded-full blur-2xl opacity-50" />
-              <div className="absolute -bottom-2 -right-2 w-16 h-16 bg-purple-600/20 rounded-full blur-2xl opacity-50" />
+            <div className="relative p-2 sm:p-4 md:p-6 bg-gradient-to-br from-slate-900/80 via-slate-800/70 to-slate-900/80 backdrop-blur-xl rounded-[50px] border border-slate-700/60 shadow-2xl shadow-red-600/10 hover:shadow-red-600/20 transition-all duration-300 ring-1 ring-slate-700/40">
+              {/* Subtle accent glow elements */}
+              <div className="absolute -top-3 -left-3 w-16 h-16 bg-gradient-to-br from-red-500/15 to-transparent rounded-full blur-2xl opacity-60 pointer-events-none" />
+              <div className="absolute -bottom-3 -right-3 w-20 h-20 bg-gradient-to-tl from-purple-600/15 to-transparent rounded-full blur-2xl opacity-60 pointer-events-none" />
               
               <img 
                 src="/cmd_logo_3.svg" 
