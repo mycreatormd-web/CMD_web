@@ -162,41 +162,14 @@ const HeroSection = () => {
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-4 py-8 md:py-12 h-full flex flex-col justify-center">
         <div className="max-w-7xl mx-auto">
-          {/* Animated Logo Intro */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex items-center justify-center mb-6 md:mb-8 px-4"
-          >
-            <div className="relative p-2 sm:p-4 md:p-6
-  bg-gradient-to-br from-white via-gray-50 to-gray-100
-  rounded-[50px]
-  border border-gray-200/80
-  shadow-2xl shadow-black/10
-  transition-all duration-300
-  ring-1 ring-gray-200/60
-">
-              {/* Subtle accent glow elements */}
-              <div className="absolute -top-3 -left-3 w-16 h-16 bg-gradient-to-br from-red-500/15 to-transparent rounded-full blur-2xl opacity-60 pointer-events-none" />
-              <div className="absolute -bottom-3 -right-3 w-20 h-20 bg-gradient-to-tl from-purple-600/15 to-transparent rounded-full blur-2xl opacity-60 pointer-events-none" />
-              
-              <img 
-                src="/cmd_logo_3.svg" 
-                alt="CreatorMD Logo"
-                className="w-36 sm:w-48 md:w-72 h-auto relative z-10"
-              />
-            </div>
-          </motion.div>
-
           {/* Hero Tagline */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-6 md:mb-8 px-4"
+            className="text-center mb-8 md:mb-10 px-4"
           >
-            <span className="text-xs sm:text-sm font-medium text-red-300 tracking-wide uppercase">
+            <span className="inline-block px-5 py-2.5 md:px-7 md:py-3 bg-gradient-to-r from-red-600/20 via-purple-600/20 to-red-600/20 backdrop-blur-lg rounded-full border-2 border-red-500/40 text-white text-sm sm:text-base font-bold shadow-lg hover:shadow-red-600/20 transition-all duration-300">
               Built by medics, for medics.
             </span>
           </motion.div>

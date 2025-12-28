@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Brain } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,8 +47,8 @@ const Navigation = () => {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled 
-            ? 'bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-2xl' 
-            : 'bg-transparent'
+            ? 'bg-gradient-to-b from-black/90 to-black/70 backdrop-blur-xl border-b border-red-500/20 shadow-2xl' 
+            : 'bg-gradient-to-b from-black/50 to-transparent'
         }`}
       >
         <div className="container mx-auto px-4 md:px-6">
@@ -60,18 +60,11 @@ const Navigation = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              >
-                <Brain className="w-8 h-8 text-red-400 drop-shadow-[0_0_10px_rgba(220,38,38,0.5)]" />
-              </motion.div>
-              <div className="flex items-baseline gap-0.5">
-                <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-red-400 via-red-300 to-purple-400 bg-clip-text text-transparent">
-                  Creator
-                </span>
-                <span className="text-xl md:text-2xl font-bold text-white">MD</span>
-              </div>
+              <img
+                src="/cmd_logo_3.svg"
+                alt="CreatorMD Logo"
+                className="h-12 md:h-14 w-auto drop-shadow-[0_0_15px_rgba(220,38,38,0.4)] hover:drop-shadow-[0_0_20px_rgba(220,38,38,0.6)] transition-all duration-300"
+              />
             </motion.a>
 
             {/* Desktop Navigation */}
@@ -178,13 +171,11 @@ const Navigation = () => {
               <div className="p-6">
                 {/* Mobile Menu Header */}
                 <div className="flex items-center justify-between mb-8">
-                  <div className="flex items-center gap-2">
-                    <Brain className="w-6 h-6 text-red-400" />
-                    <span className="text-lg font-bold">
-                      <span className="bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent">Creator</span>
-                      <span className="text-white">MD</span>
-                    </span>
-                  </div>
+                  <img
+                    src="/cmd_logo_3.svg"
+                    alt="CreatorMD Logo"
+                    className="h-10 w-auto drop-shadow-[0_0_10px_rgba(220,38,38,0.4)]"
+                  />
                   <button
                     onClick={() => setIsOpen(false)}
                     className="p-2 hover:bg-white/5 rounded-lg transition-colors"
