@@ -60,9 +60,9 @@ const Navigation = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="p-2 md:p-2.5 bg-gradient-to-br from-slate-800/60 to-slate-900/80 backdrop-blur-md rounded-xl border border-red-500/40 shadow-lg hover:shadow-red-600/30 transition-all duration-300 hover:border-red-500/60">
+              <div className="p-2 md:p-2.5 bg-gradient-to-br from-slate-800/40 to-slate-900/60 backdrop-blur-md rounded-xl shadow-lg hover:shadow-red-600/20 transition-all duration-300">
                 <img
-                  src="/cmd_logo_3.svg"
+                  src="/cmd_logo_3_inverted.svg"
                   alt="CreatorMD Logo"
                   className="h-8 md:h-10 w-auto"
                 />
@@ -173,9 +173,9 @@ const Navigation = () => {
               <div className="p-6">
                 {/* Mobile Menu Header */}
                 <div className="flex items-center justify-between mb-8">
-                  <div className="p-2 bg-gradient-to-br from-slate-800/60 to-slate-900/80 backdrop-blur-md rounded-lg border border-red-500/40 shadow-lg">
+                  <div className="p-2 bg-gradient-to-br from-slate-800/40 to-slate-900/60 backdrop-blur-md rounded-lg shadow-lg">
                     <img
-                      src="/cmd_logo_3.svg"
+                      src="/cmd_logo_3_inverted.svg"
                       alt="CreatorMD Logo"
                       className="h-8 w-auto"
                     />
