@@ -167,45 +167,18 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex items-center justify-center gap-2 md:gap-3 mb-4 md:mb-6 px-4"
+            className="flex items-center justify-center mb-6 md:mb-8 px-4"
           >
-            <motion.div
-              animate={{ 
-                rotate: 360,
-              }}
-              transition={{ 
-                duration: 25, 
-                repeat: Infinity, 
-                ease: "linear" 
-              }}
-            >
-              <Brain className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-red-400 drop-shadow-[0_0_15px_rgba(239,68,68,0.5)]" />
-            </motion.div>
-            <div className="flex items-baseline gap-0.5 md:gap-1">
-              <motion.h1 
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-red-400 via-red-300 to-purple-400 bg-clip-text text-transparent"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              >
-                Creator
-              </motion.h1>
-              <motion.span 
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              >
-                MD
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.6, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="ml-1 md:ml-2 text-[10px] sm:text-xs font-semibold bg-gradient-to-r from-purple-600 to-pink-600 text-white px-1.5 py-0.5 md:px-2 md:py-1 rounded-full shadow-lg"
-              >
-                ™️
-              </motion.span>
+            <div className="relative p-2 sm:p-4 md:p-6 bg-gradient-to-br from-red-600/20 via-purple-600/15 to-black/20 backdrop-blur-2xl rounded-[50px] border-2 border-red-500/30 shadow-2xl shadow-red-600/20 hover:shadow-red-600/40 transition-all duration-300">
+              {/* Accent glow elements */}
+              <div className="absolute -top-2 -left-2 w-12 h-12 bg-red-500/20 rounded-full blur-2xl opacity-50" />
+              <div className="absolute -bottom-2 -right-2 w-16 h-16 bg-purple-600/20 rounded-full blur-2xl opacity-50" />
+              
+              <img 
+                src="/cmd_logo_3.svg" 
+                alt="CreatorMD Logo"
+                className="w-36 sm:w-48 md:w-72 h-auto relative z-10"
+              />
             </div>
           </motion.div>
 
@@ -214,9 +187,9 @@ const HeroSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-4 md:mb-6 px-4"
+            className="text-center mb-6 md:mb-8 px-4"
           >
-            <span className="inline-block px-4 py-2 md:px-6 md:py-2.5 bg-gradient-to-r from-red-950/50 to-purple-950/50 backdrop-blur-md rounded-full border border-red-800/20 text-red-300 text-xs sm:text-sm font-medium shadow-lg">
+            <span className="text-xs sm:text-sm font-medium text-red-300 tracking-wide uppercase">
               Built by medics, for medics.
             </span>
           </motion.div>
@@ -388,20 +361,19 @@ const HeroSection = () => {
               className="relative w-full max-w-4xl mx-4"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="aspect-video bg-black rounded-xl overflow-hidden border border-white/10">
-                {/* Placeholder for video - replace with actual video component */}
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="text-center">
-                    <Play className="w-20 h-20 text-red-400 mx-auto mb-4" />
-                    <p className="text-white text-xl">CreatorMD Introduction</p>
-                  </div>
-                </div>
+              <div className="aspect-video bg-black rounded-3xl overflow-hidden border-8 border-gray-800 shadow-2xl shadow-black">
+                <video
+                  src="/creatormd.mov"
+                  autoPlay
+                  controls
+                  className="w-full h-full object-cover"
+                />
               </div>
               <button
                 onClick={() => setVideoPlaying(false)}
-                className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+                className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors text-lg font-semibold"
               >
-                Close
+                ✕ Close
               </button>
             </motion.div>
           </motion.div>
