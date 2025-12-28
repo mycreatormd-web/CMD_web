@@ -169,7 +169,14 @@ const HeroSection = () => {
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center justify-center mb-6 md:mb-8 px-4"
           >
-            <div className="relative p-2 sm:p-4 md:p-6 bg-gradient-to-br from-slate-900/80 via-slate-800/70 to-slate-900/80 backdrop-blur-xl rounded-[50px] border border-slate-700/60 shadow-2xl shadow-red-600/10 hover:shadow-red-600/20 transition-all duration-300 ring-1 ring-slate-700/40">
+            <div className="relative p-2 sm:p-4 md:p-6
+  bg-gradient-to-br from-white via-gray-50 to-gray-100
+  rounded-[50px]
+  border border-gray-200/80
+  shadow-2xl shadow-black/10
+  transition-all duration-300
+  ring-1 ring-gray-200/60
+">
               {/* Subtle accent glow elements */}
               <div className="absolute -top-3 -left-3 w-16 h-16 bg-gradient-to-br from-red-500/15 to-transparent rounded-full blur-2xl opacity-60 pointer-events-none" />
               <div className="absolute -bottom-3 -right-3 w-20 h-20 bg-gradient-to-tl from-purple-600/15 to-transparent rounded-full blur-2xl opacity-60 pointer-events-none" />
