@@ -236,26 +236,51 @@ const Partnerships = () => {
 
           {/* Why Partner With Us */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-14 sm:mb-16 md:mb-20"
+            className="text-center mb-12 md:mb-16"
           >
             <motion.h3
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.25, duration: 0.5 }}
-              className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 sm:mb-10 pb-4 border-b-3 border-red-600 w-fit"
+              className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6 relative inline-block"
             >
-              Why partner with us
+              <span className="bg-gradient-to-r from-red-600 via-purple-600 to-black bg-clip-text text-transparent">
+                Why partner with us
+              </span>
+              <motion.span
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-red-400 via-purple-400 to-black rounded-full"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              />
             </motion.h3>
 
-            {/* Benefits Grid - 3 column */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {/* Benefits Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 max-w-7xl mx-auto mt-10">
               {whyPartner.map((benefit, idx) => {
                 const Icon = benefit.icon;
+                const gradients = [
+                  "from-red-100 to-pink-100",
+                  "from-purple-100 to-pink-100",
+                  "from-red-100 to-purple-100"
+                ];
+                const borderColors = [
+                  "border-red-200",
+                  "border-purple-200",
+                  "border-red-200"
+                ];
+                const iconGradients = [
+                  "from-red-500 to-pink-500",
+                  "from-purple-500 to-pink-500",
+                  "from-red-500 to-purple-500"
+                ];
+
                 return (
                   <motion.div
                     key={idx}
@@ -263,28 +288,51 @@ const Partnerships = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ delay: 0.3 + idx * 0.1, duration: 0.5 }}
-                    whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                    className="group"
+                    whileHover={{ y: -5, transition: { duration: 0.2 } }}
                   >
-                    <div className="relative bg-white border-2 border-red-200/70 hover:border-red-400/70 rounded-2xl p-8 sm:p-9 transition-all duration-300 shadow-md hover:shadow-xl h-full flex flex-col group-hover:bg-red-50/40">
-                      {/* Accent line on top - inside border */}
-                      <div className="absolute top-0 left-8 right-8 h-1.5 bg-gradient-to-r from-red-600 via-purple-600 to-red-500 rounded-full" />
-                      
-                      {/* Icon */}
-                      <motion.div
-                        className="w-16 h-16 rounded-xl bg-gradient-to-br from-red-100 to-red-50 flex items-center justify-center mb-5 mt-2 group-hover:scale-110 transition-transform duration-300"
-                      >
-                        <Icon className="w-8 h-8 text-red-700" />
-                      </motion.div>
+                  <div className={`relative h-full bg-white rounded-xl md:rounded-2xl border-2 ${borderColors[idx]} shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden cursor-pointer group`}>
+                    {/* Animated Background */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${gradients[idx]} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
-                      {/* Content */}
-                      <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 leading-snug">
-                        {benefit.title}
-                      </h4>
-                      <p className="text-sm sm:text-base text-gray-600 leading-relaxed flex-grow">
-                        {benefit.description}
-                      </p>
+                    {/* Content Container */}
+                    <div className="relative z-10">
+                      {/* Card Header */}
+                      <div className="p-3 sm:p-4 md:p-6 lg:p-8">
+                        {/* Icon */}
+                        <motion.div
+                          initial={{ scale: 0, opacity: 0 }}
+                          whileInView={{ scale: 1, opacity: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
+                          className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl bg-gradient-to-br ${iconGradients[idx]} flex items-center justify-center mb-2 sm:mb-3 md:mb-4 shadow-sm`}
+                        >
+                          <Icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white" />
+                        </motion.div>
+
+                        {/* Title */}
+                        <motion.h4
+                          initial={{ opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: idx * 0.1 + 0.1, duration: 0.4 }}
+                          className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 sm:mb-2 md:mb-3 leading-snug"
+                        >
+                          {benefit.title}
+                        </motion.h4>
+
+                        {/* Description */}
+                        <motion.p
+                          initial={{ opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
+                          className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed"
+                        >
+                          {benefit.description}
+                        </motion.p>
+                      </div>
                     </div>
+                  </div>
                   </motion.div>
                 );
               })}
@@ -293,81 +341,118 @@ const Partnerships = () => {
 
           {/* How It Works */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="mb-16 sm:mb-20 md:mb-24"
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-center mb-12 md:mb-16 mt-12 sm:mt-14 md:mt-16"
           >
             <motion.h3
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.35, duration: 0.5 }}
-              className="text-2xl sm:text-3xl font-bold text-gray-900 mb-10 sm:mb-12 pb-4 border-b-3 border-red-600 w-fit"
+              className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6 relative inline-block"
             >
-              How it works
+              <span className="bg-gradient-to-r from-red-600 via-purple-600 to-black bg-clip-text text-transparent">
+                How it works
+              </span>
+              <motion.span
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-red-400 via-purple-400 to-black rounded-full"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+              />
             </motion.h3>
 
-            {/* Steps Container with connecting lines */}
-            <div className="relative">
-              {/* Horizontal connecting line - desktop only */}
-              <div className="hidden md:block absolute top-24 left-0 right-0 h-1 bg-gradient-to-r from-red-300 via-purple-400 to-red-300" style={{ top: '3.5rem' }} />
+            {/* Steps Cards - Journey */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 max-w-7xl mx-auto mt-10 relative">
+              {/* Connection Lines - Desktop Only */}
+              <div className="hidden lg:block absolute top-32 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-red-300 to-transparent z-0" style={{ top: '8rem' }} />
+              
+              {howItWorks.map((item, idx) => {
+                const stepGradients = [
+                  "from-red-100 to-pink-100",
+                  "from-purple-100 to-pink-100",
+                  "from-red-100 to-purple-100"
+                ];
+                const stepBorderColors = [
+                  "border-red-200",
+                  "border-purple-200",
+                  "border-red-200"
+                ];
+                const stepIconGradients = [
+                  "from-red-500 to-pink-500",
+                  "from-purple-500 to-pink-500",
+                  "from-red-500 to-purple-500"
+                ];
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-6">
-                {howItWorks.map((item, idx) => (
+                return (
                   <motion.div
                     key={idx}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-40px" }}
-                    transition={{ delay: 0.4 + idx * 0.15, duration: 0.5 }}
-                    className="relative"
+                    transition={{
+                      delay: idx * 0.1,
+                      duration: 0.5,
+                      ease: "easeOut"
+                    }}
+                    className="h-full"
                   >
-                    {/* Step Number Circle */}
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      className="relative z-10 w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-red-600 to-purple-700 flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
-                    >
-                      <span className="text-white font-bold text-2xl">{item.step}</span>
-                    </motion.div>
+                    <div className={`relative h-full bg-white rounded-xl md:rounded-2xl border-2 ${stepBorderColors[idx]} shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden cursor-pointer group`}>
+                      {/* Animated Background */}
+                      <div className={`absolute inset-0 bg-gradient-to-br ${stepGradients[idx]} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
-                    {/* Card Content */}
-                    <div className="bg-white border-2 border-red-200/70 hover:border-red-400/70 rounded-2xl p-7 sm:p-8 text-center transition-all duration-300 hover:shadow-lg h-full flex flex-col justify-center hover:bg-red-50/40">
-                      <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 leading-snug">
-                        {item.title}
-                      </h4>
-                      <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                        {item.description}
-                      </p>
+                      {/* Step Indicator - Top Badge */}
+                      <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${stepIconGradients[idx]}`} />
+
+                      {/* Content Container */}
+                      <div className="relative z-10">
+                        {/* Card Header */}
+                        <div className="p-3 sm:p-4 md:p-6 lg:p-8">
+                          {/* Step Number - Large for journey feel */}
+                          <motion.div
+                            initial={{ scale: 0, opacity: 0 }}
+                            whileInView={{ scale: 1, opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
+                            className="flex items-center gap-3 mb-3 sm:mb-4 md:mb-5"
+                          >
+                            <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl bg-gradient-to-br ${stepIconGradients[idx]} flex items-center justify-center shadow-sm`}>
+                              <span className="text-white font-bold text-sm sm:text-base md:text-lg">{item.step}</span>
+                            </div>
+                            <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide">Step {item.step}</div>
+                          </motion.div>
+
+                          {/* Title */}
+                          <motion.h4
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: idx * 0.1 + 0.1, duration: 0.4 }}
+                            className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 sm:mb-2 md:mb-3 leading-snug"
+                          >
+                            {item.title}
+                          </motion.h4>
+
+                          {/* Description */}
+                          <motion.p
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
+                            className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed"
+                          >
+                            {item.description}
+                          </motion.p>
+                        </div>
+                      </div>
                     </div>
-
-                    {/* Arrow connector for desktop - between steps */}
-                    {idx < howItWorks.length - 1 && (
-                      <motion.div
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.5 + idx * 0.1 }}
-                        className="hidden md:block absolute -right-6 top-20 z-20"
-                      >
-                        <motion.div
-                          animate={{ x: [0, 5, 0] }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                          className="text-3xl text-red-500 font-bold"
-                        >
-                          →
-                        </motion.div>
-                      </motion.div>
-                    )}
-
-                    {/* Mobile connector line */}
-                    {idx < howItWorks.length - 1 && (
-                      <div className="md:hidden absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-1 h-8 bg-gradient-to-b from-red-400 to-red-300" />
-                    )}
                   </motion.div>
-                ))}
-              </div>
+                );
+              })}
             </div>
           </motion.div>
 
@@ -377,12 +462,12 @@ const Partnerships = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.45 }}
-            className="mb-12 sm:mb-14 md:mb-16 mt-8 sm:mt-10 md:mt-12"
+            className="mb-8 sm:mb-9 md:mb-10 mt-16 sm:mt-20 md:mt-24"
           >
-            <div className="bg-gradient-to-r from-gray-900 via-red-900 to-gray-900 rounded-3xl p-10 sm:p-12 md:p-16 text-center shadow-2xl relative overflow-hidden border border-red-800/30">
+            <div className="bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 rounded-3xl p-10 sm:p-12 md:p-16 text-center shadow-2xl relative overflow-hidden border border-red-700/30">
               {/* Accent elements */}
-              <div className="absolute top-0 right-0 w-48 h-48 bg-red-600/5 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple-600/5 rounded-full blur-3xl" />
+              <div className="absolute top-0 right-0 w-48 h-48 bg-red-600/10 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-red-600/10 rounded-full blur-3xl" />
               
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
