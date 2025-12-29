@@ -175,7 +175,7 @@ const HeroSection = () => {
           </motion.div>
 
           {/* Main Headline */}
-          <div className="text-center mb-6 md:mb-8 px-3 sm:px-4">
+          <div className="text-center mb-12 md:mb-16 px-3 sm:px-4">
             <motion.h2 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -218,10 +218,10 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-xs sm:text-sm md:text-lg lg:text-xl mb-4 md:mb-6 max-w-3xl mx-auto leading-relaxed px-3 sm:px-4 md:px-6"
+              className="text-xs sm:text-sm md:text-lg lg:text-xl mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed px-3 sm:px-4 md:px-6"
             >
               <span className="text-gray-300">
-                CreatorMD helps medics create <span className="font-semibold text-white">clear, credible health content</span>, build <span className="font-semibold text-red-300">digital authority</span>, and open <span className="font-semibold text-purple-300">new opportunities</span> — without burnout or confusion.
+                CreatorMD helps medics build <span className="font-semibold text-white">income</span>, <span className="font-semibold text-red-300">influence</span>, and <span className="font-semibold text-purple-300">impact</span> online.
               </span>
             </motion.div>
           </div>
@@ -231,7 +231,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6 md:mb-8 max-w-3xl mx-auto px-4"
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-10 md:mb-14 max-w-3xl mx-auto px-4"
           >
             {[
               { label: "Trained Medics", value: "600+", icon: Sparkles },
@@ -278,14 +278,14 @@ const HeroSection = () => {
                 transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } 
               }}
               whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
-              className="group relative px-8 sm:px-10 py-3.5 sm:py-4 bg-gradient-to-r from-red-600 via-red-500 to-purple-600 text-white font-bold rounded-xl sm:rounded-2xl text-base sm:text-lg shadow-2xl overflow-hidden ring-2 ring-red-400/20 hover:ring-red-400/40 transition-all w-full sm:w-auto"
+              className="group relative px-8 sm:px-10 py-3.5 sm:py-4 bg-gradient-to-r from-purple-900 via-purple-700 to-red-600 text-white font-bold rounded-xl sm:rounded-2xl text-base sm:text-lg shadow-2xl overflow-hidden ring-2 ring-red-400/20 hover:ring-red-400/40 transition-all w-full sm:w-auto"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 Join Waitlist 
                 <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </span>
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-purple-600 via-purple-500 to-red-600"
+                className="absolute inset-0 bg-gradient-to-r from-red-600 via-red-500 to-purple-900"
                 initial={{ x: "-100%" }}
                 whileHover={{ x: 0 }}
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}

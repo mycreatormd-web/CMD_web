@@ -61,7 +61,7 @@ const Navigation = () => {
               whileTap={{ scale: 0.95 }}
             >
               <img
-                src="/cmd_logo_3_inverted.svg"
+                src="/cmd_logo_invert6.svg"
                 alt="CreatorMD Logo"
                 className="h-10 md:h-12 w-auto drop-shadow-[0_0_12px_rgba(220,38,38,0.3)] hover:drop-shadow-[0_0_16px_rgba(220,38,38,0.5)] transition-all duration-300"
               />
@@ -172,7 +172,7 @@ const Navigation = () => {
                 {/* Mobile Menu Header */}
                 <div className="flex items-center justify-between mb-8">
                   <img
-                    src="/cmd_logo_3_inverted.svg"
+                    src="/cmd_logo_5.svg"
                     alt="CreatorMD Logo"
                     className="h-10 w-auto drop-shadow-[0_0_10px_rgba(220,38,38,0.3)]"
                   />

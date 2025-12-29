@@ -18,11 +18,11 @@ const programs = [
       "Workshops & bootcamps",
       "Health communication training"
     ],
-    color: "from-blue-500 to-cyan-500",
-    bgColor: "from-blue-50 to-cyan-50",
-    borderColor: "border-blue-200",
-    lightColor: "bg-blue-50",
-    accentColor: "text-blue-600"
+    color: "from-black to-red-700",
+    bgColor: "from-black/5 to-red-50",
+    borderColor: "border-red-300",
+    lightColor: "bg-red-50",
+    accentColor: "text-red-700"
   },
   {
     id: 2,
@@ -34,11 +34,11 @@ const programs = [
       "Mentorship tracks",
       "Product-building support"
     ],
-    color: "from-emerald-500 to-teal-500",
-    bgColor: "from-emerald-50 to-teal-50",
-    borderColor: "border-emerald-200",
-    lightColor: "bg-emerald-50",
-    accentColor: "text-emerald-600"
+    color: "from-red-600 to-purple-700",
+    bgColor: "from-red-50 to-purple-50",
+    borderColor: "border-purple-300",
+    lightColor: "bg-purple-50",
+    accentColor: "text-purple-700"
   },
   {
     id: 3,
@@ -82,11 +82,11 @@ const programs = [
       "Weekly classes & challenges",
       "Templates & shared resources"
     ],
-    color: "from-cyan-500 to-blue-500",
-    bgColor: "from-cyan-50 to-blue-50",
-    borderColor: "border-cyan-200",
-    lightColor: "bg-cyan-50",
-    accentColor: "text-cyan-600"
+    color: "from-purple-600 to-black",
+    bgColor: "from-purple-50 to-black/5",
+    borderColor: "border-purple-300",
+    lightColor: "bg-purple-50",
+    accentColor: "text-purple-700"
   }
 ];
 
@@ -253,10 +253,10 @@ const ProgramsSection = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.4 }}
-            className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-blue-100 to-cyan-100 rounded-full mb-3 sm:mb-4"
+            className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-red-100 to-purple-100 rounded-full mb-3 sm:mb-4"
           >
-            <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />
-            <span className="text-xs sm:text-sm font-semibold text-blue-700">PROGRAMS & PATHWAYS</span>
+            <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-700" />
+            <span className="text-xs sm:text-sm font-semibold text-red-700">PROGRAMS & PATHWAYS</span>
           </motion.div>
 
           {/* Main Heading */}
@@ -268,7 +268,7 @@ const ProgramsSection = () => {
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-5"
           >
             Programs That Fit{" "}
-            <span className="bg-gradient-to-r from-blue-600 via-emerald-600 to-cyan-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-red-600 via-red-500 to-purple-700 bg-clip-text text-transparent">
               Your Goals
             </span>
           </motion.h2>
@@ -304,7 +304,7 @@ const ProgramsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 border-2 border-blue-200/50 text-center"
+          className="bg-gradient-to-r from-red-50 to-purple-50 rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 border-2 border-purple-200/50 text-center"
         >
           <motion.h3
             initial={{ opacity: 0, y: 15 }}
@@ -338,10 +338,10 @@ const ProgramsSection = () => {
               href="/programs"
               whileHover={{ 
                 scale: 1.05,
-                boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)"
+                boxShadow: "0 20px 40px rgba(220, 38, 38, 0.3)"
               }}
               whileTap={{ scale: 0.98 }}
-              className="w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-blue-600 via-emerald-600 to-cyan-600 text-white font-bold rounded-lg md:rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
+              className="w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-red-600 via-red-500 to-purple-700 text-white font-bold rounded-lg md:rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
             >
               <span>Explore All Programs</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
