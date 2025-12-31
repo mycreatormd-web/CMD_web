@@ -73,6 +73,9 @@ const Community = () => {
 
   return (
     <section id="community" className="relative py-16 sm:py-20 md:py-28 lg:py-32 bg-white overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.05)_1px,transparent_1px)] bg-[size:80px_80px]" />
+      
       {/* Background gradient elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-50/20 to-transparent pointer-events-none" />
       <div className="absolute top-0 right-0 w-96 h-96 bg-purple-100/20 rounded-full blur-3xl pointer-events-none" />

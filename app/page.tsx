@@ -7,6 +7,7 @@ import Community from './components/Community';
 import Partnerships from './components/Partnerships';
 import ValueProps from './components/ValueProps';
 import SocialProof from './components/SocialProof';
+import Resources from './components/Resources';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <About />
       <ProgramsSection />
       <Community />
+      <Resources />
       <Partnerships />
       <ValueProps />
       <SocialProof />

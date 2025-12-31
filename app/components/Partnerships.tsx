@@ -3,7 +3,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Target, ChevronRight, Check, AlertCircle, Briefcase, Zap } from 'lucide-react';
+import { Heart, Target, ChevronRight, Check, AlertCircle, Briefcase, Zap, Download, BookOpen, Calendar, CheckCircle2 } from 'lucide-react';
 
 interface FormDataType {
   organization: string;
@@ -182,10 +182,14 @@ const Partnerships = () => {
 
   return (
     <>
-      <section id="partnerships" className="relative py-12 sm:py-16 md:py-20 bg-gradient-to-b from-white via-red-50/20 to-white overflow-hidden">
-        {/* Background elements */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-purple-100/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-100/20 rounded-full blur-3xl pointer-events-none" />
+      <section id="partnerships" className="relative py-12 sm:py-16 md:py-20 bg-gradient-to-b from-slate-900 via-red-950/30 to-slate-900 overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(239,68,68,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(239,68,68,0.05)_1px,transparent_1px)] bg-[size:80px_80px]" />
+        
+        {/* Background elements - Dark Red & Purple Theme */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-red-900/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-900/25 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/3 right-1/3 w-80 h-80 bg-red-800/20 rounded-full blur-3xl pointer-events-none" />
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           {/* Section Header */}
@@ -202,10 +206,10 @@ const Partnerships = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.4 }}
-              className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-red-100 to-purple-100 rounded-full mb-3 sm:mb-4"
+              className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-red-500/20 to-purple-500/20 rounded-full mb-3 sm:mb-4 border border-red-400/40"
             >
-              <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-700" />
-              <span className="text-xs sm:text-sm font-semibold text-red-700">PARTNERSHIPS</span>
+              <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-300" />
+              <span className="text-xs sm:text-sm font-semibold text-red-300">PARTNERSHIPS</span>
             </motion.div>
 
             {/* Main Heading */}
@@ -214,10 +218,10 @@ const Partnerships = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.15, duration: 0.6 }}
-              className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4"
             >
               Partner with CreatorMD to{" "}
-              <span className="bg-gradient-to-r from-red-600 to-purple-700 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent">
                 amplify medical education.
               </span>
             </motion.h2>
@@ -228,7 +232,7 @@ const Partnerships = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-sm sm:text-base md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed"
+              className="text-sm sm:text-base md:text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed"
             >
               We work with hospitals, global health organizations, and digital platforms to create ethical, high-impact health communication — training staff, running content campaigns, and building workplace wellness programs.
             </motion.p>
@@ -247,13 +251,13 @@ const Partnerships = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.25, duration: 0.5 }}
-              className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6 relative inline-block"
+              className="text-3xl sm:text-4xl font-bold text-white mb-6 relative inline-block"
             >
-              <span className="bg-gradient-to-r from-red-600 via-purple-600 to-black bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-400 via-purple-400 to-red-300 bg-clip-text text-transparent">
                 Why partner with us
               </span>
               <motion.span
-                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-red-400 via-purple-400 to-black rounded-full"
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-red-400 via-purple-400 to-red-300 rounded-full"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
@@ -266,14 +270,14 @@ const Partnerships = () => {
               {whyPartner.map((benefit, idx) => {
                 const Icon = benefit.icon;
                 const gradients = [
-                  "from-red-100 to-pink-100",
-                  "from-purple-100 to-pink-100",
-                  "from-red-100 to-purple-100"
+                  "from-red-500/20 to-pink-500/20",
+                  "from-purple-500/20 to-pink-500/20",
+                  "from-red-500/20 to-purple-500/20"
                 ];
                 const borderColors = [
-                  "border-red-200",
-                  "border-purple-200",
-                  "border-red-200"
+                  "border-red-500/50",
+                  "border-purple-500/50",
+                  "border-red-500/50"
                 ];
                 const iconGradients = [
                   "from-red-500 to-pink-500",
@@ -290,7 +294,7 @@ const Partnerships = () => {
                     transition={{ delay: 0.3 + idx * 0.1, duration: 0.5 }}
                     whileHover={{ y: -5, transition: { duration: 0.2 } }}
                   >
-                  <div className={`relative h-full bg-white rounded-xl md:rounded-2xl border-2 ${borderColors[idx]} shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden cursor-pointer group`}>
+                  <div className={`relative h-full bg-slate-800/50 rounded-xl md:rounded-2xl border-2 ${borderColors[idx]} shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden cursor-pointer group`}>
                     {/* Animated Background */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${gradients[idx]} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
@@ -315,7 +319,7 @@ const Partnerships = () => {
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: idx * 0.1 + 0.1, duration: 0.4 }}
-                          className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 sm:mb-2 md:mb-3 leading-snug"
+                          className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-1.5 sm:mb-2 md:mb-3 leading-snug"
                         >
                           {benefit.title}
                         </motion.h4>
@@ -326,7 +330,7 @@ const Partnerships = () => {
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
-                          className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed"
+                          className="text-xs sm:text-sm md:text-base text-gray-300 leading-relaxed"
                         >
                           {benefit.description}
                         </motion.p>
@@ -352,13 +356,13 @@ const Partnerships = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.35, duration: 0.5 }}
-              className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6 relative inline-block"
+              className="text-3xl sm:text-4xl font-bold text-white mb-6 relative inline-block"
             >
-              <span className="bg-gradient-to-r from-red-600 via-purple-600 to-black bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-400 via-purple-400 to-red-300 bg-clip-text text-transparent">
                 How it works
               </span>
               <motion.span
-                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-red-400 via-purple-400 to-black rounded-full"
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-red-400 via-purple-400 to-red-300 rounded-full"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
@@ -369,18 +373,18 @@ const Partnerships = () => {
             {/* Steps Cards - Journey */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 max-w-7xl mx-auto mt-10 relative">
               {/* Connection Lines - Desktop Only */}
-              <div className="hidden lg:block absolute top-32 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-red-300 to-transparent z-0" style={{ top: '8rem' }} />
+              <div className="hidden lg:block absolute top-32 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-red-500/50 to-transparent z-0" style={{ top: '8rem' }} />
               
               {howItWorks.map((item, idx) => {
                 const stepGradients = [
-                  "from-red-100 to-pink-100",
-                  "from-purple-100 to-pink-100",
-                  "from-red-100 to-purple-100"
+                  "from-red-500/20 to-pink-500/20",
+                  "from-purple-500/20 to-pink-500/20",
+                  "from-red-500/20 to-purple-500/20"
                 ];
                 const stepBorderColors = [
-                  "border-red-200",
-                  "border-purple-200",
-                  "border-red-200"
+                  "border-red-500/50",
+                  "border-purple-500/50",
+                  "border-red-500/50"
                 ];
                 const stepIconGradients = [
                   "from-red-500 to-pink-500",
@@ -401,7 +405,7 @@ const Partnerships = () => {
                     }}
                     className="h-full"
                   >
-                    <div className={`relative h-full bg-white rounded-xl md:rounded-2xl border-2 ${stepBorderColors[idx]} shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden cursor-pointer group`}>
+                    <div className={`relative h-full bg-slate-800/50 rounded-xl md:rounded-2xl border-2 ${stepBorderColors[idx]} shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden cursor-pointer group`}>
                       {/* Animated Background */}
                       <div className={`absolute inset-0 bg-gradient-to-br ${stepGradients[idx]} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
@@ -423,7 +427,7 @@ const Partnerships = () => {
                             <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl bg-gradient-to-br ${stepIconGradients[idx]} flex items-center justify-center shadow-sm`}>
                               <span className="text-white font-bold text-sm sm:text-base md:text-lg">{item.step}</span>
                             </div>
-                            <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide">Step {item.step}</div>
+                            <div className="text-xs sm:text-sm font-semibold text-red-300 uppercase tracking-wide">Step {item.step}</div>
                           </motion.div>
 
                           {/* Title */}
@@ -432,7 +436,7 @@ const Partnerships = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 + 0.1, duration: 0.4 }}
-                            className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 sm:mb-2 md:mb-3 leading-snug"
+                            className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-1.5 sm:mb-2 md:mb-3 leading-snug"
                           >
                             {item.title}
                           </motion.h4>
@@ -443,7 +447,7 @@ const Partnerships = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
-                            className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed"
+                            className="text-xs sm:text-sm md:text-base text-gray-300 leading-relaxed"
                           >
                             {item.description}
                           </motion.p>
