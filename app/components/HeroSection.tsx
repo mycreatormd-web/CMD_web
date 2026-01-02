@@ -160,14 +160,14 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
 
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-4 py-8 md:py-12 h-full flex flex-col justify-center items-center w-full">
+      <div className="relative z-10 container mx-auto px-4 py-8 md:py-36 h-full flex flex-col justify-center items-center w-full">
         <div className="max-w-7xl mx-auto">
           {/* Hero Tagline */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-8 md:mb-10 px-4"
+            className="text-center mb-8 md:mb-10 px-4 mt-40 md:mt-40"
           >
             <span className="inline-block px-5 py-2.5 md:px-7 md:py-3 bg-gradient-to-r from-red-600/20 via-purple-600/20 to-red-600/20 backdrop-blur-lg rounded-full border-2 border-red-500/40 text-white text-sm sm:text-base font-bold shadow-lg hover:shadow-red-600/20 transition-all duration-300">
               Built by medics, for medics.
@@ -231,7 +231,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-10 md:mb-14 max-w-3xl mx-auto px-4"
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-10 md:mb-14 max-w-3xl mx-auto px-4 -mt-4 sm:mt-0"
           >
             {[
               { label: "Trained Medics", value: "600+", icon: Sparkles },
@@ -253,13 +253,13 @@ const HeroSection = () => {
                   y: -8,
                   transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } 
                 }}
-                className="group bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-md rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-5 border border-white/5 hover:border-red-500/30 transition-all duration-300 shadow-xl hover:shadow-red-500/10"
+                className="group bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-md rounded-xl md:rounded-2xl p-2 sm:p-3 md:p-5 border border-white/5 hover:border-red-500/30 transition-all duration-300 shadow-xl hover:shadow-red-500/10"
               >
-                <div className="flex items-center justify-center gap-1 sm:gap-2 mb-1 sm:mb-2">
-                  <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 text-red-400 group-hover:text-red-300 transition-colors" />
-                  <div className="text-2xl sm:text-3xl font-bold text-white group-hover:scale-110 transition-transform duration-300">{stat.value}</div>
+                <div className="flex items-center justify-center gap-0.5 sm:gap-2 mb-0.5 sm:mb-2">
+                  <stat.icon className="w-3 h-3 sm:w-5 sm:h-5 text-red-400 group-hover:text-red-300 transition-colors" />
+                  <div className="text-lg sm:text-3xl font-bold text-white group-hover:scale-110 transition-transform duration-300">{stat.value}</div>
                 </div>
-                <div className="text-xs sm:text-sm text-gray-500 group-hover:text-gray-400 text-center transition-colors">{stat.label}</div>
+                <div className="text-[10px] sm:text-sm text-gray-500 group-hover:text-gray-400 text-center transition-colors">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
