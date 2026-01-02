@@ -206,6 +206,7 @@ const About = () => {
   const [founderOpen, setFounderOpen] = useState(false);
   const [founderModalOpen, setFounderModalOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeCard, setActiveCard] = useState('vision'); // Track which card is visible
   const { scrollYProgress } = useScroll();
 
   useEffect(() => {
@@ -214,6 +215,20 @@ const About = () => {
     });
     return () => unsubscribe();
   }, [scrollYProgress]);
+
+  // Handle carousel scroll detection
+  const handleCarouselScroll = (e) => {
+    const container = e.target;
+    const cardWidth = 320 + 16; // card width (w-80 = 320px) + gap (4 = 16px)
+    const scrollPosition = container.scrollLeft;
+    
+    // If scrolled more than half a card width, show mission card is active
+    if (scrollPosition > cardWidth / 2) {
+      setActiveCard('mission');
+    } else {
+      setActiveCard('vision');
+    }
+  };
   
   // Parallax effect for blobs
   const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
@@ -418,7 +433,10 @@ const About = () => {
 
         {/* Vision & Mission - Horizontal Scroll on Mobile Only */}
         <div className="md:hidden mb-4">
-          <div className="overflow-x-auto -mx-4 px-4 pb-2">
+          <p className="text-sm text-gray-500 px-4 mb-2 text-center">
+            {activeCard === 'vision' ? '← Swipe to see Mission →' : '← Swipe to see Vision →'}
+          </p>
+          <div className="overflow-x-auto -mx-4 px-4 pb-4 scroll-smooth snap-x snap-mandatory" onScroll={handleCarouselScroll} style={{ scrollBehavior: 'smooth' }}>
             <div className="flex gap-4 w-max">
               {/* Vision Card */}
               <motion.div
@@ -426,7 +444,7 @@ const About = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6 }}
-                className="flex-shrink-0 w-80 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl p-6 border-2 border-purple-200 shadow-lg"
+                className="flex-shrink-0 w-80 snap-center bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl p-6 border-2 border-purple-200 shadow-lg"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg shadow-lg flex-shrink-0">
@@ -439,13 +457,13 @@ const About = () => {
                 </p>
               </motion.div>
 
-              {/* Mission Card */}
+              {/* Mission Card - Partially visible and blurred on scroll */}
               <motion.div
                 initial={{ opacity: 0, x: 100 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6 }}
-                className="flex-shrink-0 w-80 bg-gradient-to-br from-red-100 to-purple-100 rounded-2xl p-6 border-2 border-red-200 shadow-lg"
+                className="flex-shrink-0 w-80 snap-center bg-gradient-to-br from-red-100 to-purple-100 rounded-2xl p-6 border-2 border-red-200 shadow-lg"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className="p-3 bg-gradient-to-br from-red-500 to-purple-500 rounded-lg shadow-lg flex-shrink-0">

@@ -411,7 +411,7 @@ const CurvedProcessFlow = ({
                   <motion.div
                     className="h-full bg-gradient-to-r from-red-500 to-purple-500"
                     initial={{ width: '0%' }}
-                    animate={{ width: `${((activeStep + 1) / steps.length) * 100}%` }}
+                    animate={{ width: `${activeStep === 0 ? 0 : (activeStep / (steps.length - 1)) * 100}%` }}
                     transition={{ duration: 0.5 }}
                   />
                 </div>
