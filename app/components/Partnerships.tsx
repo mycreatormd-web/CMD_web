@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Target, ChevronRight, Check, AlertCircle, Briefcase, Zap, Download, BookOpen, Calendar, CheckCircle2 } from 'lucide-react';
+import CurvedProcessFlow from './CurvedProcessFlow';
 
 interface FormDataType {
   organization: string;
@@ -182,7 +183,7 @@ const Partnerships = () => {
 
   return (
     <>
-      <section id="partnerships" className="relative py-12 sm:py-16 md:py-20 bg-gradient-to-b from-slate-900 via-red-950/30 to-slate-900 overflow-hidden">
+      <section id="partnerships" className="relative py-12 sm:py-16 md:py-20 bg-gradient-to-b from-slate-900 via-red-950/30 to-slate-900">
         {/* Background Effects */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(239,68,68,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(239,68,68,0.05)_1px,transparent_1px)] bg-[size:80px_80px]" />
         
@@ -349,14 +350,14 @@ const Partnerships = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-center mb-12 md:mb-16 mt-12 sm:mt-14 md:mt-16"
+            className="text-center mb-0 mt-0"
           >
             <motion.h3
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.35, duration: 0.5 }}
-              className="text-3xl sm:text-4xl font-bold text-white mb-6 relative inline-block"
+              className="text-3xl sm:text-4xl font-bold text-white mb-0 relative inline-block leading-none"
             >
               <span className="bg-gradient-to-r from-red-400 via-purple-400 to-red-300 bg-clip-text text-transparent">
                 How it works
@@ -370,93 +371,9 @@ const Partnerships = () => {
               />
             </motion.h3>
 
-            {/* Steps Cards - Journey */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 max-w-7xl mx-auto mt-10 relative">
-              {/* Connection Lines - Desktop Only */}
-              <div className="hidden lg:block absolute top-32 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-red-500/50 to-transparent z-0" style={{ top: '8rem' }} />
-              
-              {howItWorks.map((item, idx) => {
-                const stepGradients = [
-                  "from-red-500/20 to-pink-500/20",
-                  "from-purple-500/20 to-pink-500/20",
-                  "from-red-500/20 to-purple-500/20"
-                ];
-                const stepBorderColors = [
-                  "border-red-500/50",
-                  "border-purple-500/50",
-                  "border-red-500/50"
-                ];
-                const stepIconGradients = [
-                  "from-red-500 to-pink-500",
-                  "from-purple-500 to-pink-500",
-                  "from-red-500 to-purple-500"
-                ];
-
-                return (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-40px" }}
-                    transition={{
-                      delay: idx * 0.1,
-                      duration: 0.5,
-                      ease: "easeOut"
-                    }}
-                    className="h-full"
-                  >
-                    <div className={`relative h-full bg-slate-800/50 rounded-xl md:rounded-2xl border-2 ${stepBorderColors[idx]} shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden cursor-pointer group`}>
-                      {/* Animated Background */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${stepGradients[idx]} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-
-                      {/* Step Indicator - Top Badge */}
-                      <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${stepIconGradients[idx]}`} />
-
-                      {/* Content Container */}
-                      <div className="relative z-10">
-                        {/* Card Header */}
-                        <div className="p-3 sm:p-4 md:p-6 lg:p-8">
-                          {/* Step Number - Large for journey feel */}
-                          <motion.div
-                            initial={{ scale: 0, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
-                            className="flex items-center gap-3 mb-3 sm:mb-4 md:mb-5"
-                          >
-                            <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl bg-gradient-to-br ${stepIconGradients[idx]} flex items-center justify-center shadow-sm`}>
-                              <span className="text-white font-bold text-sm sm:text-base md:text-lg">{item.step}</span>
-                            </div>
-                            <div className="text-xs sm:text-sm font-semibold text-red-300 uppercase tracking-wide">Step {item.step}</div>
-                          </motion.div>
-
-                          {/* Title */}
-                          <motion.h4
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: idx * 0.1 + 0.1, duration: 0.4 }}
-                            className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-1.5 sm:mb-2 md:mb-3 leading-snug"
-                          >
-                            {item.title}
-                          </motion.h4>
-
-                          {/* Description */}
-                          <motion.p
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
-                            className="text-xs sm:text-sm md:text-base text-gray-300 leading-relaxed"
-                          >
-                            {item.description}
-                          </motion.p>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
+            {/* Steps - Curved Flow Design */}
+            <div className="-mt-20 sm:-mt-20 md:-mt-20">
+              <CurvedProcessFlow steps={howItWorks} compact={true} spacing="tight" />
             </div>
           </motion.div>
 

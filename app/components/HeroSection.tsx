@@ -160,7 +160,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
 
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-4 py-8 md:py-12 h-full flex flex-col justify-center">
+      <div className="relative z-10 container mx-auto px-4 py-8 md:py-12 h-full flex flex-col justify-center items-center w-full">
         <div className="max-w-7xl mx-auto">
           {/* Hero Tagline */}
           <motion.div
@@ -313,10 +313,14 @@ const HeroSection = () => {
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+            className="mt-12 md:mt-16 flex justify-center"
           >
-            <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center">
-              <div className="w-1 h-3 bg-red-400 rounded-full mt-2" />
+            <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center hover:border-white/50 transition-colors">
+              <motion.div 
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                className="w-1 h-2 bg-gradient-to-b from-red-400 to-red-500 rounded-full mt-1.5" 
+              />
             </div>
           </motion.div>
         </div>
