@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
@@ -10,6 +10,7 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   const navItems = [
     { label: 'About', href: '#about' },
@@ -30,12 +31,26 @@ const Navigation = () => {
 
   const handleNavClick = (href: string) => {
     setIsOpen(false);
-    // If it's a hash link, scroll to element
+    
+    // If it's a hash link
     if (href.startsWith('#')) {
-      const element = document.querySelector(href);
-      element?.scrollIntoView({ behavior: 'smooth' });
+      // If we're not on home page, navigate there first
+      if (pathname !== '/') {
+        router.push('/');
+        // Wait a bit for page to load, then scroll
+        setTimeout(() => {
+          const element = document.querySelector(href);
+          element?.scrollIntoView({ behavior: 'smooth' });
+        }, 500);
+      } else {
+        // We're on home page, just scroll
+        const element = document.querySelector(href);
+        element?.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // It's a regular link
+      router.push(href);
     }
-    // Otherwise, navigate naturally
   };
 
   return (
@@ -56,6 +71,14 @@ const Navigation = () => {
             {/* Logo Container */}
             <motion.a
               href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                if (pathname !== '/') {
+                  router.push('/');
+                } else {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
               className="flex items-center group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

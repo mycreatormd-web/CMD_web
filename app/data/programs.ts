@@ -17,7 +17,7 @@ export const programs: ProgramsData = {
       icon: 'Zap',
       color: 'from-red-500 to-purple-500',
       status: 'available',
-      duration: '8 weeks',
+      duration: '7 days',
       level: 'Intermediate',
       internalPath: '/programs/creatormd-bootcamp'
     },

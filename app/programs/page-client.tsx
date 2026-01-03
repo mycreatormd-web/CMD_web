@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Navigation from '@/app/components/Navigation';
 import { programs } from '@/app/data/programs';
 import ProgramModal from '@/app/components/ProgramModal';
@@ -14,7 +14,8 @@ import {
   Briefcase,
   Mail,
   MessageSquare,
-  HelpCircle
+  HelpCircle,
+  X
 } from 'lucide-react';
 
 // Icon mapping
@@ -70,146 +71,220 @@ const ComingSoonCard = ({
   isClient?: boolean;
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const colorClasses = getColorClasses(program.color);
+
+  const getLevelColor = (level?: string) => {
+    if (!level) return { text: 'text-blue-400', bg: 'bg-blue-400/10', border: 'border-blue-400/20' };
+    const lowerLevel = level.toLowerCase();
+    if (lowerLevel.includes('beginner')) return { text: 'text-emerald-400', bg: 'bg-emerald-400/10', border: 'border-emerald-400/20' };
+    if (lowerLevel.includes('intermediate')) return { text: 'text-amber-400', bg: 'bg-amber-400/10', border: 'border-amber-400/20' };
+    if (lowerLevel.includes('advanced')) return { text: 'text-red-400', bg: 'bg-red-400/10', border: 'border-red-400/20' };
+    return { text: 'text-blue-400', bg: 'bg-blue-400/10', border: 'border-blue-400/20' };
+  };
+
+  const levelColor = getLevelColor(program.level);
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20, scale: 0.95 }}
-      animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.95 }}
-      exit={{ opacity: 0, y: 20, scale: 0.95 }}
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.95 }}
+      exit={{ opacity: 0, y: 30, scale: 0.95 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="w-full"
+      className="w-full relative"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
+      {/* Card Glow Effect */}
       <motion.div
-        layout
-        className="group relative h-full bg-gradient-to-br from-purple-950/40 via-black to-red-950/30 border border-purple-600/40 rounded-xl sm:rounded-2xl overflow-hidden hover:border-purple-500/60 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/20 backdrop-blur-sm"
+        className="absolute -inset-0.5 bg-gradient-to-r from-red-600/20 via-purple-600/20 to-red-600/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        animate={{
+          scale: isHovered ? [1, 1.02, 1] : 1,
+        }}
+        transition={{ duration: 2, repeat: Infinity }}
+      />
+
+      {/* Main Card */}
+      <div
+        className="group relative bg-gradient-to-br from-gray-900/90 via-gray-900/80 to-gray-950/90 rounded-2xl border border-gray-800/50 overflow-hidden backdrop-blur-sm flex flex-col h-auto hover:border-red-500/40 transition-all duration-300"
       >
-        {/* Animated gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 to-purple-600/5 group-hover:from-red-600/10 group-hover:to-purple-600/10 transition-all duration-500 pointer-events-none"></div>
-
-        {/* Coming Soon Badge */}
-        <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10">
-          <motion.span 
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-1 sm:gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-red-900/90 to-red-800/70 text-red-200 text-xs sm:text-sm font-bold rounded-full border border-red-500/60 backdrop-blur-sm shadow-lg shadow-red-600/30"
-          >
-            <motion.span 
-              className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-500"
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            ></motion.span>
-            <span className="hidden sm:inline">Coming Soon</span>
-            <span className="sm:hidden">New</span>
-          </motion.span>
-        </div>
-
-        {/* Icon Section - Mobile Optimized */}
-        <div className={`bg-gradient-to-br ${colorClasses.bg} p-6 sm:p-8 flex items-center justify-center relative overflow-hidden opacity-80 group-hover:opacity-100 transition-opacity duration-300 group-hover:scale-110 transform shadow-inner`}>
-          <div className="absolute inset-0 opacity-20 group-hover:opacity-35 transition-opacity duration-300">
-            <div className="absolute top-0 right-0 w-40 sm:w-48 h-40 sm:h-48 bg-white/15 rounded-full blur-3xl"></div>
-          </div>
-          <div className={`relative z-10 ${colorClasses.text} drop-shadow-lg`}>
-            {isClient && (iconMap[program.icon] || <Zap className="w-14 sm:w-20 h-14 sm:h-20" />)}
-            {!isClient && <Zap className="w-14 sm:w-20 h-14 sm:h-20" />}
-          </div>
-        </div>
-
-        {/* Content - Mobile Optimized */}
-        <motion.div layout className="p-4 sm:p-6 md:p-8 flex flex-col h-full relative z-10">
-          <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white mb-2 sm:mb-3 group-hover:text-red-300 transition-colors duration-300 line-clamp-2 bg-gradient-to-r from-red-200 via-purple-200 to-white bg-clip-text group-hover:text-transparent">
-            {program.title}
-          </h3>
-
-          {/* Description - Single Line with Truncation */}
-          <motion.div
-            initial={false}
-            animate={{ height: isExpanded ? "auto" : "1.5rem" }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="overflow-hidden mb-4 sm:mb-5"
-          >
-            <p className={`text-gray-200 text-sm sm:text-base leading-relaxed group-hover:text-gray-50 transition-colors ${!isExpanded ? 'line-clamp-1' : ''}`}>
-              {program.shortDescription}
-            </p>
-          </motion.div>
-
-          {/* Expand/Collapse Button */}
-          <motion.button
-            onClick={() => setIsExpanded(!isExpanded)}
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.92 }}
-            className="mb-4 sm:mb-5 text-purple-300 hover:text-purple-100 transition-colors text-sm sm:text-base font-bold flex items-center gap-2 group/btn px-2 py-1.5 rounded-lg hover:bg-purple-600/15"
-          >
-            <span>{isExpanded ? 'Show Less Details' : 'Show Full Details'}</span>
-            <motion.span
-              animate={{ rotate: isExpanded ? 180 : 0 }}
-              transition={{ type: "spring", stiffness: 400, damping: 30 }}
-              className="text-xs"
-            >
-              ▼
-            </motion.span>
-          </motion.button>
-
-          {/* Metadata - Only show when expanded */}
-          <motion.div
-            initial={false}
-            animate={{ 
-              opacity: isExpanded ? 1 : 0,
-              height: isExpanded ? "auto" : 0
-            }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="overflow-hidden"
-          >
-            {(program.duration || program.level) && (
-              <div className="flex flex-wrap gap-3 sm:gap-6 mb-4 sm:mb-5 pb-4 sm:pb-5 border-t border-purple-700/30">
-                {program.duration && (
-                  <div>
-                    <span className="text-xs font-bold text-purple-400 uppercase tracking-widest block mb-1">Duration</span>
-                    <p className="text-sm sm:text-base font-bold text-white">{program.duration}</p>
+        {/* Medical Instrument Top Bar */}
+        <div className="px-5 sm:px-6 pt-5 sm:pt-6 pb-4 border-b border-gray-800/50">
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-2">
+                {program.level && (
+                  <div className={`px-2.5 py-1 rounded-full text-xs font-semibold ${levelColor.bg} ${levelColor.text} ${levelColor.border} border`}>
+                    {program.level}
                   </div>
                 )}
-                {program.level && (
-                  <div>
-                    <span className="text-xs font-bold text-purple-400 uppercase tracking-widest block mb-1">Level</span>
-                    <p className="text-sm sm:text-base font-bold text-white">{program.level}</p>
+                {program.duration && (
+                  <div className="flex items-center gap-1 text-xs text-gray-500 bg-gray-800/30 px-2 py-1 rounded-full">
+                    <Zap className="w-3 h-3" />
+                    {program.duration}
                   </div>
                 )}
               </div>
-            )}
-          </motion.div>
+            </div>
 
-          {/* Actions - Only show when expanded */}
+            {/* Coming Soon Badge */}
+            <div className="relative">
+              <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-red-600/20 to-purple-600/20 border border-red-500/30 backdrop-blur-sm">
+                <span className="text-xs font-bold text-red-300 flex items-center gap-1.5 whitespace-nowrap">
+                  <span className="w-1.5 h-1.5 bg-red-400 rounded-full animate-pulse" />
+                  Coming Soon
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Program Title */}
+          <h3 className="text-lg sm:text-xl font-bold text-white mb-3 leading-tight line-clamp-2">
+            {program.title}
+          </h3>
+
+          {/* Description */}
+          <motion.div
+            initial={false}
+            animate={{ height: isExpanded ? "auto" : "2.5rem" }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className="overflow-hidden"
+          >
+            <p className={`text-gray-400 text-sm leading-relaxed ${!isExpanded ? 'line-clamp-1' : ''}`}>
+              {program.shortDescription}
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Metadata - Medical Style */}
           <motion.div
             initial={false}
             animate={{ 
               opacity: isExpanded ? 1 : 0,
-              height: isExpanded ? "auto" : 0
+              height: isExpanded ? "auto" : 0,
+              marginBottom: isExpanded ? 12 : 0
             }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
             className="overflow-hidden"
           >
-            <div className="flex flex-col gap-3 mt-auto">
-              <motion.button
-                onClick={() => onPreview(program)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full px-4 sm:px-5 py-2.5 sm:py-3 bg-gradient-to-r from-purple-700 to-purple-900 border border-purple-600 text-purple-100 font-bold rounded-lg hover:from-purple-600 hover:to-purple-800 hover:border-purple-500 transition-all text-sm sm:text-base hover:shadow-lg hover:shadow-purple-600/30"
-              >
-                Preview Program
-              </motion.button>
-              <motion.button
-                onClick={() => onPreview(program)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full px-4 sm:px-5 py-2.5 sm:py-3 border-2 border-red-600/60 text-red-300 font-bold rounded-lg bg-red-600/15 hover:bg-red-600/25 hover:border-red-600 transition-all text-sm sm:text-base hover:shadow-lg hover:shadow-red-600/30"
-              >
-                Join Waitlist
-              </motion.button>
-            </div>
           </motion.div>
-        </motion.div>
-      </motion.div>
+
+        {/* Card Footer */}
+        <div className="px-5 sm:px-6 py-4 sm:py-5 bg-gray-900/50 border-t border-gray-800/50 flex-grow flex flex-col">
+          {/* Waitlist & Button */}
+          <div className="flex items-center justify-between gap-3">
+            {/* Join Waitlist Button */}
+            <motion.button
+              onClick={() => setIsExpanded(!isExpanded)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`flex-1 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 ${
+                isExpanded
+                  ? 'bg-gray-800/50 text-gray-300 hover:bg-gray-800/80'
+                  : 'bg-gradient-to-r from-red-600 to-purple-600 text-white hover:from-red-500 hover:to-purple-500 shadow-lg shadow-red-500/20'
+              }`}
+            >
+              {isExpanded ? 'Show Less' : 'Show Details'}
+              <motion.span
+                animate={{ rotate: isExpanded ? 180 : 0 }}
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                className="text-xs"
+              >
+                ▼
+              </motion.span>
+            </motion.button>
+          </div>
+
+          {/* Actions - Premium Buttons */}
+          <motion.div
+            initial={false}
+            animate={{ 
+              opacity: isExpanded ? 1 : 0,
+              height: isExpanded ? "auto" : 0,
+              marginTop: isExpanded ? 12 : 0
+            }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className="overflow-hidden flex flex-col gap-3"
+          >
+            <motion.button
+              onClick={() => onPreview(program)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-full px-4 py-2.5 bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 hover:from-purple-500 hover:via-pink-500 hover:to-red-500 text-white font-bold rounded-lg border border-purple-400/50 hover:border-purple-300/80 transition-all duration-300 text-sm shadow-lg"
+            >
+              Preview Program
+            </motion.button>
+            
+            <motion.button
+              onClick={() => onPreview(program)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-full px-4 py-2.5 border-2 border-red-500/70 hover:border-red-400 text-red-300 hover:text-red-200 font-bold rounded-lg bg-gradient-to-r from-red-600/10 via-red-600/5 to-transparent hover:from-red-600/20 hover:via-red-600/10 transition-all duration-300 text-sm"
+            >
+              Join Waitlist
+            </motion.button>
+          </motion.div>
+        </div>
+
+        {/* Interactive Hover Elements */}
+        <AnimatePresence>
+          {isHovered && (
+            <>
+              {/* Scan Line Effect */}
+              <motion.div
+                initial={{ y: 0 }}
+                animate={{ y: '100%' }}
+                transition={{ duration: 0.8, ease: 'linear' }}
+                className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-red-500/50 to-transparent pointer-events-none"
+              />
+              
+              {/* Corner Accents */}
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.3 }}
+                className="absolute top-3 right-3 w-2 h-2 border-t-2 border-r-2 border-red-400/50 pointer-events-none"
+              />
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
+                className="absolute top-3 left-3 w-2 h-2 border-t-2 border-l-2 border-purple-400/50 pointer-events-none"
+              />
+            </>
+          )}
+        </AnimatePresence>
+
+        {/* Particle Effect on Hover */}
+        {isHovered && (
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {[...Array(6)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-red-400 rounded-full"
+                initial={{ 
+                  x: Math.random() * 100 + '%',
+                  y: Math.random() * 100 + '%',
+                  scale: 0,
+                  opacity: 0
+                }}
+                animate={{ 
+                  x: Math.random() * 100 + '%',
+                  y: Math.random() * 100 + '%',
+                  scale: [0, 1, 0],
+                  opacity: [0, 0.8, 0]
+                }}
+                transition={{ 
+                  duration: 1.5,
+                  repeat: Infinity,
+                  delay: i * 0.2,
+                  ease: "easeOut"
+                }}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </motion.div>
   );
 };
@@ -218,6 +293,9 @@ export default function ProgramsPageClient() {
   const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showAllComingSoon, setShowAllComingSoon] = useState(false);
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+  const [email, setEmail] = useState('');
+  const [emailSubmitted, setEmailSubmitted] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -232,6 +310,25 @@ export default function ProgramsPageClient() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setTimeout(() => setSelectedProgram(null), 300);
+  };
+
+  const handleEmailSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email.trim()) {
+      setEmailSubmitted(true);
+      // TODO: Connect to Google Sheets API here
+      setTimeout(() => {
+        setIsEmailModalOpen(false);
+        setEmail('');
+        setEmailSubmitted(false);
+      }, 2000);
+    }
+  };
+
+  const handleCloseEmailModal = () => {
+    setIsEmailModalOpen(false);
+    setEmail('');
+    setEmailSubmitted(false);
   };
 
   // Display coming soon programs without randomization to avoid hydration errors
@@ -265,7 +362,7 @@ export default function ProgramsPageClient() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-900/30 to-purple-900/30 rounded-full mb-6 border border-red-700/50 backdrop-blur-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-900/30 to-purple-900/30 rounded-full mb-6 mt-6 sm:mt-0 border border-red-700/50 backdrop-blur-sm"
             >
               <span className="w-2 h-2 rounded-full bg-gradient-to-r from-red-500 to-purple-500 animate-pulse"></span>
               <span className="text-sm font-bold text-red-300">Professional Learning Paths</span>
@@ -282,14 +379,14 @@ export default function ProgramsPageClient() {
       </section>
 
       {/* Available Now Section - Premium Cards - Mobile Optimized */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-black via-purple-950/20 to-black">
+      <section className="py-2 sm:py-4 md:py-6 lg:py-10 px-2 sm:px-6 md:px-8 bg-gradient-to-b from-black via-purple-950/20 to-black">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="mb-8 sm:mb-12 md:mb-16"
+            className="mb-4 sm:mb-6 md:mb-8"
           >
             <div className="inline-flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
               <div className="w-1 h-6 sm:h-8 bg-gradient-to-b from-red-600 to-purple-600 rounded-full"></div>
@@ -306,31 +403,26 @@ export default function ProgramsPageClient() {
               return (
                 <motion.div
                   key={program.id}
-                  initial={{ opacity: 0, y: 20, rotateX: 10 }}
-                  whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ duration: 0.6, delay: idx * 0.12, ease: "easeOut" }}
                   viewport={{ once: true }}
-                  whileHover={{ y: -12, transition: { duration: 0.3 } }}
+                  className="w-full relative group"
+                  onMouseEnter={() => {}}
+                  onMouseLeave={() => {}}
                 >
-                  <div className={`group relative bg-black rounded-3xl border border-purple-900/40 overflow-hidden hover:border-red-600/60 transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/20 flex flex-col h-full`}>
-                    {/* Gradient border effect */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-red-600/0 via-purple-600/0 to-black/0 group-hover:from-red-600/5 group-hover:via-purple-600/5 transition-all duration-500 pointer-events-none rounded-3xl"></div>
+                  {/* Card Glow Effect */}
+                  <motion.div
+                    className="absolute -inset-0.5 bg-gradient-to-r from-red-600/20 via-purple-600/20 to-red-600/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  />
 
+                  {/* Main Card */}
+                  <div className="group relative bg-gradient-to-br from-gray-900/90 via-gray-900/80 to-gray-950/90 rounded-2xl border border-gray-800/50 overflow-hidden backdrop-blur-sm flex flex-col h-auto hover:border-red-500/40 transition-all duration-300">
                     {/* Top gradient accent bar */}
                     <div className={`h-1 bg-gradient-to-r ${program.color}`}></div>
 
-                    {/* Icon Section */}
-                    <div className="px-6 sm:px-8 pt-6 sm:pt-8 pb-4 flex items-start">
-                      <div className={`bg-gradient-to-br ${colorClasses.bg} p-3 sm:p-4 rounded-2xl group-hover:scale-110 transition-transform duration-300`}>
-                        <div className={`relative z-10 ${colorClasses.text}`}>
-                          {isClient && (iconMap[program.icon] || <Zap className="w-8 sm:w-10 h-8 sm:h-10" />)}
-                          {!isClient && <Zap className="w-8 sm:w-10 h-8 sm:h-10" />}
-                        </div>
-                      </div>
-                    </div>
-
                     {/* Content */}
-                    <div className="px-6 sm:px-8 pb-6 sm:pb-8 flex flex-col flex-grow relative z-10">
+                    <div className="px-5 sm:px-6 pt-5 sm:pt-6 pb-6 sm:pb-8 flex flex-col flex-grow relative z-10">
                       {/* Title */}
                       <h3 className="text-xl sm:text-2xl font-black text-white mb-3 group-hover:text-red-300 transition-colors duration-300 leading-tight">
                         {program.title}
@@ -360,44 +452,35 @@ export default function ProgramsPageClient() {
                       )}
 
                       {/* Actions */}
-                      <div className="flex flex-col gap-3 pt-2 border-t border-purple-900/30">
-                        <motion.button
-                          onClick={() => handlePreviewClick(program)}
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          className="w-full px-4 sm:px-6 py-3 bg-gradient-to-r from-purple-900/40 to-red-900/40 border border-purple-600/40 text-purple-200 font-bold rounded-xl hover:from-purple-800/60 hover:to-red-800/60 hover:border-red-600/60 transition-all duration-300 text-sm hover:shadow-lg hover:shadow-purple-600/20"
-                        >
-                          Quick Preview
-                        </motion.button>
+                      <div className="flex flex-col gap-3 pt-4 border-t border-gray-800/50">
                         {program.status === 'available' && program.externalLink && (
-                          <button
+                          <motion.button
                             onClick={() => window.open(program.externalLink, '_blank')}
-                            className="w-full px-4 sm:px-6 py-3 bg-gradient-to-r from-red-600 to-purple-600 text-white font-bold rounded-xl hover:from-red-700 hover:to-purple-700 transition-all duration-300 text-sm hover:shadow-lg hover:shadow-red-600/40 flex items-center justify-center gap-2"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="w-full px-4 py-2.5 bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 hover:from-purple-500 hover:via-pink-500 hover:to-red-500 text-white font-bold rounded-lg border border-purple-400/50 hover:border-purple-300/80 transition-all duration-300 text-sm shadow-lg"
                           >
-                            <span>Access Course</span>
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                          </button>
+                            Access Now ✨
+                          </motion.button>
                         )}
                         {program.status === 'available' && program.internalPath && !program.externalLink && (
                           <motion.a
                             href={program.internalPath}
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            className="w-full block px-4 sm:px-6 py-3 bg-gradient-to-r from-red-600 to-purple-600 text-white font-bold rounded-xl hover:from-red-700 hover:to-purple-700 transition-all duration-300 text-sm text-center hover:shadow-lg hover:shadow-red-600/40"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="w-full block px-4 py-2.5 text-center bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 hover:from-purple-500 hover:via-pink-500 hover:to-red-500 text-white font-bold rounded-lg border border-purple-400/50 hover:border-purple-300/80 transition-all duration-300 text-sm shadow-lg"
                           >
-                            Access Course
+                            Access Now ✨
                           </motion.a>
                         )}
-                        {program.status !== 'available' && (
-                          <button
-                            className="w-full px-4 sm:px-6 py-3 border-2 border-gray-700 text-gray-500 font-bold rounded-xl bg-gray-900/30 text-sm cursor-not-allowed"
-                            disabled
-                          >
-                            Coming Soon
-                          </button>
-                        )}
+                        <motion.button
+                          onClick={() => handlePreviewClick(program)}
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="w-full px-4 py-2.5 border-2 border-red-500/70 hover:border-red-400 text-red-300 hover:text-red-200 font-bold rounded-lg bg-gradient-to-r from-red-600/10 via-red-600/5 to-transparent hover:from-red-600/20 hover:via-red-600/10 transition-all duration-300 text-sm"
+                        >
+                          Preview 🎬
+                        </motion.button>
                       </div>
                     </div>
                   </div>
@@ -428,8 +511,8 @@ export default function ProgramsPageClient() {
           </motion.div>
 
           {/* Grid - Shows 3 cards on first row, rest hidden until expanded */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-10">
-            {visibleComingSoonPrograms.map((program, idx) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-10 auto-rows-max">
+            {programs.comingSoon.slice(0, 3).map((program, idx) => (
               <ComingSoonCard 
                 key={program.id}
                 program={program} 
@@ -440,63 +523,72 @@ export default function ProgramsPageClient() {
             ))}
           </div>
 
-          {/* View More / View Less Button */}
-          {programs.comingSoon.length > 3 && (
+          {/* All remaining cards - animated reveal */}
+          <AnimatePresence>
+            {showAllComingSoon && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                className="overflow-hidden"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mt-8 sm:mt-10 auto-rows-max">
+                  {programs.comingSoon.slice(3).map((program, idx) => (
+                    <motion.div
+                      key={program.id}
+                      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ duration: 0.4, delay: idx * 0.1 }}
+                    >
+                      <ComingSoonCard 
+                        program={program} 
+                        onPreview={handlePreviewClick}
+                        isVisible={true}
+                        isClient={isClient}
+                      />
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* View Less Button - Inside expanded section */}
+                <motion.div
+                  className="flex justify-center mt-8 sm:mt-10"
+                >
+                  <motion.button
+                    onClick={() => setShowAllComingSoon(false)}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 sm:px-12 py-3 sm:py-4 border-2 border-red-600/60 text-red-300 hover:text-red-200 font-black rounded-xl hover:bg-red-600/20 hover:border-red-400 transition-all text-sm sm:text-base flex items-center gap-2"
+                  >
+                    <span>Show Less ({programs.comingSoon.length - 3} hidden)</span>
+                    <motion.span animate={{ rotate: 180 }}>▼</motion.span>
+                  </motion.button>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* View More Button - Only shown when not expanded */}
+          {programs.comingSoon.length > 3 && !showAllComingSoon && (
             <motion.div
-              className="flex justify-center"
-              layout
+              className="flex justify-center mt-8 sm:mt-10"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
             >
               <motion.button
-                onClick={() => setShowAllComingSoon(!showAllComingSoon)}
+                onClick={() => setShowAllComingSoon(true)}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
                 className="px-8 sm:px-12 py-3 sm:py-4 border-2 border-red-600/60 text-red-300 hover:text-red-200 font-black rounded-xl hover:bg-red-600/20 hover:border-red-400 transition-all text-sm sm:text-base flex items-center gap-2"
               >
-                <span>
-                  {showAllComingSoon 
-                    ? `Show Less (${programs.comingSoon.length - 3} hidden)` 
-                    : `View More Programs (+${programs.comingSoon.length - 3})`}
-                </span>
-                <motion.span
-                  animate={{ rotate: showAllComingSoon ? 180 : 0 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                >
-                  ▼
-                </motion.span>
+                <span>View More Programs (+{programs.comingSoon.length - 3})</span>
+                <motion.span animate={{ rotate: 0 }}>▼</motion.span>
               </motion.button>
             </motion.div>
           )}
-
-          {/* All remaining cards - animated reveal */}
-          <motion.div
-            layout
-            initial={false}
-            animate={{ height: showAllComingSoon ? "auto" : 0, opacity: showAllComingSoon ? 1 : 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="overflow-hidden"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mt-8 sm:mt-10">
-              {programs.comingSoon.slice(3).map((program, idx) => (
-                <motion.div
-                  key={program.id}
-                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.4, delay: idx * 0.1 }}
-                >
-                  <ComingSoonCard 
-                    program={program} 
-                    onPreview={handlePreviewClick}
-                    isVisible={showAllComingSoon}
-                    isClient={isClient}
-                  />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </section>
 
@@ -704,15 +796,15 @@ export default function ProgramsPageClient() {
               >
                 Explore All Programs
               </motion.a>
-              <motion.a
-                href="#"
+              <motion.button
+                onClick={() => setIsEmailModalOpen(true)}
                 whileHover={{ scale: 1.08, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 border-2 border-red-600/60 text-red-300 font-black rounded-xl hover:bg-red-600/20 transition-all text-base sm:text-lg flex items-center justify-center gap-2 hover:border-red-400 hover:text-red-200"
               >
                 <Mail className="w-5 h-5" />
                 Get Updates
-              </motion.a>
+              </motion.button>
             </div>
 
             {/* Trust Indicators */}
@@ -750,6 +842,144 @@ export default function ProgramsPageClient() {
           </motion.div>
         </div>
       </section>
+
+      {/* Email Newsletter Modal */}
+      <AnimatePresence>
+        {isEmailModalOpen && (
+          <>
+            {/* Blurred Background */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={handleCloseEmailModal}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
+            />
+
+            {/* Modal */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className="fixed inset-0 z-50 flex items-center justify-center px-4 sm:px-6"
+            >
+              <div className="w-full max-w-md bg-gradient-to-br from-gray-900/95 via-gray-900/90 to-gray-950/95 rounded-2xl border border-red-500/30 shadow-2xl shadow-red-500/20 backdrop-blur-xl overflow-hidden">
+                {/* Close Button */}
+                <button
+                  onClick={handleCloseEmailModal}
+                  className="absolute top-4 right-4 text-gray-400 hover:text-gray-200 transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+
+                {!emailSubmitted ? (
+                  <div className="p-8 sm:p-10">
+                    {/* Decorative Top Bar */}
+                    <div className="h-1 bg-gradient-to-r from-red-600 to-purple-600 rounded-full mb-6"></div>
+
+                    {/* Title */}
+                    <h3 className="text-2xl sm:text-3xl font-black text-white mb-2">
+                      Stay Updated
+                    </h3>
+                    <p className="text-gray-400 text-sm sm:text-base mb-8">
+                      Get notified about new programs, exclusive offers, and medical career insights delivered to your inbox.
+                    </p>
+
+                    {/* Email Form */}
+                    <form onSubmit={handleEmailSubmit} className="space-y-4">
+                      <div className="relative">
+                        <input
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="your@email.com"
+                          required
+                          className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-red-500/50 focus:ring-1 focus:ring-red-500/30 transition-all duration-300"
+                        />
+                        <Mail className="absolute right-3 top-3.5 w-5 h-5 text-red-400/60" />
+                      </div>
+
+                      {/* Submit Button */}
+                      <motion.button
+                        type="submit"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="w-full px-4 py-3 bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-500 hover:to-purple-500 text-white font-bold rounded-lg transition-all duration-300 shadow-lg shadow-red-500/20"
+                      >
+                        Join Newsletter
+                      </motion.button>
+                    </form>
+
+                    {/* Privacy Notice */}
+                    <p className="text-xs text-gray-500 mt-6 text-center">
+                      We respect your privacy. Unsubscribe at any time.
+                    </p>
+                  </div>
+                ) : (
+                  <div className="p-8 sm:p-10 flex flex-col items-center justify-center text-center">
+                    {/* Success Animation */}
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      className="mb-6"
+                    >
+                      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-500/20 to-emerald-500/20 border-2 border-green-500/50 flex items-center justify-center">
+                        <motion.svg
+                          className="w-8 h-8 text-green-400"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          initial={{ pathLength: 0 }}
+                          animate={{ pathLength: 1 }}
+                          transition={{ duration: 0.6 }}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={3}
+                            d="M5 13l4 4L19 7"
+                          />
+                        </motion.svg>
+                      </div>
+                    </motion.div>
+
+                    {/* Success Message */}
+                    <h4 className="text-xl sm:text-2xl font-black text-white mb-2">
+                      Success!
+                    </h4>
+                    <p className="text-gray-400 text-sm sm:text-base">
+                      Thank you for subscribing! Check your inbox for exclusive updates and program launches.
+                    </p>
+
+                    {/* Success Checkmarks */}
+                    <div className="mt-6 space-y-3 text-left w-full">
+                      {[
+                        'Exclusive program previews',
+                        'Early bird access to new courses',
+                        'Medical career tips & resources'
+                      ].map((item, idx) => (
+                        <motion.div
+                          key={idx}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: idx * 0.1 }}
+                          className="flex items-center gap-3"
+                        >
+                          <div className="w-5 h-5 rounded-full bg-green-500/30 border border-green-500/50 flex items-center justify-center flex-shrink-0">
+                            <span className="text-xs text-green-400">✓</span>
+                          </div>
+                          <span className="text-gray-300 text-sm">{item}</span>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Program Modal */}
       <ProgramModal 

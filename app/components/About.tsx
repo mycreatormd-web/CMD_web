@@ -339,7 +339,7 @@ const About = () => {
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-block mb-6"
+              className="block mb-6"
             >
               <span className="px-4 sm:px-6 py-2 sm:py-2.5 bg-white/80 backdrop-blur-md rounded-full border border-red-200 text-red-600 text-xs sm:text-sm font-semibold shadow-lg">
                 About CreatorMD
