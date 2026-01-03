@@ -194,11 +194,7 @@ const Navigation = () => {
               <div className="p-6">
                 {/* Mobile Menu Header */}
                 <div className="flex items-center justify-between mb-8">
-                  <img
-                    src="/cmd_logo_5.svg"
-                    alt="CreatorMD Logo"
-                    className="h-10 w-auto drop-shadow-[0_0_10px_rgba(220,38,38,0.3)]"
-                  />
+                  <h2 className="text-lg font-black text-white">Menu</h2>
                   <button
                     onClick={() => setIsOpen(false)}
                     className="p-2 hover:bg-white/5 rounded-lg transition-colors"

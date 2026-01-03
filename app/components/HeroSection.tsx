@@ -167,7 +167,7 @@ const HeroSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-8 md:mb-10 px-4 mt-30 md:mt-30"
+            className="text-center mb-12 md:mb-10 px-4 mt-20 sm:mt-24 md:mt-30"
           >
             <span className="inline-block px-5 py-2.5 md:px-7 md:py-3 bg-gradient-to-r from-red-600/20 via-purple-600/20 to-red-600/20 backdrop-blur-lg rounded-full border-2 border-red-500/40 text-white text-sm sm:text-base font-bold shadow-lg hover:shadow-red-600/20 transition-all duration-300">
               Built by medics, for medics.
@@ -175,7 +175,7 @@ const HeroSection = () => {
           </motion.div>
 
           {/* Main Headline */}
-          <div className="text-center mb-12 md:mb-16 px-3 sm:px-4">
+          <div className="text-center mb-12 md:mb-16 px-3 sm:px-4 mt-6 sm:mt-4">
             <motion.h2 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -218,7 +218,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-xs sm:text-sm md:text-lg lg:text-xl mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed px-3 sm:px-4 md:px-6"
+              className="text-xs sm:text-sm md:text-lg lg:text-xl mb-2 md:mb-6 max-w-3xl mx-auto leading-relaxed px-3 sm:px-4 md:px-6 mt-6 sm:mt-0"
             >
               <span className="text-gray-300">
                 CreatorMD helps medics build <span className="font-semibold text-white">income</span>, <span className="font-semibold text-red-300">influence</span>, and <span className="font-semibold text-purple-300">impact</span> online.
@@ -231,7 +231,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-10 md:mb-14 max-w-3xl mx-auto px-4 -mt-10 sm:-mt-2"
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-10 md:mb-14 max-w-3xl mx-auto px-4 mt-8 sm:mt-0 md:-mt-2"
           >
             {[
               { label: "Trained Medics", value: "600+", icon: Sparkles },
@@ -269,7 +269,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center items-stretch sm:items-center px-3 sm:px-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center items-stretch sm:items-center px-3 sm:px-4 mt-6 sm:mt-0"
           >
             <motion.button
               whileHover={{ 
