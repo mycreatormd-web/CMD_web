@@ -110,7 +110,7 @@ const ProgramCard = ({ program, idx, expandedId, setExpandedId }) => {
         layout
         layoutId={`card-${program.id}`}
         onClick={() => setExpandedId(isExpanded ? null : program.id)}
-        className={`relative h-full bg-white rounded-xl md:rounded-2xl border-2 ${program.borderColor} shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden cursor-pointer group`}
+        className={`relative h-full bg-white rounded-lg md:rounded-lg lg:rounded-lg xl:rounded-lg border-2 ${program.borderColor} shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden cursor-pointer group`}
       >
         {/* Animated Background */}
         <div className={`absolute inset-0 bg-gradient-to-br ${program.bgColor} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
@@ -118,16 +118,16 @@ const ProgramCard = ({ program, idx, expandedId, setExpandedId }) => {
         {/* Content Container */}
         <div className="relative z-10">
           {/* Card Header - Always Visible */}
-          <div className="p-3 sm:p-4 md:p-6 lg:p-8">
+          <div className="p-2 sm:p-2.5 md:p-3 lg:p-4 xl:p-6">
             {/* Icon */}
             <motion.div
               initial={{ scale: 0, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
-              className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl bg-gradient-to-br ${program.color} flex items-center justify-center mb-2 sm:mb-3 md:mb-4 shadow-sm`}
+              className={`w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 lg:w-11 lg:h-11 xl:w-12 xl:h-12 rounded-lg sm:rounded-lg md:rounded-lg lg:rounded-lg xl:rounded-lg bg-gradient-to-br ${program.color} flex items-center justify-center mb-1.5 sm:mb-2 md:mb-2 lg:mb-2 xl:mb-3 shadow-sm`}
             >
-              <Icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white" />
+              <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-5.5 lg:h-5.5 xl:w-6 xl:h-6 text-white" />
             </motion.div>
 
             {/* Title */}
@@ -136,7 +136,7 @@ const ProgramCard = ({ program, idx, expandedId, setExpandedId }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 + 0.1, duration: 0.4 }}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 sm:mb-2 md:mb-3 leading-snug"
+              className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-bold text-gray-900 mb-1 sm:mb-1.5 md:mb-1.5 lg:mb-1.5 xl:mb-2 leading-snug"
             >
               {program.title}
             </motion.h3>
@@ -147,7 +147,7 @@ const ProgramCard = ({ program, idx, expandedId, setExpandedId }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
-              className="text-xs sm:text-sm md:text-base text-gray-700 mb-3 sm:mb-4 md:mb-5 leading-relaxed"
+              className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base text-gray-700 mb-1.5 sm:mb-2 md:mb-2 lg:mb-2.5 xl:mb-4 leading-relaxed"
             >
               {program.microcopy}
             </motion.p>
@@ -229,14 +229,14 @@ const ProgramsSection = () => {
           whileInView={{ opacity: 0.06, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="absolute top-0 right-0 w-72 h-72 sm:w-96 sm:h-96 md:w-full md:h-full bg-gradient-to-l from-blue-200 to-emerald-200 rounded-full blur-3xl -z-10"
+          className="hidden sm:block absolute top-0 right-0 w-96 md:w-full h-96 md:h-full bg-gradient-to-l from-blue-200 to-emerald-200 rounded-full blur-3xl -z-10"
         />
         <motion.div 
           initial={{ opacity: 0, scale: 0.5 }}
           whileInView={{ opacity: 0.05, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.1 }}
-          className="absolute bottom-0 left-0 w-80 h-80 sm:w-full sm:h-full bg-gradient-to-t from-cyan-200 to-blue-200 rounded-full blur-3xl -z-10"
+          className="hidden sm:block absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-cyan-200 to-blue-200 rounded-full blur-3xl -z-10"
         />
       </div>
 
@@ -268,7 +268,7 @@ const ProgramsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.15, duration: 0.6 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-5"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-white to-black bg-clip-text text-transparent mb-3 sm:mb-4 md:mb-5"
           >
             Programs That Fit{" "}
             <span className="bg-gradient-to-r from-red-600 via-red-500 to-purple-700 bg-clip-text text-transparent">
@@ -307,14 +307,14 @@ const ProgramsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="bg-gradient-to-r from-red-50 to-purple-50 rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 border-2 border-purple-200/50 text-center"
+          className="bg-gradient-to-r from-red-50 to-purple-50 rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-8 md:p-10 lg:p-12 border-2 border-purple-200/50 text-center"
         >
           <motion.h3
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.5 }}
-            className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-2 sm:mb-3"
+            className="text-lg sm:text-2xl md:text-3xl font-bold text-gray-900 mb-2 sm:mb-3"
           >
             Ready to explore all programs?
           </motion.h3>
@@ -324,7 +324,7 @@ const ProgramsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.45, duration: 0.5 }}
-            className="text-sm sm:text-base text-gray-700 max-w-2xl mx-auto mb-6 sm:mb-8"
+            className="text-xs sm:text-base text-gray-700 max-w-2xl mx-auto mb-4 sm:mb-8"
           >
             Check out our complete programs hub with detailed descriptions, pricing, and everything you need to choose your path.
           </motion.p>

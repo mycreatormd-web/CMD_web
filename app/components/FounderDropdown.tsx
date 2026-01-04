@@ -1,7 +1,8 @@
 // app/components/FounderDropdown.tsx - COMPLETE REPLACEMENT
 "use client";
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, ReactNode } from 'react';
+import ReactDOM from 'react-dom';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { 
   User, ChevronDown, Heart, Sparkles, 
@@ -290,19 +291,20 @@ const FounderDropdown = () => {
         </div>
       </motion.div>
 
-      {/* Dropdown Content with Blur Overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <>
-            {/* Full-screen Blur Overlay Background - clickable to close */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
-              className="fixed inset-0 backdrop-blur-md bg-black/40 z-[60] cursor-pointer"
-              transition={{ duration: 0.3 }}
-            />
+      {/* Dropdown Content with Blur Overlay - Rendered via Portal to escape stacking context */}
+      {isOpen && typeof window !== 'undefined' && 
+        ReactDOM.createPortal(
+          <AnimatePresence>
+            <>
+              {/* Full-screen Blur Overlay Background - clickable to close */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsOpen(false)}
+                className="fixed inset-0 backdrop-blur-md bg-black/40 z-[9998] cursor-pointer"
+                transition={{ duration: 0.3 }}
+              />
             
             {/* Modal Content - Centered Box */}
             <motion.div
@@ -326,22 +328,22 @@ const FounderDropdown = () => {
                 ease: [0.22, 1, 0.36, 1]
               }}
               onClick={(e) => e.stopPropagation()}
-              className="fixed inset-0 z-[70] flex items-center justify-center p-4"
+              className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
             >
               {/* Centered Modal Box with Enhanced Styling */}
               <motion.div 
-                className="w-full max-w-3xl md:max-w-3xl sm:max-w-lg max-h-[85vh] bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-gray-100"
+                className="w-full max-w-3xl md:max-w-3xl sm:max-w-lg max-h-[85vh] bg-white rounded-2xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-gray-100"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15, duration: 0.4 }}
               >
                 {/* Progress Indicator with Chapter Titles */}
-                <div className="flex-shrink-0 bg-gradient-to-r from-white via-red-50/30 to-white border-b border-gray-200 px-6 py-5">
+                <div className="flex-shrink-0 bg-gradient-to-r from-white via-red-50/30 to-white border-b border-gray-200 px-3 sm:px-6 py-3 sm:py-5">
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <motion.h3 
                         key={`chapter-${activeChapter}`}
-                        className="text-sm font-bold text-transparent bg-gradient-to-r from-red-600 via-purple-600 to-black bg-clip-text"
+                        className="text-xs sm:text-sm font-bold text-transparent bg-gradient-to-r from-red-600 via-purple-600 to-black bg-clip-text"
                         initial={{ opacity: 0, x: -15 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 15 }}
@@ -380,7 +382,7 @@ const FounderDropdown = () => {
 
                 {/* Story Content - Three Chapters */}
                 <div ref={contentRef} className="flex-1 overflow-y-auto">
-                  <div className="px-6 md:px-8 py-8 space-y-12">
+                  <div className="px-3 sm:px-6 md:px-8 py-4 sm:py-8 space-y-6 sm:space-y-12">
                     {/* Chapter 1: The Struggle */}
                     <motion.section
                       initial={{ opacity: 0, y: 30 }}
@@ -389,25 +391,25 @@ const FounderDropdown = () => {
                       transition={{ duration: 0.6 }}
                       className="max-w-2xl mx-auto space-y-5"
                     >
-                      <div className="flex items-center gap-3 mb-4">
-                        <span className="text-2xl">📖</span>
-                        <h3 className="text-2xl font-bold text-gray-900">The Struggle</h3>
+                      <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                        <span className="text-lg sm:text-2xl">📖</span>
+                        <h3 className="text-lg sm:text-2xl font-bold text-gray-900">The Struggle</h3>
                       </div>
                       <div className="w-16 h-1 bg-gradient-to-r from-red-500 to-purple-500 rounded-full" />
                       
-                      <p className="text-lg text-gray-700 leading-relaxed text-justify">
+                      <p className="text-xs sm:text-sm md:text-lg text-gray-700 leading-relaxed text-justify">
                         Hi, I'm Dr. Valerie Okorie — doctor, content creator, and founder of CreatorMD.
                       </p>
 
-                      <p className="text-lg text-gray-700 leading-relaxed text-justify">
+                      <p className="text-xs sm:text-sm md:text-lg text-gray-700 leading-relaxed text-justify">
                         CreatorMD didn't start as a brand. It started as a <span className="font-bold text-red-600">quiet struggle.</span>
                       </p>
 
-                      <p className="text-lg text-gray-700 leading-relaxed text-justify">
+                      <p className="text-xs sm:text-sm md:text-lg text-gray-700 leading-relaxed text-justify">
                         I was a doctor who loved creating content, but behind the scenes, I was <span className="font-semibold">confused, inconsistent, and overwhelmed.</span> I knew I had something to say. I knew I was meant to teach, share, and build online. But I didn't know who I was speaking to, what to post, or how to turn my knowledge into real impact — or income.
                       </p>
 
-                      <p className="text-lg text-gray-700 leading-relaxed text-justify">
+                      <p className="text-xs sm:text-sm md:text-lg text-gray-700 leading-relaxed text-justify">
                         I watched other creators grow while I kept starting… then stopping. <span className="font-semibold">Burnt out from medicine,</span> yet afraid to step into something new. <span className="font-semibold">Called to create,</span> but unsure how to do it well and with purpose.
                       </p>
                     </motion.section>
@@ -420,26 +422,26 @@ const FounderDropdown = () => {
                       transition={{ duration: 0.6 }}
                       className="max-w-2xl mx-auto space-y-5"
                     >
-                      <div className="flex items-center gap-3 mb-4">
-                        <span className="text-2xl">💡</span>
-                        <h3 className="text-2xl font-bold text-gray-900">The Awakening</h3>
+                      <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                        <span className="text-lg sm:text-2xl">💡</span>
+                        <h3 className="text-lg sm:text-2xl font-bold text-gray-900">The Awakening</h3>
                       </div>
                       <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-red-500 rounded-full" />
 
-                      <p className="text-lg text-gray-700 leading-relaxed text-justify">
+                      <p className="text-xs sm:text-sm md:text-lg text-gray-700 leading-relaxed text-justify">
                         One night, I remember asking God a simple question: <span className="italic font-semibold text-red-600">"I know I'm meant to create — but where do I even start?"</span> That question changed everything.
                       </p>
 
-                      <p className="text-lg text-gray-700 leading-relaxed text-justify">
+                      <p className="text-xs sm:text-sm md:text-lg text-gray-700 leading-relaxed text-justify">
                         Instead of waiting for clarity, I decided to build it — step by step, in real time. I learned how to find my voice, show up consistently, and create content that served people and opened doors. Slowly, what once felt confusing became clear. What felt impossible became doable.
                       </p>
 
-                      <p className="text-lg text-gray-700 leading-relaxed text-justify">
+                      <p className="text-xs sm:text-sm md:text-lg text-gray-700 leading-relaxed text-justify">
                         And I realized something powerful: <span className="font-bold">so many medics are exactly where I was.</span>
                       </p>
 
-                      <div className="bg-gradient-to-br from-red-50 via-purple-50 to-black/5 rounded-2xl p-6 border border-red-200/50 my-6">
-                        <p className="text-base text-gray-800 leading-relaxed">
+                      <div className="bg-gradient-to-br from-red-50 via-purple-50 to-black/5 rounded-xl sm:rounded-2xl p-3 sm:p-6 border border-red-200/50 my-4 sm:my-6">
+                        <p className="text-xs sm:text-sm md:text-base text-gray-800 leading-relaxed">
                           <span className="font-bold text-purple-700">Brilliant. Passionate.</span> <span className="font-bold text-red-600">Underpaid. Burnt out.</span> With stories, skills, and expertise the world needs — but no roadmap.
                         </p>
                       </div>
@@ -453,29 +455,29 @@ const FounderDropdown = () => {
                       transition={{ duration: 0.6 }}
                       className="max-w-2xl mx-auto space-y-5 pb-4"
                     >
-                      <div className="flex items-center gap-3 mb-4">
-                        <span className="text-2xl">🚀</span>
-                        <h3 className="text-2xl font-bold text-gray-900">The Invitation</h3>
+                      <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                        <span className="text-lg sm:text-2xl">🚀</span>
+                        <h3 className="text-lg sm:text-2xl font-bold text-gray-900">The Invitation</h3>
                       </div>
                       <div className="w-16 h-1 bg-gradient-to-r from-red-600 to-purple-600 rounded-full" />
 
-                      <p className="text-lg text-gray-700 leading-relaxed text-justify">
+                      <p className="text-xs sm:text-sm md:text-lg text-gray-700 leading-relaxed text-justify">
                         That's why I built CreatorMD. CreatorMD exists to help medical professionals turn their knowledge into <span className="font-bold">impact, influence, and income</span> online — without losing their integrity, identity, or love for medicine.
                       </p>
 
-                      <p className="text-lg text-gray-700 leading-relaxed text-justify">
+                      <p className="text-xs sm:text-sm md:text-lg text-gray-700 leading-relaxed text-justify">
                         This isn't about chasing clout. It's about <span className="font-bold bg-gradient-to-r from-red-600 via-purple-600 to-black bg-clip-text text-transparent">clarity. Confidence. Community.</span> And building something meaningful with the degree you already worked so hard for.
                       </p>
 
-                      <p className="text-lg text-gray-700 leading-relaxed text-justify">
+                      <p className="text-xs sm:text-sm md:text-lg text-gray-700 leading-relaxed text-justify">
                         If you're a medic who feels called to create, teach, and build beyond the hospital walls — you're not late. You're not confused. <span className="font-bold bg-gradient-to-r from-red-600 via-purple-600 to-black bg-clip-text text-transparent">You're just early.</span>
                       </p>
 
-                      <div className="bg-gradient-to-br from-red-500 via-purple-500 to-black rounded-2xl p-8 text-white text-center mt-8">
-                        <p className="text-2xl md:text-3xl font-bold">
+                      <div className="bg-gradient-to-br from-red-500 via-purple-500 to-black rounded-xl sm:rounded-2xl p-4 sm:p-8 text-white text-center mt-4 sm:mt-8">
+                        <p className="text-sm sm:text-xl md:text-3xl font-bold">
                           Welcome to CreatorMD.
                         </p>
-                        <p className="text-lg mt-2 text-red-50">
+                        <p className="text-xs sm:text-base md:text-lg mt-2 text-red-50">
                           Let's build this together.
                         </p>
                       </div>
@@ -484,9 +486,11 @@ const FounderDropdown = () => {
                 </div>
               </motion.div>
             </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+            </>
+          </AnimatePresence>,
+          document.body
+        )
+      }
     </div>
   );
 };

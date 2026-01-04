@@ -6,7 +6,7 @@ export const programs: ProgramsData = {
       id: 'bootcamp',
       slug: 'creatormd-bootcamp',
       title: 'CreatorMD Bootcamp',
-      shortDescription: 'An intensive live program designed to help medical professionals launch their content authority in 8 weeks.',
+      shortDescription: 'An intensive live program designed to help medical professionals launch their content authority in 7 days.',
       fullDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       benefits: [
         'Lorem ipsum dolor sit amet',

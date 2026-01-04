@@ -5,9 +5,11 @@ import { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { useCommunityForm } from '@/app/context/CommunityFormContext';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { openForm } = useCommunityForm();
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
@@ -67,7 +69,7 @@ const Navigation = () => {
         }`}
       >
         <div className="container mx-auto px-4 md:px-6">
-          <div className="flex items-center justify-between h-16 md:h-20">
+          <div className="flex items-center justify-between h-14 lg:h-16 xl:h-20">
             {/* Logo Container */}
             <motion.a
               href="#"
@@ -86,12 +88,12 @@ const Navigation = () => {
               <img
                 src="/cmd_logo_invert6.svg"
                 alt="CreatorMD Logo"
-                className="h-10 md:h-12 w-auto drop-shadow-[0_0_12px_rgba(220,38,38,0.3)] hover:drop-shadow-[0_0_16px_rgba(220,38,38,0.5)] transition-all duration-300"
+                className="h-8 lg:h-10 xl:h-12 w-auto drop-shadow-[0_0_12px_rgba(220,38,38,0.3)] hover:drop-shadow-[0_0_16px_rgba(220,38,38,0.5)] transition-all duration-300"
               />
             </motion.a>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-1">
+            {/* Desktop Navigation - Hidden at 1024x768 */}
+            <div className="hidden xl:flex items-center gap-1">
               {navItems.map((item, index) => (
                 <motion.a
                   key={item.label}
@@ -112,30 +114,26 @@ const Navigation = () => {
                 </motion.a>
               ))}
               
-              {/* Desktop CTA */}
-              <motion.a
-                href="#join"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('#join');
-                }}
+              {/* Desktop CTA - Join Community */}
+              <motion.button
+                onClick={openForm}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.6, duration: 0.5 }}
                 whileHover={{ 
                   scale: 1.05,
-                  boxShadow: "0 10px 40px rgba(59, 130, 246, 0.4)"
+                  boxShadow: "0 10px 40px rgba(220, 38, 38, 0.4)"
                 }}
                 whileTap={{ scale: 0.95 }}
                 className="ml-4 px-6 py-2.5 bg-gradient-to-r from-red-600 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:shadow-red-500/50 transition-shadow"
               >
-                Join the Community
-              </motion.a>
+                Join Community
+              </motion.button>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Hamburger Menu Button - Visible at 1024x768 and below */}
             <motion.button
-              className="lg:hidden p-2 text-white hover:text-red-400 transition-colors"
+              className="xl:hidden p-2 text-white hover:text-red-400 transition-colors"
               onClick={() => setIsOpen(!isOpen)}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -169,7 +167,7 @@ const Navigation = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay - Visible at 1024x768 and below */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -179,7 +177,7 @@ const Navigation = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 xl:hidden"
               onClick={() => setIsOpen(false)}
             />
 
@@ -189,7 +187,7 @@ const Navigation = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="fixed top-0 right-0 bottom-0 w-[280px] bg-gradient-to-br from-gray-950 via-black to-gray-950 border-l border-white/10 z-50 lg:hidden overflow-y-auto"
+              className="fixed top-0 right-0 bottom-0 w-[280px] bg-gradient-to-br from-gray-950 via-black to-gray-950 border-l border-white/10 z-50 xl:hidden overflow-y-auto"
             >
               <div className="p-6">
                 {/* Mobile Menu Header */}
@@ -233,20 +231,19 @@ const Navigation = () => {
                   ))}
 
                   {/* Mobile CTA */}
-                  <motion.a
-                    href="#join"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleNavClick('#join');
+                  <motion.button
+                    onClick={() => {
+                      setIsOpen(false);
+                      openForm();
                     }}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6, duration: 0.3 }}
-                    className="block mt-6 px-6 py-3 bg-gradient-to-r from-red-600 to-purple-600 text-white font-semibold rounded-full text-center shadow-lg hover:shadow-red-500/50 transition-shadow"
+                    className="block w-full mt-6 px-6 py-3 bg-gradient-to-r from-red-600 to-purple-600 text-white font-semibold rounded-full text-center shadow-lg hover:shadow-red-500/50 transition-shadow"
                     whileTap={{ scale: 0.98 }}
                   >
-                    Join the Community
-                  </motion.a>
+                    Join Community
+                  </motion.button>
                 </div>
 
                 {/* Mobile Menu Footer */}

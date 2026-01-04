@@ -160,27 +160,27 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
 
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-4 py-8 md:py-36 h-full flex flex-col justify-center items-center w-full">
-        <div className="max-w-7xl mx-auto">
+      <div className="relative z-10 container mx-auto px-4 py-6 md:py-10 lg:py-14 xl:py-28 h-full flex flex-col justify-center items-center w-full">
+        <div className="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto">
           {/* Hero Tagline */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-12 md:mb-10 px-4 mt-20 sm:mt-24 md:mt-30"
+            className="text-center mb-4 md:mb-6 lg:mb-8 px-4 mt-4 sm:mt-8 md:mt-6 lg:mt-10 xl:mt-16"
           >
-            <span className="inline-block px-5 py-2.5 md:px-7 md:py-3 bg-gradient-to-r from-red-600/20 via-purple-600/20 to-red-600/20 backdrop-blur-lg rounded-full border-2 border-red-500/40 text-white text-sm sm:text-base font-bold shadow-lg hover:shadow-red-600/20 transition-all duration-300">
+            <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 md:px-4 md:py-2 lg:px-5 lg:py-2 xl:px-6 xl:py-2.5 bg-gradient-to-r from-red-600/20 via-purple-600/20 to-red-600/20 backdrop-blur-lg rounded-full border-2 border-red-500/40 text-white text-xs sm:text-sm md:text-sm lg:text-sm xl:text-base font-bold shadow-lg hover:shadow-red-600/20 transition-all duration-300">
               Built by medics, for medics.
             </span>
           </motion.div>
 
           {/* Main Headline */}
-          <div className="text-center mb-12 md:mb-16 px-3 sm:px-4 mt-6 sm:mt-4">
+          <div className="text-center mb-4 md:mb-8 lg:mb-10 xl:mb-16 px-3 sm:px-4 mt-2 sm:mt-1 lg:mt-2 xl:mt-4">
             <motion.h2 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] sm:leading-[1.2]"
+              className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-6xl font-bold leading-[1.1] sm:leading-[1.2]"
             >
               {/* Mobile: 3 lines */}
               <span className="block md:hidden text-white">Turn Your Medical</span>
@@ -218,7 +218,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-xs sm:text-sm md:text-lg lg:text-xl mb-2 md:mb-6 max-w-3xl mx-auto leading-relaxed px-3 sm:px-4 md:px-6 mt-6 sm:mt-0"
+              className="text-xs sm:text-sm md:text-base lg:text-sm xl:text-lg mb-2 md:mb-3 lg:mb-4 xl:mb-6 max-w-3xl mx-auto leading-relaxed px-3 sm:px-4 md:px-6 mt-2 sm:mt-1 lg:mt-2 xl:mt-0"
             >
               <span className="text-gray-300">
                 CreatorMD helps medics build <span className="font-semibold text-white">income</span>, <span className="font-semibold text-red-300">influence</span>, and <span className="font-semibold text-purple-300">impact</span> online.
@@ -231,7 +231,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-10 md:mb-14 max-w-3xl mx-auto px-4 mt-8 sm:mt-0 md:-mt-2"
+            className="grid grid-cols-2 md:grid-cols-4 gap-1.5 sm:gap-2 md:gap-2 lg:gap-3 xl:gap-4 mb-4 md:mb-6 lg:mb-8 xl:mb-12 max-w-3xl mx-auto px-4 mt-3 sm:mt-1 md:mt-1 lg:mt-2 xl:-mt-2"
           >
             {[
               { label: "Trained Medics", value: "600+", icon: Sparkles },
@@ -253,13 +253,13 @@ const HeroSection = () => {
                   y: -8,
                   transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } 
                 }}
-                className="group bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-md rounded-xl md:rounded-2xl p-2 sm:p-3 md:p-5 border border-white/5 hover:border-red-500/30 transition-all duration-300 shadow-xl hover:shadow-red-500/10"
+                className="group bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-md rounded-lg md:rounded-lg lg:rounded-lg xl:rounded-xl p-1 sm:p-1.5 md:p-2 lg:p-2.5 xl:p-4 border border-white/5 hover:border-red-500/30 transition-all duration-300 shadow-xl hover:shadow-red-500/10"
               >
-                <div className="flex items-center justify-center gap-0.5 sm:gap-2 mb-0.5 sm:mb-2">
-                  <stat.icon className="w-3 h-3 sm:w-5 sm:h-5 text-red-400 group-hover:text-red-300 transition-colors" />
-                  <div className="text-lg sm:text-3xl font-bold text-white group-hover:scale-110 transition-transform duration-300">{stat.value}</div>
+                <div className="flex items-center justify-center gap-0.5 sm:gap-1 md:gap-0.5 lg:gap-1 xl:gap-1.5 mb-0.5 sm:mb-0.5 md:mb-0.5 lg:mb-0.5 xl:mb-1.5">
+                  <stat.icon className="w-2 h-2 sm:w-3 sm:h-3 md:w-2.5 md:h-2.5 lg:w-3 lg:h-3 xl:w-4 xl:h-4 text-red-400 group-hover:text-red-300 transition-colors" />
+                  <div className="text-base sm:text-lg md:text-base lg:text-lg xl:text-2xl font-bold text-white group-hover:scale-110 transition-transform duration-300">{stat.value}</div>
                 </div>
-                <div className="text-[10px] sm:text-sm text-gray-500 group-hover:text-gray-400 text-center transition-colors">{stat.label}</div>
+                <div className="text-[8px] sm:text-[9px] md:text-[8px] lg:text-[9px] xl:text-xs text-gray-500 group-hover:text-gray-400 text-center transition-colors">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -269,7 +269,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center items-stretch sm:items-center px-3 sm:px-4 mt-6 sm:mt-0"
+            className="flex flex-col sm:flex-row gap-2 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-5 justify-center items-stretch sm:items-center px-3 sm:px-4 mt-2 sm:mt-1 lg:mt-2 xl:mt-0"
           >
             <motion.button
               whileHover={{ 
@@ -278,11 +278,11 @@ const HeroSection = () => {
                 transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } 
               }}
               whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
-              className="group relative px-8 sm:px-10 py-3.5 sm:py-4 bg-gradient-to-r from-purple-900 via-purple-700 to-red-600 text-white font-bold rounded-xl sm:rounded-2xl text-base sm:text-lg shadow-2xl overflow-hidden ring-2 ring-red-400/20 hover:ring-red-400/40 transition-all w-full sm:w-auto"
+              className="group relative px-6 sm:px-6 md:px-5 lg:px-7 xl:py-3 py-3 sm:py-3 md:py-2 lg:py-2.5 xl:py-3 bg-gradient-to-r from-purple-900 via-purple-700 to-red-600 text-white font-bold rounded-lg sm:rounded-lg lg:rounded-lg xl:rounded-xl text-sm sm:text-base md:text-sm lg:text-base xl:text-lg shadow-2xl overflow-hidden ring-2 ring-red-400/20 hover:ring-red-400/40 transition-all w-full sm:w-auto"
             >
-              <span className="relative z-10 flex items-center justify-center gap-2">
+              <span className="relative z-10 flex items-center justify-center gap-1 sm:gap-1.5">
                 Join Waitlist 
-                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                <ChevronRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 lg:w-3.5 lg:h-3.5 xl:w-4 xl:h-4 group-hover:translate-x-1 transition-transform duration-300" />
               </span>
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-red-600 via-red-500 to-purple-900"
@@ -302,9 +302,9 @@ const HeroSection = () => {
               }}
               whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
               onClick={() => setVideoPlaying(true)}
-              className="group px-8 sm:px-10 py-3.5 sm:py-4 bg-white/5 backdrop-blur-md text-white font-bold rounded-xl sm:rounded-2xl text-base sm:text-lg border border-white/10 transition-all flex items-center justify-center gap-2 sm:gap-3 shadow-lg hover:shadow-white/10 w-full sm:w-auto"
+              className="group px-6 sm:px-6 md:px-5 lg:px-7 xl:px-8 py-3 sm:py-3 md:py-2 lg:py-2.5 xl:py-3 bg-white/5 backdrop-blur-md text-white font-bold rounded-lg sm:rounded-lg lg:rounded-lg xl:rounded-xl text-sm sm:text-base md:text-sm lg:text-base xl:text-lg border border-white/10 transition-all flex items-center justify-center gap-1 sm:gap-1.5 lg:gap-2 xl:gap-2.5 shadow-lg hover:shadow-white/10 w-full sm:w-auto"
             >
-              <Play className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform duration-300" />
+              <Play className="w-2.5 h-2.5 sm:w-3 sm:h-3 lg:w-3.5 lg:h-3.5 xl:w-4 xl:h-4 group-hover:scale-110 transition-transform duration-300" />
               Watch Intro
             </motion.button>
           </motion.div>
@@ -313,7 +313,7 @@ const HeroSection = () => {
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-            className="mt-12 md:mt-16 flex justify-center"
+            className="mt-4 md:mt-6 lg:mt-8 xl:mt-12 flex justify-center"
           >
             <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center hover:border-white/50 transition-colors">
               <motion.div 
@@ -365,7 +365,7 @@ const HeroSection = () => {
       </AnimatePresence>
 
       {/* Pulse Effect */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] pointer-events-none">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden sm:block w-[800px] h-[800px] pointer-events-none">
         <motion.div
           className="absolute inset-0 rounded-full border border-red-500/10"
           animate={{ scale: [1, 1.5, 2], opacity: [0.3, 0.15, 0] }}

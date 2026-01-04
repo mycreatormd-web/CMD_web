@@ -398,10 +398,10 @@ const CurvedProcessFlow = ({
               <div className="text-sm font-semibold text-red-300 uppercase tracking-wider mb-2">
                 Step {steps[activeStep].step}
               </div>
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3">
+              <h3 className="text-xl sm:text-2xl md:text-2xl font-bold text-white mb-2 sm:mb-3">
                 {steps[activeStep].title}
               </h3>
-              <p className="text-xs sm:text-sm md:text-base text-gray-300 leading-relaxed mb-3 sm:mb-4">
+              <p className="text-sm sm:text-base md:text-base text-gray-300 leading-relaxed mb-3 sm:mb-4">
                 {steps[activeStep].description}
               </p>
 

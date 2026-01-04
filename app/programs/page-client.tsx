@@ -6,6 +6,7 @@ import Navigation from '@/app/components/Navigation';
 import { programs } from '@/app/data/programs';
 import ProgramModal from '@/app/components/ProgramModal';
 import { Program } from '@/app/types/program';
+import { useCommunityForm } from '@/app/context/CommunityFormContext';
 import { 
   Zap, 
   BookOpen, 
@@ -290,6 +291,7 @@ const ComingSoonCard = ({
 };
 
 export default function ProgramsPageClient() {
+  const { openForm } = useCommunityForm();
   const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showAllComingSoon, setShowAllComingSoon] = useState(false);
@@ -788,14 +790,14 @@ export default function ProgramsPageClient() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center">
-              <motion.a
-                href="#"
+              <motion.button
+                onClick={openForm}
                 whileHover={{ scale: 1.08, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 bg-gradient-to-r from-red-600 to-purple-600 text-white font-black rounded-xl hover:shadow-2xl hover:shadow-red-600/50 transition-all text-base sm:text-lg border border-red-500/50 hover:border-red-400"
               >
                 Explore All Programs
-              </motion.a>
+              </motion.button>
               <motion.button
                 onClick={() => setIsEmailModalOpen(true)}
                 whileHover={{ scale: 1.08, y: -2 }}

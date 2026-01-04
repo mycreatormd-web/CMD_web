@@ -1,24 +1,25 @@
 // app/components/About.tsx
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Target, Users, Heart, Sparkles, CheckCircle, BookOpen, TrendingUp, Shield, Zap, ChevronDown, User } from 'lucide-react';
 import FounderDropdown from './FounderDropdown';
+import { useCommunityForm } from '@/app/context/CommunityFormContext';
 // Founder Story Content Component
 const FounderStoryContent = () => (
-  <div className="p-6 md:p-10 space-y-6 md:space-y-8">
+  <div className="p-4 md:p-6 xl:p-10 space-y-4 md:space-y-6 xl:space-y-8">
     {/* Opening */}
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2, duration: 0.6 }}
-      className="text-center space-y-3"
+      className="text-center space-y-2"
     >
-      <p className="text-2xl md:text-3xl font-bold text-gray-900">
+      <p className="text-xl md:text-xl xl:text-3xl font-bold text-gray-900">
         Hi, I'm Dr. Valerie Okorie —
       </p>
-      <p className="text-xl md:text-2xl text-gray-700 font-semibold">
+      <p className="text-lg md:text-lg xl:text-2xl text-gray-700 font-semibold">
         doctor, content creator, and founder of CreatorMD.
       </p>
     </motion.div>
@@ -29,15 +30,15 @@ const FounderStoryContent = () => (
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6 }}
-      className="space-y-4"
+      className="space-y-2"
     >
-      <p className="text-xl font-bold text-red-600">
+      <p className="text-lg md:text-lg xl:text-xl font-bold text-red-600">
         CreatorMD didn't start as a brand.
       </p>
-      <p className="text-xl font-bold text-gray-900">
+      <p className="text-lg md:text-lg xl:text-xl font-bold text-gray-900">
         It started as a quiet struggle.
       </p>
-      <p className="text-lg text-gray-700 leading-relaxed text-justify">
+      <p className="text-base md:text-base xl:text-lg text-gray-700 leading-relaxed text-justify">
         I was a doctor who loved creating content, but behind the scenes, I was confused, inconsistent, and overwhelmed. I knew I had something to say. I knew I was meant to teach, share, and build online.
       </p>
       <p className="text-lg text-gray-700 leading-relaxed text-justify">
@@ -203,6 +204,8 @@ const FounderStoryContent = () => (
 );
 
 const About = () => {
+  const { openForm } = useCommunityForm();
+  const carouselRef = useRef(null);
   const [founderOpen, setFounderOpen] = useState(false);
   const [founderModalOpen, setFounderModalOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -215,6 +218,13 @@ const About = () => {
     });
     return () => unsubscribe();
   }, [scrollYProgress]);
+
+  // Initialize carousel scroll position on mount
+  useEffect(() => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollLeft = 40;
+    }
+  }, []);
 
   // Handle carousel scroll detection
   const handleCarouselScroll = (e) => {
@@ -300,7 +310,7 @@ const About = () => {
   */
 
   return (
-    <section id="about" className="relative py-20 md:py-32 bg-gradient-to-br from-gray-50 via-white to-red-50 overflow-hidden">
+    <section id="about" className="relative py-18 md:py-28 lg:py-30 xl:py-32 bg-gradient-to-br from-gray-50 via-white to-red-50 overflow-hidden">
       {/* Scroll Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-600 via-purple-600 to-black origin-left z-50"
@@ -313,18 +323,18 @@ const About = () => {
       {/* Decorative Blobs with Parallax */}
       <motion.div 
         style={{ y: y1 }}
-        className="absolute top-20 left-5 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-red-200/30 rounded-full blur-3xl" 
+        className="hidden sm:block absolute top-20 left-5 w-72 h-72 bg-red-200/30 rounded-full blur-3xl" 
       />
       <motion.div 
         style={{ y: y2 }}
-        className="absolute bottom-20 right-5 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-purple-200/30 rounded-full blur-3xl" 
+        className="hidden sm:block absolute bottom-20 right-5 w-96 h-96 bg-purple-200/30 rounded-full blur-3xl" 
       />
       <motion.div 
         style={{ y: y3 }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-purple-200/20 rounded-full blur-3xl" 
+        className="hidden sm:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-200/20 rounded-full blur-3xl" 
       />
       
-      <div className="relative z-10">
+      <div className="relative z-10 px-4 md:px-0">
         {/* Desktop Header */}
         <div className="hidden md:block container mx-auto px-6">
           <motion.div
@@ -332,7 +342,7 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-12 sm:mb-16 md:mb-24"
+            className="text-center mb-10 sm:mb-14 md:mb-20 lg:mb-22"
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -346,7 +356,7 @@ const About = () => {
               </span>
             </motion.div>
             
-            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-6 relative inline-block">
+            <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-5xl font-bold mb-6 relative inline-block">
               <span className="bg-gradient-to-r from-red-600 via-purple-600 to-black bg-clip-text text-transparent">
                 Who We Are
               </span>
@@ -411,20 +421,20 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="md:hidden mb-4 bg-gradient-to-br from-red-100 to-purple-100 rounded-2xl border-2 border-red-200 shadow-lg mx-0"
+          className="md:hidden mt-6 mb-8 mx-4 bg-gradient-to-br from-red-100 to-purple-100 rounded-2xl border-2 border-red-200 shadow-lg"
         >
           <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-red-600 via-purple-600 to-black bg-clip-text text-transparent">
+            <h2 className="text-xl font-bold mb-4 bg-gradient-to-r from-red-600 via-purple-600 to-black bg-clip-text text-transparent">
               Who We Are
             </h2>
             <div className="space-y-4">
-              <p className="text-base text-gray-700 leading-relaxed">
+              <p className="text-sm text-gray-700 leading-relaxed">
                 CreatorMD is a <span className="text-gray-900 font-bold">focused space where medics turn medical knowledge into impact, influence, and income</span> — without sacrificing integrity, identity, or the love of medicine.
               </p>
-              <p className="text-base text-gray-700 leading-relaxed">
+              <p className="text-sm text-gray-700 leading-relaxed">
                 We break content and personal-brand work into <span className="text-purple-600 font-bold">practical, bite-size steps that fit the realities of clinical life</span>.
               </p>
-              <p className="text-base text-gray-700 leading-relaxed font-semibold">
+              <p className="text-sm text-gray-700 leading-relaxed font-semibold">
                 More than a platform: <span className="bg-gradient-to-r from-red-600 via-purple-600 to-black bg-clip-text text-transparent">build with us, and you become a CreatorMD</span>.
               </p>
             </div>
@@ -436,7 +446,7 @@ const About = () => {
           <p className="text-sm text-gray-500 px-4 mb-2 text-center">
             {activeCard === 'vision' ? '← Swipe to see Mission →' : '← Swipe to see Vision →'}
           </p>
-          <div className="overflow-x-auto -mx-4 px-4 pb-4 scroll-smooth snap-x snap-mandatory" onScroll={handleCarouselScroll} style={{ scrollBehavior: 'smooth' }}>
+          <div ref={carouselRef} className="overflow-x-auto -mx-4 px-4 pb-4 scroll-smooth snap-x snap-mandatory" onScroll={handleCarouselScroll} style={{ scrollBehavior: 'smooth' }}>
             <div className="flex gap-4 w-max">
               {/* Vision Card */}
               <motion.div
@@ -450,9 +460,9 @@ const About = () => {
                   <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg shadow-lg flex-shrink-0">
                     <Target className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900">Our Vision</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-gray-900">Our Vision</h3>
                 </div>
-                <p className="text-base text-gray-700 leading-relaxed">
+                <p className="text-sm md:text-base text-gray-700 leading-relaxed">
                   We aim to create the <span className="text-purple-600 font-bold">world's largest community</span> of medics who confidently share their voice through compelling content—<span className="text-pink-600 font-bold">shaping public health narratives</span> and leading the digital evolution of medicine.
                 </p>
               </motion.div>
@@ -460,8 +470,7 @@ const About = () => {
               {/* Mission Card - Partially visible and blurred on scroll */}
               <motion.div
                 initial={{ opacity: 0, x: 100 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
                 className="flex-shrink-0 w-80 snap-center bg-gradient-to-br from-red-100 to-purple-100 rounded-2xl p-6 border-2 border-red-200 shadow-lg"
               >
@@ -469,7 +478,7 @@ const About = () => {
                   <div className="p-3 bg-gradient-to-br from-red-500 to-purple-500 rounded-lg shadow-lg flex-shrink-0">
                     <Sparkles className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900">Our Mission</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-gray-900">Our Mission</h3>
                 </div>
                 <div className="space-y-3">
                   {missionItems.map((item, index) => (
@@ -507,7 +516,7 @@ const About = () => {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-3xl p-8 md:p-10 border-2 border-purple-200 shadow-xl hover:shadow-2xl transition-shadow"
+                className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-3xl p-7 md:p-9 lg:p-9 border-2 border-purple-200 shadow-xl hover:shadow-2xl transition-shadow"
               >
                 <div className="flex items-center gap-4 mb-6">
                   <div className="p-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl shadow-lg">
@@ -524,7 +533,7 @@ const About = () => {
                     />
                   </h3>
                 </div>
-                <p className="text-lg text-gray-700 leading-relaxed text-justify">
+                <p className="text-base md:text-lg lg:text-lg text-gray-700 leading-relaxed text-justify">
                   We aim to create the <span className="text-purple-600 font-bold">world's largest community</span> of medics who confidently share their voice through compelling content—<span className="text-pink-600 font-bold">shaping public health narratives</span> and leading the digital evolution of medicine.
                 </p>
               </motion.div>
@@ -536,7 +545,7 @@ const About = () => {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="bg-gradient-to-br from-red-100 to-purple-100 rounded-3xl p-8 md:p-10 border-2 border-red-200 shadow-xl hover:shadow-2xl transition-shadow"
+                className="bg-gradient-to-br from-red-100 to-purple-100 rounded-3xl p-7 md:p-9 lg:p-9 border-2 border-red-200 shadow-xl hover:shadow-2xl transition-shadow"
               >
                 <div className="flex items-center gap-4 mb-6">
                   <div className="p-4 bg-gradient-to-br from-red-500 to-purple-500 rounded-2xl shadow-lg">
@@ -567,10 +576,10 @@ const About = () => {
                         <item.icon className="w-4 h-4 text-white" />
                       </div>
                       <div>
-                        <p className="text-base font-semibold text-gray-900 mb-1 text-justify">
+                        <p className="text-sm md:text-base lg:text-base font-semibold text-gray-900 mb-1 text-justify">
                           {item.title}
                         </p>
-                        <p className="text-sm text-gray-600 text-justify">
+                        <p className="text-xs md:text-sm lg:text-sm text-gray-600 text-justify">
                           {item.description}
                         </p>
                       </div>
@@ -589,13 +598,13 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="md:hidden mb-4 bg-gradient-to-br from-purple-100 to-red-100 rounded-2xl border-2 border-purple-200 shadow-lg mx-0"
+          className="md:hidden mb-4 bg-gradient-to-br from-purple-100 to-red-100 rounded-2xl border-2 border-purple-200 shadow-lg"
         >
           <div className="p-6">
-            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-600 via-red-600 to-black bg-clip-text text-transparent">
+            <h3 className="text-xl md:text-2xl font-bold mb-4 bg-gradient-to-r from-purple-600 via-red-600 to-black bg-clip-text text-transparent">
               What Drives Us
             </h3>
-            <p className="text-base text-gray-700 leading-relaxed">
+            <p className="text-sm md:text-base text-gray-700 leading-relaxed">
               CreatorMD was created by medics, for medics. This insider perspective fuels every framework, course, and service we offer. Rather than overwhelming you with needless jargon or complicated strategies, we focus on simplicity, clarity, and real-world results. Our approach revolves around strengthening your storytelling and authority, backed by ongoing community support and practical modules that get you creating content from day one.
             </p>
           </div>
@@ -611,8 +620,8 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="max-w-7xl mx-auto"
           >
-          <div className="text-center mb-12 md:mb-16">
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 relative inline-block">
+          <div className="text-center mb-10 md:mb-14 lg:mb-15">
+            <h3 className="text-2xl md:text-3xl lg:text-4xl xl:text-4xl font-bold mb-4 relative inline-block">
               <span className="bg-gradient-to-r from-purple-600 via-red-600 to-black bg-clip-text text-transparent">
                 What Drives Us
               </span>
@@ -624,7 +633,7 @@ const About = () => {
                 transition={{ delay: 0.4, duration: 0.7 }}
               />
             </h3>
-            <p className="text-base md:text-lg text-gray-700 max-w-4xl mx-auto text-justify">
+            <p className="text-sm md:text-base lg:text-base text-gray-700 max-w-4xl mx-auto text-justify">
               CreatorMD was created by medics, for medics. This insider perspective fuels every framework, course, and service we offer. Rather than overwhelming you with needless jargon or complicated strategies, we focus on simplicity, clarity, and real-world results. Our approach revolves around strengthening your storytelling and authority, backed by ongoing community support and practical modules that get you creating content from day one.
             </p>
           </div>
@@ -637,13 +646,13 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="md:hidden mb-4 bg-gradient-to-br from-red-100 to-purple-100 rounded-2xl border-2 border-red-200 shadow-lg mx-0"
+          className="md:hidden mb-4 bg-gradient-to-br from-red-100 to-purple-100 rounded-2xl border-2 border-red-200 shadow-lg"
         >
           <div className="p-6">
-            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-600 via-red-600 to-black bg-clip-text text-transparent">
+            <h3 className="text-xl md:text-2xl font-bold mb-4 bg-gradient-to-r from-purple-600 via-red-600 to-black bg-clip-text text-transparent">
               Our Commitment
             </h3>
-            <p className="text-base text-gray-700 leading-relaxed">
+            <p className="text-sm md:text-base text-gray-700 leading-relaxed">
               We promise to help you show up online with confidence, communicate your expertise with clarity, and build a digital presence that not only changes lives but also advances your career. With CreatorMD, your knowledge becomes your greatest asset, and your influence grows naturally and sustainably.
             </p>
           </div>
@@ -658,9 +667,9 @@ const About = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="max-w-7xl mx-auto mt-8 md:mt-12">
-          <div className="text-center mb-8 md:mb-12">
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 relative inline-block">
+            className="max-w-7xl mx-auto mt-7 md:mt-10 lg:mt-11">
+          <div className="text-center mb-7 md:mb-10 lg:mb-11">
+            <h3 className="text-2xl md:text-3xl lg:text-4xl xl:text-4xl font-bold mb-4 relative inline-block">
               <span className="bg-gradient-to-r from-purple-600 via-red-600 to-black bg-clip-text text-transparent">
                 Our Commitment
               </span>
@@ -672,7 +681,7 @@ const About = () => {
                 transition={{ delay: 0.4, duration: 0.7 }}
               />
             </h3>
-            <p className="text-base md:text-lg text-gray-700 max-w-4xl mx-auto text-justify">
+            <p className="text-sm md:text-base lg:text-base text-gray-700 max-w-4xl mx-auto text-justify">
               We promise to help you show up online with confidence, communicate your expertise with clarity, and build a digital presence that not only changes lives but also advances your career. With CreatorMD, your knowledge becomes your greatest asset, and your influence grows naturally and sustainably.
             </p>
           </div>
@@ -690,20 +699,20 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.6 }}
-          className="text-center mt-16 md:mt-24 px-4 md:px-0"
+          className="text-center mt-8 md:mt-20 lg:mt-22 mb-8 md:mb-0 px-4 md:px-0"
         >
-          <motion.a
-            href="#join"
+          <motion.button
+            onClick={openForm}
             whileHover={{ 
               scale: 1.08,
               boxShadow: "0 25px 70px rgba(59, 130, 246, 0.5)"
             }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-red-600 via-red-500 to-purple-600 text-white font-bold rounded-full text-xl shadow-2xl hover:shadow-red-500/60 transition-all"
+            className="inline-flex items-center gap-3 px-9 py-4 md:py-4 lg:py-4 bg-gradient-to-r from-red-600 via-red-500 to-purple-600 text-white font-bold rounded-full text-sm md:text-lg lg:text-lg shadow-2xl hover:shadow-red-500/60 transition-all"
           >
             <Sparkles className="w-6 h-6" />
             Join Our Community
-          </motion.a>
+          </motion.button>
         </motion.div>
       </div>
     </section>

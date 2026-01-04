@@ -4,22 +4,24 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Users, BookOpen, Trophy, Heart, MessageCircle, Zap, ChevronRight, CheckCircle, Star, Lightbulb, Shield } from 'lucide-react';
+import { useCommunityForm } from '@/app/context/CommunityFormContext';
 
 const Community = () => {
+  const { openForm } = useCommunityForm();
   const [expandedId, setExpandedId] = useState<number | null>(null);
 
   const insideCommunity = [
     {
       id: 1,
       icon: BookOpen,
-      title: "Weekly Live Learning Sessions",
+      title: "Monthly Live Learning Sessions",
       description: "Learn directly from experienced creators",
       details: "Join our live workshops every week where we dive deep into content creation, health communication, personal branding, and monetization strategies. Interactive Q&A with industry experts included."
     },
     {
       id: 2,
       icon: Trophy,
-      title: "Monthly Challenges & Prompts",
+      title: "Quarterly Challenges & Giveaways",
       description: "Stay inspired with curated content ideas",
       details: "Get fresh, themed content prompts every month. Participate in challenges that stretch your creativity, get feedback from the community, and build your portfolio while having fun."
     },
@@ -72,13 +74,13 @@ const Community = () => {
   ];
 
   return (
-    <section id="community" className="relative py-16 sm:py-20 md:py-28 lg:py-32 bg-white overflow-hidden">
+    <section id="community" className="relative py-10 sm:py-12 md:py-16 lg:py-20 xl:py-28 bg-white overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.05)_1px,transparent_1px)] bg-[size:80px_80px]" />
       
       {/* Background gradient elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-50/20 to-transparent pointer-events-none" />
-      <div className="absolute top-0 right-0 w-96 h-96 bg-purple-100/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="hidden sm:block absolute top-0 right-0 w-96 h-96 bg-purple-100/20 rounded-full blur-3xl pointer-events-none" />
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Section Header */}
@@ -87,7 +89,7 @@ const Community = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12 sm:mb-16 md:mb-20"
+          className="text-center mb-6 md:mb-10 lg:mb-12 xl:mb-16"
         >
           {/* Subtitle Badge */}
           <motion.div
@@ -95,7 +97,7 @@ const Community = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.4 }}
-            className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-red-100 to-purple-100 rounded-full mb-4 sm:mb-5"
+            className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-red-100 to-purple-100 rounded-full mb-2 md:mb-3 lg:mb-3.5"
           >
             <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-700" />
             <span className="text-xs sm:text-sm font-semibold text-red-700">COMMUNITY</span>
@@ -107,7 +109,7 @@ const Community = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.15, duration: 0.6 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6"
+            className="text-xl md:text-2xl lg:text-3xl xl:text-5xl font-bold text-gray-900 mb-2 md:mb-3 lg:mb-4 xl:mb-5"
           >
             You don't have to build{" "}
             <span className="bg-gradient-to-r from-red-600 to-purple-700 bg-clip-text text-transparent">
@@ -121,7 +123,7 @@ const Community = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-base sm:text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed"
+            className="text-xs md:text-sm lg:text-base xl:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed"
           >
             CreatorMD is a supportive global community where medics learn to create, communicate, and grow online — without burnout or pressure.
           </motion.p>
@@ -140,7 +142,7 @@ const Community = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.25, duration: 0.5 }}
-            className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-8 sm:mb-10 md:mb-12"
+            className="text-2xl sm:text-3xl md:text-3xl font-bold text-gray-900 mb-8 sm:mb-10 md:mb-12"
           >
             Inside the Community
           </motion.h3>
@@ -177,12 +179,12 @@ const Community = () => {
                     </motion.div>
 
                     {/* Title */}
-                    <h4 className="relative z-10 text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3">
+                    <h4 className="relative z-10 text-lg sm:text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3">
                       {feature.title}
                     </h4>
 
                     {/* Description */}
-                    <p className="relative z-10 text-sm sm:text-base text-gray-600 leading-relaxed mb-4">
+                    <p className="relative z-10 text-base sm:text-base text-gray-600 leading-relaxed mb-4">
                       {feature.description}
                     </p>
 
@@ -231,7 +233,7 @@ const Community = () => {
           <div className="bg-gradient-to-r from-red-600 via-purple-600 to-black rounded-3xl border-2 border-red-400/30 p-8 sm:p-10 md:p-12 lg:p-14 shadow-lg overflow-hidden relative">
             {/* Background pattern */}
             <div className="absolute inset-0 opacity-10 pointer-events-none">
-              <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl" />
+              <div className="hidden sm:block absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl" />
             </div>
 
             <motion.h3
@@ -239,7 +241,7 @@ const Community = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.35, duration: 0.5 }}
-              className="relative z-10 text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 md:mb-8"
+              className="relative z-10 text-3xl sm:text-3xl md:text-4xl font-bold text-white mb-6 md:mb-8"
             >
               The Culture
             </motion.h3>
@@ -249,7 +251,7 @@ const Community = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.5 }}
-              className="relative z-10 text-base sm:text-lg md:text-xl text-white/95 leading-relaxed max-w-3xl mb-8 md:mb-10"
+              className="relative z-10 text-lg sm:text-lg md:text-xl text-white/95 leading-relaxed max-w-3xl mb-8 md:mb-10"
             >
               CreatorMD is a <span className="font-bold text-white">calm, focused space</span>. No noise. No hype. No comparison culture. Just medics supporting one another, sharing knowledge, and building with clarity and purpose.
             </motion.p>
@@ -268,7 +270,7 @@ const Community = () => {
                     className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-3 sm:p-4"
                   >
                     <Icon className="w-5 h-5 text-white flex-shrink-0" />
-                    <span className="text-sm sm:text-base font-semibold text-white">{point.text}</span>
+                    <span className="text-base sm:text-base font-semibold text-white">{point.text}</span>
                   </motion.div>
                 );
               })}
@@ -289,7 +291,7 @@ const Community = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.45, duration: 0.5 }}
-            className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-6 sm:mb-7 md:mb-8"
+            className="text-2xl sm:text-3xl md:text-3xl font-bold text-gray-900 mb-6 sm:mb-7 md:mb-8"
           >
             Who It's For
           </motion.h3>
@@ -312,7 +314,7 @@ const Community = () => {
                 whileHover={{ scale: 1.05, y: -2 }}
                 className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-red-100/80 to-purple-100/80 border-2 border-red-200/60 hover:border-red-400 rounded-full transition-all duration-300"
               >
-                <span className="text-sm sm:text-base font-semibold text-gray-900">{item}</span>
+                <span className="text-base sm:text-base font-semibold text-gray-900">{item}</span>
               </motion.div>
             ))}
           </motion.div>
@@ -331,7 +333,7 @@ const Community = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5, duration: 0.5 }}
-            className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-8 sm:mb-10 md:mb-12 text-center"
+            className="text-2xl sm:text-3xl md:text-3xl font-bold text-gray-900 mb-8 sm:mb-10 md:mb-12 text-center"
           >
             What Members Say
           </motion.h3>
@@ -354,7 +356,7 @@ const Community = () => {
                 </div>
 
                 {/* Quote */}
-                <p className="text-base sm:text-lg text-gray-900 font-semibold mb-4 italic">
+                <p className="text-lg sm:text-lg text-gray-900 font-semibold mb-4 italic">
                   "{testimonial.quote}"
                 </p>
 
@@ -378,6 +380,7 @@ const Community = () => {
         >
           {/* Main CTA Button */}
           <motion.button
+            onClick={openForm}
             whileHover={{ 
               scale: 1.05, 
               boxShadow: "0 20px 60px rgba(220, 38, 38, 0.3)",
@@ -404,7 +407,7 @@ const Community = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6, duration: 0.5 }}
-            className="text-xs sm:text-sm text-gray-700 font-semibold"
+            className="text-base sm:text-base text-gray-700 font-semibold"
           >
             Be part of a growing network of medics creating with intention.
           </motion.p>
