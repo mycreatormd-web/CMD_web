@@ -32,14 +32,14 @@ const CurvedProcessFlow = ({
       containerHeight: 'h-[240px] sm:h-[280px] md:h-[320px]',
       svgViewBox: '0 0 1000 400',
       curveAmplitude: 30,
-      detailSpacing: 'mt-0',
-      navSpacing: 'mt-2'
+      detailSpacing: '-mt-12 sm:mt-0 md:mt-0',
+      navSpacing: 'mt-4 sm:mt-2 md:mt-2'
     },
     normal: {
       containerHeight: 'h-[300px] sm:h-[350px] md:h-[400px]',
       svgViewBox: '0 0 1000 500',
       curveAmplitude: 40,
-      detailSpacing: 'mt-2 sm:mt-3 md:mt-4',
+      detailSpacing: 'mt-0 sm:mt-2 md:mt-4',
       navSpacing: 'mt-2 sm:mt-3 md:mt-4'
     },
     loose: {
@@ -301,12 +301,12 @@ const CurvedProcessFlow = ({
                     y={svgPos.y}
                     textAnchor="middle"
                     dominantBaseline="middle"
-                    fontSize="28"
+                    fontSize="36"
                     fontWeight="bold"
                     fill="white"
                     pointerEvents="none"
                     animate={{
-                      fontSize: isActive ? 32 : 28
+                      fontSize: isActive ? 40 : 36
                     }}
                     transition={{ duration: 0.3 }}
                   >
@@ -386,9 +386,9 @@ const CurvedProcessFlow = ({
           <div className="flex items-start gap-6">
             {/* Step Icon/Number */}
             <div
-              className={`flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br ${stepGradients[activeStep]} flex items-center justify-center`}
+              className={`flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-gradient-to-br ${stepGradients[activeStep]} flex items-center justify-center`}
             >
-              <span className="text-2xl font-bold text-white">
+              <span className="text-lg sm:text-2xl font-bold text-white">
                 {steps[activeStep].step}
               </span>
             </div>
@@ -401,7 +401,7 @@ const CurvedProcessFlow = ({
               <h3 className="text-xl sm:text-2xl md:text-2xl font-bold text-white mb-2 sm:mb-3">
                 {steps[activeStep].title}
               </h3>
-              <p className="text-sm sm:text-base md:text-base text-gray-300 leading-relaxed mb-3 sm:mb-4">
+              <p className="text-xs sm:text-base md:text-base text-gray-300 leading-relaxed mb-3 sm:mb-4">
                 {steps[activeStep].description}
               </p>
 
@@ -435,11 +435,11 @@ const CurvedProcessFlow = ({
               }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-6 py-3 rounded-lg font-semibold transition-all ${
+              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-all ${
                 activeStep === idx
                   ? `bg-gradient-to-r ${stepGradients[idx]} text-white shadow-lg`
                   : 'bg-gray-700/50 text-gray-300 hover:bg-gray-700/80'
-              }`}
+              } text-xs sm:text-base`}
             >
               Step {step.step}
             </motion.button>

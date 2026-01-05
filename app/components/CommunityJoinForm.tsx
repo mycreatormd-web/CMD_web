@@ -632,10 +632,10 @@ const CommunityJoinForm = () => {
             onClick={(e) => e.stopPropagation()}
             className="bg-gradient-to-br from-gray-900/95 via-gray-900/90 to-gray-950/95 rounded-2xl border border-red-500/30 shadow-2xl max-w-md w-full p-6 sm:p-8"
           >
-            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+            <h3 className="text-lg sm:text-2xl md:text-3xl font-bold text-white mb-3">
               Leave without finishing?
             </h3>
-            <p className="text-gray-400 text-base sm:text-lg mb-6 leading-relaxed">
+            <p className="text-gray-400 text-xs sm:text-sm md:text-base mb-6 leading-relaxed">
               You have not completed the form. Are you sure you want to cancel? Your progress will not be saved.
             </p>
             <div className="flex gap-3 sm:gap-4">
@@ -643,7 +643,7 @@ const CommunityJoinForm = () => {
                 onClick={() => setShowCancelConfirm(false)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex-1 px-4 py-3 bg-gray-800/50 hover:bg-gray-800/80 text-gray-300 font-bold rounded-lg transition-all"
+                className="flex-1 px-3 py-2 sm:px-4 sm:py-3 bg-gray-800/50 hover:bg-gray-800/80 text-xs sm:text-sm md:text-base text-gray-300 font-bold rounded-lg transition-all"
               >
                 Continue Filling
               </motion.button>
@@ -651,7 +651,7 @@ const CommunityJoinForm = () => {
                 onClick={confirmCancel}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex-1 px-4 py-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold rounded-lg transition-all"
+                className="flex-1 px-3 py-2 sm:px-4 sm:py-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-xs sm:text-sm md:text-base text-white font-bold rounded-lg transition-all"
               >
                 Yes, Cancel
               </motion.button>

@@ -219,7 +219,7 @@ const Partnerships = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.15, duration: 0.6 }}
-              className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-2 sm:mb-2.5 lg:mb-3 xl:mb-4"
+              className="text-lg md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-2 sm:mb-2.5 lg:mb-3 xl:mb-4"
             >
               Partner with CreatorMD to{" "}
               <span className="bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent">
@@ -233,7 +233,7 @@ const Partnerships = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-sm sm:text-base md:text-sm lg:text-base xl:text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed"
+              className="text-xs sm:text-base md:text-sm lg:text-base xl:text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed"
             >
               We work with hospitals, global health organizations, and digital platforms to create ethical, high-impact health communication — training staff, running content campaigns, and building workplace wellness programs.
             </motion.p>
@@ -252,7 +252,7 @@ const Partnerships = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.25, duration: 0.5 }}
-              className="text-4xl sm:text-4xl font-bold text-white mb-6 relative inline-block"
+              className="text-2xl sm:text-4xl font-bold text-white mb-6 relative inline-block"
             >
               <span className="bg-gradient-to-r from-red-400 via-purple-400 to-red-300 bg-clip-text text-transparent">
                 Why partner with us
@@ -320,7 +320,7 @@ const Partnerships = () => {
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: idx * 0.1 + 0.1, duration: 0.4 }}
-                          className="text-lg sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-1.5 sm:mb-2 md:mb-3 leading-snug"
+                          className="text-sm sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-1.5 sm:mb-2 md:mb-3 leading-snug"
                         >
                           {benefit.title}
                         </motion.h4>
@@ -331,7 +331,7 @@ const Partnerships = () => {
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
-                          className="text-sm sm:text-base md:text-base text-gray-300 leading-relaxed"
+                          className="text-xs sm:text-base md:text-base text-gray-300 leading-relaxed"
                         >
                           {benefit.description}
                         </motion.p>
@@ -357,7 +357,7 @@ const Partnerships = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.35, duration: 0.5 }}
-              className="text-4xl sm:text-4xl font-bold text-white mb-0 relative inline-block leading-none"
+              className="text-2xl sm:text-4xl font-bold text-white mb-0 relative inline-block leading-none"
             >
               <span className="bg-gradient-to-r from-red-400 via-purple-400 to-red-300 bg-clip-text text-transparent">
                 How it works
@@ -395,7 +395,7 @@ const Partnerships = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.5 }}
-                className="text-2xl sm:text-2xl md:text-3xl font-bold text-white italic relative z-10 leading-relaxed max-w-3xl mx-auto"
+                className="text-lg sm:text-2xl md:text-3xl font-bold text-white italic relative z-10 leading-relaxed max-w-3xl mx-auto"
               >
                 No fluff. No shortcuts. Just medically accurate, audience-first communication.
               </motion.p>
@@ -414,7 +414,7 @@ const Partnerships = () => {
               onClick={() => setIsFormOpen(true)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
-              className="relative px-8 py-4 bg-gradient-to-r from-purple-900 via-purple-700 to-red-600 text-white font-bold rounded-2xl text-base sm:text-lg shadow-2xl overflow-hidden ring-2 ring-red-400/20 hover:ring-red-400/40 transition-all inline-flex items-center gap-2"
+              className="relative px-8 py-4 bg-gradient-to-r from-purple-900 via-purple-700 to-red-600 text-white font-bold rounded-2xl text-sm sm:text-lg shadow-2xl overflow-hidden ring-2 ring-red-400/20 hover:ring-red-400/40 transition-all inline-flex items-center gap-2"
             >
               <span className="relative z-10 flex items-center gap-2">
                 Get a Partnership Proposal
@@ -496,8 +496,8 @@ const Partnerships = () => {
                   {/* Modal Header */}
                   <div className="p-6 sm:p-8 border-b border-gray-200 flex justify-between items-center">
                     <div>
-                      <h3 className="text-2xl sm:text-2xl font-bold text-gray-900">Partner Interest Form</h3>
-                      <p className="text-sm text-gray-600 mt-1">Tell us about your organization and goals</p>
+                      <h3 className="text-lg sm:text-2xl font-bold text-gray-900">Partner Interest Form</h3>
+                      <p className="text-xs sm:text-sm text-gray-600 mt-1">Tell us about your organization and goals</p>
                     </div>
                     <button
                       onClick={() => setIsFormOpen(false)}

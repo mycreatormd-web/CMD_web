@@ -93,7 +93,7 @@ const Resources = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.15, duration: 0.6 }}
-            className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-2 sm:mb-2.5 lg:mb-3 xl:mb-4"
+            className="text-lg md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-2 sm:mb-2.5 lg:mb-3 xl:mb-4"
           >
             Start creating with clarity{" "}
             <span className="bg-gradient-to-r from-red-600 to-purple-700 bg-clip-text text-transparent">
@@ -107,14 +107,14 @@ const Resources = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-sm sm:text-base md:text-base lg:text-base xl:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed"
+            className="text-xs sm:text-base md:text-base lg:text-base xl:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed"
           >
             CreatorMD resources are practical tools built to help medics create, grow, and show up online with confidence. No overwhelm. No guesswork. Just systems that work.
           </motion.p>
         </motion.div>
 
         {/* Resources Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-5.5 max-w-7xl mx-auto mb-9 md:mb-11 lg:mb-13 xl:mb-15">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-5.5 max-w-7xl mx-auto mb-9 md:mb-11 lg:mb-13 xl:mb-15">
           {resources.map((resource, idx) => {
             const Icon = resource.icon;
             return (
@@ -168,7 +168,7 @@ const Resources = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: idx * 0.08 + 0.1, duration: 0.4 }}
-                        className="text-sm md:text-base lg:text-base xl:text-lg font-bold text-gray-900 mb-1.5 sm:mb-1.5 md:mb-1.5 lg:mb-1.5 xl:mb-2 leading-snug"
+                        className="text-xs md:text-base lg:text-base xl:text-lg font-bold text-gray-900 mb-1.5 sm:mb-1.5 md:mb-1.5 lg:mb-1.5 xl:mb-2 leading-snug"
                       >
                         {resource.title}
                       </motion.h3>
@@ -179,7 +179,7 @@ const Resources = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: idx * 0.08 + 0.15, duration: 0.4 }}
-                        className="text-sm sm:text-sm md:text-xs lg:text-xs xl:text-sm text-gray-700 leading-relaxed flex-grow mb-2 sm:mb-2 md:mb-3 lg:mb-3.5 xl:mb-4"
+                        className="text-xs sm:text-xs md:text-xs lg:text-xs xl:text-sm text-gray-700 leading-relaxed flex-grow mb-2 sm:mb-2 md:mb-3 lg:mb-3.5 xl:mb-4"
                       >
                         {resource.description}
                       </motion.p>
@@ -187,7 +187,7 @@ const Resources = () => {
                       {/* CTA Button */}
                       <motion.div
                         whileHover={{ x: 4 }}
-                        className="flex items-center gap-2 text-sm font-semibold text-gray-900 group/link"
+                        className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-900 group/link"
                       >
                         <span>{resource.cta} </span>
                         <Download className="w-4 h-4 sm:w-5 sm:h-5 group-hover/link:translate-y-0.5 transition-transform" />
@@ -213,7 +213,7 @@ const Resources = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.35, duration: 0.5 }}
-            className="text-2xl sm:text-3xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4"
+            className="text-lg sm:text-3xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4"
           >
             Bonus Access
           </motion.h3>
@@ -222,7 +222,7 @@ const Resources = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.5 }}
-            className="text-base sm:text-lg text-gray-700 mb-6 leading-relaxed"
+            className="text-xs sm:text-lg text-gray-700 mb-6 leading-relaxed"
           >
             More templates, tools, and guides are added regularly to support medics at every stage of their creator journey. Everything here is free and always will be.
           </motion.p>
@@ -230,7 +230,7 @@ const Resources = () => {
             href="/programs"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-red-600 via-purple-600 to-red-600 text-white font-bold rounded-lg sm:rounded-xl text-base sm:text-lg shadow-lg hover:shadow-xl transition-all"
+            className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-red-600 via-purple-600 to-red-600 text-white font-bold rounded-lg sm:rounded-xl text-sm sm:text-lg shadow-lg hover:shadow-xl transition-all"
           >
             Explore all our resources
           </motion.a>

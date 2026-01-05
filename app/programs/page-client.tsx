@@ -140,7 +140,7 @@ const ComingSoonCard = ({
           </div>
 
           {/* Program Title */}
-          <h3 className="text-lg sm:text-xl font-bold text-white mb-3 leading-tight line-clamp-2">
+          <h3 className="text-sm sm:text-xl font-bold text-white mb-3 leading-tight line-clamp-2">
             {program.title}
           </h3>
 
@@ -151,7 +151,7 @@ const ComingSoonCard = ({
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
             className="overflow-hidden"
           >
-            <p className={`text-gray-400 text-sm leading-relaxed ${!isExpanded ? 'line-clamp-1' : ''}`}>
+            <p className={`text-gray-400 text-xs sm:text-sm leading-relaxed ${!isExpanded ? 'line-clamp-1' : ''}`}>
               {program.shortDescription}
             </p>
           </motion.div>
@@ -211,7 +211,7 @@ const ComingSoonCard = ({
               onClick={() => onPreview(program)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full px-4 py-2.5 bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 hover:from-purple-500 hover:via-pink-500 hover:to-red-500 text-white font-bold rounded-lg border border-purple-400/50 hover:border-purple-300/80 transition-all duration-300 text-sm shadow-lg"
+              className="w-full px-4 py-2.5 bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 hover:from-purple-500 hover:via-pink-500 hover:to-red-500 text-white font-bold rounded-lg border border-purple-400/50 hover:border-purple-300/80 transition-all duration-300 text-xs sm:text-sm shadow-lg"
             >
               Preview Program
             </motion.button>
@@ -220,7 +220,7 @@ const ComingSoonCard = ({
               onClick={() => onPreview(program)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full px-4 py-2.5 border-2 border-red-500/70 hover:border-red-400 text-red-300 hover:text-red-200 font-bold rounded-lg bg-gradient-to-r from-red-600/10 via-red-600/5 to-transparent hover:from-red-600/20 hover:via-red-600/10 transition-all duration-300 text-sm"
+              className="w-full px-4 py-2.5 border-2 border-red-500/70 hover:border-red-400 text-red-300 hover:text-red-200 font-bold rounded-lg bg-gradient-to-r from-red-600/10 via-red-600/5 to-transparent hover:from-red-600/20 hover:via-red-600/10 transition-all duration-300 text-xs sm:text-sm"
             >
               Join Waitlist
             </motion.button>
@@ -370,10 +370,10 @@ export default function ProgramsPageClient() {
               <span className="text-sm font-bold text-red-300">Professional Learning Paths</span>
             </motion.div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-4 sm:mb-6 leading-tight">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-4 sm:mb-6 leading-tight">
               Transform Your <span className="bg-gradient-to-r from-red-500 via-purple-500 to-red-600 bg-clip-text text-transparent">Medical Career</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium px-2">
+            <p className="text-xs sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium px-2">
               Expert-designed programs combining self-paced learning, live bootcamps, and personalized mentorship. Take control of your professional development.
             </p>
           </motion.div>
@@ -392,11 +392,11 @@ export default function ProgramsPageClient() {
           >
             <div className="inline-flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
               <div className="w-1 h-6 sm:h-8 bg-gradient-to-b from-red-600 to-purple-600 rounded-full"></div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white">
+              <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white">
                 Available Now
               </h2>
             </div>
-            <p className="text-gray-400 text-sm sm:text-base md:text-lg mt-2 sm:mt-3">Start your transformation today with our most popular programs</p>
+            <p className="text-gray-400 text-xs sm:text-base md:text-lg mt-2 sm:mt-3">Start your transformation today with our most popular programs</p>
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
@@ -426,12 +426,12 @@ export default function ProgramsPageClient() {
                     {/* Content */}
                     <div className="px-5 sm:px-6 pt-5 sm:pt-6 pb-6 sm:pb-8 flex flex-col flex-grow relative z-10">
                       {/* Title */}
-                      <h3 className="text-xl sm:text-2xl font-black text-white mb-3 group-hover:text-red-300 transition-colors duration-300 leading-tight">
+                      <h3 className="text-lg sm:text-2xl font-black text-white mb-3 group-hover:text-red-300 transition-colors duration-300 leading-tight">
                         {program.title}
                       </h3>
 
                       {/* Description */}
-                      <p className="text-gray-400 text-sm sm:text-base mb-6 flex-grow leading-relaxed group-hover:text-gray-300 transition-colors">
+                      <p className="text-gray-400 text-xs sm:text-base mb-6 flex-grow leading-relaxed group-hover:text-gray-300 transition-colors">
                         {program.shortDescription}
                       </p>
 
@@ -460,7 +460,7 @@ export default function ProgramsPageClient() {
                             onClick={() => window.open(program.externalLink, '_blank')}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="w-full px-4 py-2.5 bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 hover:from-purple-500 hover:via-pink-500 hover:to-red-500 text-white font-bold rounded-lg border border-purple-400/50 hover:border-purple-300/80 transition-all duration-300 text-sm shadow-lg"
+                            className="w-full px-4 py-2.5 bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 hover:from-purple-500 hover:via-pink-500 hover:to-red-500 text-white font-bold rounded-lg border border-purple-400/50 hover:border-purple-300/80 transition-all duration-300 text-xs sm:text-sm shadow-lg"
                           >
                             Access Now ✨
                           </motion.button>
@@ -470,7 +470,7 @@ export default function ProgramsPageClient() {
                             href={program.internalPath}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="w-full block px-4 py-2.5 text-center bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 hover:from-purple-500 hover:via-pink-500 hover:to-red-500 text-white font-bold rounded-lg border border-purple-400/50 hover:border-purple-300/80 transition-all duration-300 text-sm shadow-lg"
+                            className="w-full block px-4 py-2.5 text-center bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 hover:from-purple-500 hover:via-pink-500 hover:to-red-500 text-white font-bold rounded-lg border border-purple-400/50 hover:border-purple-300/80 transition-all duration-300 text-xs sm:text-sm shadow-lg"
                           >
                             Access Now ✨
                           </motion.a>
@@ -479,7 +479,7 @@ export default function ProgramsPageClient() {
                           onClick={() => handlePreviewClick(program)}
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          className="w-full px-4 py-2.5 border-2 border-red-500/70 hover:border-red-400 text-red-300 hover:text-red-200 font-bold rounded-lg bg-gradient-to-r from-red-600/10 via-red-600/5 to-transparent hover:from-red-600/20 hover:via-red-600/10 transition-all duration-300 text-sm"
+                          className="w-full px-4 py-2.5 border-2 border-red-500/70 hover:border-red-400 text-red-300 hover:text-red-200 font-bold rounded-lg bg-gradient-to-r from-red-600/10 via-red-600/5 to-transparent hover:from-red-600/20 hover:via-red-600/10 transition-all duration-300 text-xs sm:text-sm"
                         >
                           Preview 🎬
                         </motion.button>
@@ -505,11 +505,11 @@ export default function ProgramsPageClient() {
           >
             <div className="inline-flex items-center gap-3 mb-4">
               <div className="w-1 h-8 bg-gradient-to-b from-red-600 to-black rounded-full"></div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white">
+              <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white">
                 Coming Soon
               </h2>
             </div>
-            <p className="text-gray-400 text-sm sm:text-base md:text-lg mt-3">Exciting new programs launching soon. Secure your spot with early access.</p>
+            <p className="text-gray-400 text-xs sm:text-base md:text-lg mt-3">Exciting new programs launching soon. Secure your spot with early access.</p>
           </motion.div>
 
           {/* Grid - Shows 3 cards on first row, rest hidden until expanded */}
@@ -561,7 +561,7 @@ export default function ProgramsPageClient() {
                     onClick={() => setShowAllComingSoon(false)}
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-8 sm:px-12 py-3 sm:py-4 border-2 border-red-600/60 text-red-300 hover:text-red-200 font-black rounded-xl hover:bg-red-600/20 hover:border-red-400 transition-all text-sm sm:text-base flex items-center gap-2"
+                    className="px-8 sm:px-12 py-3 sm:py-4 border-2 border-red-600/60 text-red-300 hover:text-red-200 font-black rounded-xl hover:bg-red-600/20 hover:border-red-400 transition-all text-xs sm:text-base flex items-center gap-2"
                   >
                     <span>Show Less ({programs.comingSoon.length - 3} hidden)</span>
                     <motion.span animate={{ rotate: 180 }}>▼</motion.span>
@@ -584,7 +584,7 @@ export default function ProgramsPageClient() {
                 onClick={() => setShowAllComingSoon(true)}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 sm:px-12 py-3 sm:py-4 border-2 border-red-600/60 text-red-300 hover:text-red-200 font-black rounded-xl hover:bg-red-600/20 hover:border-red-400 transition-all text-sm sm:text-base flex items-center gap-2"
+                className="px-8 sm:px-12 py-3 sm:py-4 border-2 border-red-600/60 text-red-300 hover:text-red-200 font-black rounded-xl hover:bg-red-600/20 hover:border-red-400 transition-all text-xs sm:text-base flex items-center gap-2"
               >
                 <span>View More Programs (+{programs.comingSoon.length - 3})</span>
                 <motion.span animate={{ rotate: 0 }}>▼</motion.span>
@@ -611,11 +611,11 @@ export default function ProgramsPageClient() {
           >
             <div className="inline-flex items-center gap-3 mb-4">
               <div className="w-1 h-8 bg-gradient-to-b from-red-500 to-purple-600 rounded-full"></div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-black">
                 How It Works
               </h2>
             </div>
-            <p className="text-base sm:text-lg text-gray-400 mt-3 max-w-2xl">A simple 3-step process to accelerate your medical career</p>
+            <p className="text-xs sm:text-lg text-gray-400 mt-3 max-w-2xl">A simple 3-step process to accelerate your medical career</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
@@ -668,12 +668,12 @@ export default function ProgramsPageClient() {
                   </motion.div>
 
                   {/* Title */}
-                  <h3 className="text-2xl sm:text-3xl font-black mb-4 text-white group-hover:text-red-300 transition-colors duration-300">
+                  <h3 className="text-lg sm:text-3xl font-black mb-4 text-white group-hover:text-red-300 transition-colors duration-300">
                     {item.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-400 leading-relaxed text-base group-hover:text-gray-300 transition-colors duration-300">
+                  <p className="text-gray-400 leading-relaxed text-xs sm:text-base group-hover:text-gray-300 transition-colors duration-300">
                     {item.description}
                   </p>
 
@@ -706,11 +706,11 @@ export default function ProgramsPageClient() {
           >
             <div className="inline-flex items-center gap-3 mb-4">
               <div className="w-1 h-8 bg-gradient-to-b from-purple-600 to-red-600 rounded-full"></div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white">
+              <h2 className="text-xl sm:text-4xl md:text-5xl font-black text-white">
                 Frequently Asked Questions
               </h2>
             </div>
-            <p className="text-gray-400 text-base sm:text-lg mt-3">Everything you need to know about our programs</p>
+            <p className="text-gray-400 text-xs sm:text-lg mt-3">Everything you need to know about our programs</p>
           </motion.div>
 
           <div className="space-y-4">
@@ -751,10 +751,10 @@ export default function ProgramsPageClient() {
                       </div>
                     </motion.div>
                     <div className="flex-1">
-                      <h3 className="font-black text-white text-lg sm:text-xl mb-3 group-hover:text-red-300 transition-colors duration-300">
+                      <h3 className="font-black text-white text-sm sm:text-xl mb-3 group-hover:text-red-300 transition-colors duration-300">
                         {faq.q}
                       </h3>
-                      <p className="text-gray-400 text-base leading-relaxed group-hover:text-gray-300 transition-colors">
+                      <p className="text-gray-400 text-xs sm:text-base leading-relaxed group-hover:text-gray-300 transition-colors">
                         {faq.a}
                       </p>
                     </div>
@@ -782,10 +782,10 @@ export default function ProgramsPageClient() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black mb-6">
+            <h2 className="text-2xl sm:text-5xl md:text-6xl font-black mb-6">
               Ready to Transform Your <span className="bg-gradient-to-r from-red-500 to-purple-500 bg-clip-text text-transparent">Medical Career?</span>
             </h2>
-            <p className="text-lg sm:text-xl text-gray-300 mb-12 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-xs sm:text-xl text-gray-300 mb-12 leading-relaxed max-w-2xl mx-auto">
               Join thousands of healthcare professionals already accelerating their growth with our programs. Secure your spot today and start your journey to success.
             </p>
 
@@ -794,7 +794,7 @@ export default function ProgramsPageClient() {
                 onClick={openForm}
                 whileHover={{ scale: 1.08, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-gradient-to-r from-red-600 to-purple-600 text-white font-black rounded-xl hover:shadow-2xl hover:shadow-red-600/50 transition-all text-base sm:text-lg border border-red-500/50 hover:border-red-400"
+                className="px-8 py-4 bg-gradient-to-r from-red-600 to-purple-600 text-white font-black rounded-xl hover:shadow-2xl hover:shadow-red-600/50 transition-all text-xs sm:text-lg border border-red-500/50 hover:border-red-400"
               >
                 Explore All Programs
               </motion.button>
@@ -802,7 +802,7 @@ export default function ProgramsPageClient() {
                 onClick={() => setIsEmailModalOpen(true)}
                 whileHover={{ scale: 1.08, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 border-2 border-red-600/60 text-red-300 font-black rounded-xl hover:bg-red-600/20 transition-all text-base sm:text-lg flex items-center justify-center gap-2 hover:border-red-400 hover:text-red-200"
+                className="px-8 py-4 border-2 border-red-600/60 text-red-300 font-black rounded-xl hover:bg-red-600/20 transition-all text-xs sm:text-lg flex items-center justify-center gap-2 hover:border-red-400 hover:text-red-200"
               >
                 <Mail className="w-5 h-5" />
                 Get Updates
@@ -817,7 +817,7 @@ export default function ProgramsPageClient() {
               viewport={{ once: true }}
               className="mt-16 pt-12 border-t border-purple-700/30"
             >
-              <p className="text-gray-400 text-sm font-semibold mb-6">Trusted by healthcare professionals worldwide</p>
+              <p className="text-gray-400 text-xs font-semibold mb-6">Trusted by healthcare professionals worldwide</p>
               <div className="flex flex-wrap justify-center gap-8 sm:gap-12 text-center">
                 {[
                   { stat: '10K+', label: 'Active Learners' },
@@ -881,10 +881,10 @@ export default function ProgramsPageClient() {
                     <div className="h-1 bg-gradient-to-r from-red-600 to-purple-600 rounded-full mb-6"></div>
 
                     {/* Title */}
-                    <h3 className="text-2xl sm:text-3xl font-black text-white mb-2">
+                    <h3 className="text-lg sm:text-3xl font-black text-white mb-2">
                       Stay Updated
                     </h3>
-                    <p className="text-gray-400 text-sm sm:text-base mb-8">
+                    <p className="text-gray-400 text-xs sm:text-base mb-8">
                       Get notified about new programs, exclusive offers, and medical career insights delivered to your inbox.
                     </p>
 
