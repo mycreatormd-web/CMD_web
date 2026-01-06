@@ -180,7 +180,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-6xl font-bold leading-[1.1] sm:leading-[1.2]"
+              className="text-3xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-6xl font-bold leading-[1.1] sm:leading-[1.2]"
             >
               {/* Mobile: 3 lines */}
               <span className="block md:hidden text-white">Turn Your Medical</span>

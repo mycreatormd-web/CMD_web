@@ -42,22 +42,6 @@ const programs = [
   },
   {
     id: 3,
-    icon: Wrench,
-    title: "Done-With-You Programs",
-    microcopy: "We guide. You create. Together, we refine.",
-    includes: [
-      "Content strategy buildouts",
-      "Video reviews & feedback",
-      "Brand and messaging clarity sessions"
-    ],
-    color: "from-purple-500 to-pink-500",
-    bgColor: "from-purple-50 to-pink-50",
-    borderColor: "border-purple-200",
-    lightColor: "bg-purple-50",
-    accentColor: "text-purple-600"
-  },
-  {
-    id: 4,
     icon: Trophy,
     title: "Premium & Corporate Programs",
     microcopy: "High-impact solutions for medics, teams, and organizations.",
@@ -73,7 +57,7 @@ const programs = [
     accentColor: "text-amber-600"
   },
   {
-    id: 5,
+    id: 4,
     icon: Users,
     title: "Community & Ongoing Support",
     microcopy: "Stay consistent, supported, and connected globally.",

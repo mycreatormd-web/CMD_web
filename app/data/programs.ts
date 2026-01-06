@@ -61,26 +61,7 @@ export const programs: ProgramsData = {
       status: 'coming-soon',
       level: 'Beginner to Advanced'
     },
-    {
-      id: 'live-training',
-      slug: 'live-training',
-      title: 'Live Training & Workshops',
-      shortDescription: 'Short, powerful, and interactive training sessions tailored for healthcare professionals.',
-      fullDescription: 'Dynamic live workshops ranging from 3-hour sessions to full weekend bootcamps. Available as public workshops or custom corporate requests for hospitals and healthcare organizations.',
-      benefits: [
-        'Content Creation Bootcamp for Medics',
-        'Instagram Growth for Healthcare Professionals',
-        'TikTok for Doctors',
-        'LinkedIn Authority Training for Medics',
-        'Personal Branding Workshop',
-        'Camera Confidence for Medics',
-        '3-hour, 6-hour, weekend, or corporate custom requests'
-      ],
-      icon: 'Users',
-      color: 'from-emerald-500 to-teal-500',
-      status: 'coming-soon',
-      level: 'All levels'
-    },
+
     {
       id: 'coaching-programs',
       slug: 'coaching-programs',
@@ -99,86 +80,14 @@ export const programs: ProgramsData = {
       status: 'coming-soon',
       level: 'Intermediate'
     },
+   
+
+
+
     {
-      id: 'done-with-you',
-      slug: 'done-with-you',
-      title: 'Done-With-You Services (CreatorMD Challenge)',
-      shortDescription: 'You guide them, they execute with your supervision and expert feedback.',
-      fullDescription: 'Done-With-You services where CreatorMD guides you through the process and you execute with professional supervision and ongoing feedback.',
-      benefits: [
-        'Content Strategy Buildout - Map your next 30/60/90 days',
-        'Video Review + Feedback Sessions - Professional critique and improvement',
-        'Branding & Messaging Clarity Sessions - Define your unique positioning',
-        'Hands-on guidance with expert supervision',
-        'Complete your creator journey with expert oversight'
-      ],
-      icon: 'Wrench',
-      color: 'from-orange-500 to-red-500',
-      status: 'coming-soon',
-      level: 'Intermediate'
-    },
-    {
-      id: 'done-for-you',
-      slug: 'done-for-you',
-      title: 'Done-For-You Services (Premium)',
-      shortDescription: 'CreatorMD becomes your content arm with high-ticket premium solutions.',
-      fullDescription: 'Premium done-for-you services where CreatorMD handles everything. We become your content creation and strategy partner.',
-      benefits: [
-        'DFY Personal Branding Package - Bio, niche clarity, pillars, profile setup',
-        'DFY Content Creation - Scripts, editing, captions, thumbnails',
-        'DFY Content Strategy + Monthly Calendar - Fully planned and executed',
-        'DFY LinkedIn Personal Branding for Medics - Complete personal brand setup',
-        'High-ticket premium solutions',
-        'Complete white-glove service'
-      ],
-      icon: 'Trophy',
-      color: 'from-amber-500 to-yellow-500',
-      status: 'coming-soon',
-      level: 'Premium'
-    },
-    {
-      id: 'community',
-      slug: 'community',
-      title: 'CreatorMD Community (Membership)',
-      shortDescription: 'A subscription-based support hub with weekly classes, challenges, and global accountability.',
-      fullDescription: 'Join a thriving global community of medical professionals committed to building their content authority. Get ongoing support, resources, and accountability.',
-      benefits: [
-        'Weekly live classes with CreatorMD team',
-        'Monthly challenges to push your creativity',
-        'Templates - captions, scripts, hooks, and more',
-        'Accountability group for consistency',
-        'Weekly Q&A sessions',
-        'Access to creators & medics worldwide'
-      ],
-      icon: 'Heart',
-      color: 'from-cyan-500 to-blue-500',
-      status: 'coming-soon',
-      level: 'All levels'
-    },
-    {
-      id: 'digital-products',
-      slug: 'digital-products',
-      title: 'CreatorMD Templates & Digital Products',
-      shortDescription: 'Fast, affordable digital downloads for immediate implementation.',
-      fullDescription: 'Affordable digital products designed to accelerate your content creation. Ready-to-use templates, frameworks, and resource packs.',
-      benefits: [
-        'Content calendar for medics',
-        '100 hooks for doctors',
-        '50 content ideas for medics',
-        'Health carousel templates',
-        'Video script packs',
-        'LinkedIn bio templates',
-        'Brand kit for medical creators'
-      ],
-      icon: 'Zap',
-      color: 'from-pink-500 to-red-500',
-      status: 'coming-soon',
-      level: 'Beginner'
-    },
-    {
-      id: 'events',
-      slug: 'events',
-      title: 'CreatorMD Events',
+      id: 'summit',
+      slug: 'summit',
+      title: 'CreatorMD Summit',
       shortDescription: 'Building a brand that brings medical creators together for learning and networking.',
       fullDescription: 'In-person and virtual events designed to bring the CreatorMD community together and accelerate connections.',
       benefits: [
@@ -192,6 +101,44 @@ export const programs: ProgramsData = {
       color: 'from-indigo-500 to-purple-500',
       status: 'coming-soon',
       level: 'All levels'
+    },
+    {
+      id: 'hangout',
+      slug: 'hangout',
+      title: 'Creator MD Hangout',
+      shortDescription: 'Casual, interactive meetups for medical creators to connect, share, and collaborate.',
+      fullDescription: 'Informal community hangouts designed for medical creators to connect, share experiences, and collaborate on content ideas.',
+      benefits: [
+        'Casual networking with other medical creators',
+        'Share your creator journey and learnings',
+        'Collaborate on content ideas and projects',
+        'Get feedback from peers',
+        'Build genuine relationships in the community',
+        'Regular virtual and in-person meetups'
+      ],
+      icon: 'Users',
+      color: 'from-orange-500 to-yellow-500',
+      status: 'coming-soon',
+      level: 'All levels'
+    },
+    {
+      id: 'usmle',
+      slug: 'usmle',
+      title: 'USMLE Programs',
+      shortDescription: 'Specialized programs designed to help medical students prepare for USMLE exams while building their creator platform.',
+      fullDescription: 'Comprehensive USMLE preparation programs combined with content creation training to help medical students study smarter and build authority.',
+      benefits: [
+        'USMLE exam preparation strategies',
+        'High-yield study techniques for Step 1, Step 2, Step 3',
+        'Content creation while preparing for exams',
+        'Build your medical authority during prep',
+        'Monetize your study journey',
+        'Join a community of ambitious medical students'
+      ],
+      icon: 'BookOpen',
+      color: 'from-green-500 to-emerald-500',
+      status: 'coming-soon',
+      level: 'Beginner to Advanced'
     },
     {
       id: 'corporate',
