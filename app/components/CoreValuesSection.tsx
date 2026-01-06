@@ -72,14 +72,14 @@ const CoreValuesSection = () => {
       await controls.start({
         scale: [0.9, 1],
         opacity: [0, 1],
-        transition: { duration: 0.8, ease: 'easeOut' }
+        transition: { duration: 0.5, ease: 'easeOut' }
       });
 
-      setTimeout(() => setAnimationStep(2), 800);
-      setTimeout(() => setAnimationStep(3), 2000);
-      setTimeout(() => setAnimationStep(4), 3200);
-      setTimeout(() => setAnimationStep(5), 4400);
-      setTimeout(() => setAnimationStep(6), 5600);
+      setTimeout(() => setAnimationStep(2), 500);
+      setTimeout(() => setAnimationStep(3), 1100);
+      setTimeout(() => setAnimationStep(4), 1700);
+      setTimeout(() => setAnimationStep(5), 2300);
+      setTimeout(() => setAnimationStep(6), 2800);
     };
 
     sequence();
@@ -165,8 +165,8 @@ const CoreValuesSection = () => {
                   y: isLetterVisible ? 0 : 30,
                   scale: isLetterVisible ? 1 : 0.9,
                   transition: { 
-                    delay: index * 0.15,
-                    duration: 0.6,
+                    delay: index * 0.1,
+                    duration: 0.4,
                     type: "spring",
                     stiffness: 200
                   }
@@ -184,7 +184,7 @@ const CoreValuesSection = () => {
                   animate={{
                     scale: isActive ? [1, 1.05, 1] : 1
                   }}
-                  transition={{ duration: 2, repeat: Infinity }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
                 />
 
                 {/* Main Surgical Card */}
@@ -197,7 +197,7 @@ const CoreValuesSection = () => {
                         scale: isLetterVisible ? 1 : 0.8,
                         opacity: isLetterVisible ? 1 : 0
                       }}
-                      transition={{ delay: index * 0.2, duration: 0.5 }}
+                      transition={{ delay: index * 0.12, duration: 0.35 }}
                     >
                       {/* Scalpel Trace Effect */}
                       <motion.div
@@ -208,8 +208,8 @@ const CoreValuesSection = () => {
                           opacity: isLetterVisible ? [0, 0.5, 0.2] : 0
                         }}
                         transition={{ 
-                          duration: 1.5,
-                          delay: index * 0.25
+                          duration: 0.8,
+                          delay: index * 0.15
                         }}
                       />
 
@@ -231,8 +231,8 @@ const CoreValuesSection = () => {
                             scale: isLetterVisible ? 1 : 0
                           }}
                           transition={{ 
-                            delay: index * 0.3,
-                            duration: 0.3,
+                            delay: index * 0.15,
+                            duration: 0.25,
                             type: "spring",
                             stiffness: 400
                           }}

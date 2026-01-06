@@ -169,7 +169,7 @@ const ProgramCard = ({ program, idx, expandedId, setExpandedId }) => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -15 }}
                   transition={{ delay: 0.1, duration: 0.3 }}
-                  className={`px-3 sm:px-4 md:px-6 lg:px-8 pb-3 sm:pb-4 md:pb-6 lg:pb-8 border-t-2 ${program.borderColor} bg-gradient-to-br ${program.bgColor}`}
+                  className={`px-3 sm:px-4 md:px-6 lg:px-8 pt-3 sm:pt-2 md:pt-3 lg:pt-4 pb-3 sm:pb-4 md:pb-6 lg:pb-8 border-t-2 ${program.borderColor} bg-gradient-to-br ${program.bgColor}`}
                 >
                   <p className="text-xs sm:text-sm font-bold text-gray-800 mb-2.5 sm:mb-3 uppercase tracking-wide">What's Included:</p>
                   <ul className="space-y-1.5 sm:space-y-2 md:space-y-2.5">
@@ -202,7 +202,7 @@ const ProgramsSection = () => {
   const [expandedId, setExpandedId] = useState(null);
 
   return (
-    <section id="programs" className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 overflow-hidden">
+    <section id="programs" className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-8 sm:px-6 md:px-8 overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.05)_1px,transparent_1px)] bg-[size:80px_80px]" />
       
