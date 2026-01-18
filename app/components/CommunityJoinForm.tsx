@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronRight, ChevronLeft } from 'lucide-react';
+import { X, ChevronRight, ChevronLeft, Search, ChevronDown } from 'lucide-react';
 import { useCommunityForm } from '@/app/context/CommunityFormContext';
+import { Country, State, ICountry, IState } from 'country-state-city';
 
 interface FormData {
   // Section 2
@@ -11,6 +12,7 @@ interface FormData {
   email: string;
   phone: string;
   country: string;
+  state: string;
   socialHandle: string;
   
   // Section 3
@@ -46,12 +48,21 @@ const CommunityJoinForm = () => {
   const { isOpen, closeForm } = useCommunityForm();
   const [currentSection, setCurrentSection] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [showCancelConfirm, setShowCancelConfirm] = useState(false);
+  const [countrySearch, setCountrySearch] = useState('');
+  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+  const countryDropdownRef = useRef<HTMLDivElement>(null);
+  const [stateSearch, setStateSearch] = useState('');
+  const [isStateDropdownOpen, setIsStateDropdownOpen] = useState(false);
+  const stateDropdownRef = useRef<HTMLDivElement>(null);
+  const [selectedCountryCode, setSelectedCountryCode] = useState('');
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
     email: '',
     phone: '',
     country: '',
+    state: '',
     socialHandle: '',
     role: '',
     specialty: '',
@@ -70,6 +81,56 @@ const CommunityJoinForm = () => {
     additionalInfo: '',
     consent: '',
   });
+
+  // Get all countries from library
+  const allCountries = Country.getAllCountries();
+  
+  // Filter countries based on search
+  const filteredCountries = allCountries.filter(country =>
+    country.name.toLowerCase().includes(countrySearch.toLowerCase())
+  );
+
+  // Get states for selected country
+  const availableStates = selectedCountryCode 
+    ? State.getStatesOfCountry(selectedCountryCode)
+    : [];
+  
+  // Filter states based on search
+  const filteredStates = availableStates.filter(state =>
+    state.name.toLowerCase().includes(stateSearch.toLowerCase())
+  );
+
+  // Handle click outside to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (countryDropdownRef.current && !countryDropdownRef.current.contains(event.target as Node)) {
+        setIsCountryDropdownOpen(false);
+      }
+      if (stateDropdownRef.current && !stateDropdownRef.current.contains(event.target as Node)) {
+        setIsStateDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Handle country selection
+  const handleCountrySelect = (country: ICountry) => {
+    handleInputChange('country', country.name);
+    setSelectedCountryCode(country.isoCode);
+    // Reset state when country changes
+    handleInputChange('state', '');
+    setCountrySearch('');
+    setIsCountryDropdownOpen(false);
+  };
+
+  // Handle state selection
+  const handleStateSelect = (state: IState) => {
+    handleInputChange('state', state.name);
+    setStateSearch('');
+    setIsStateDropdownOpen(false);
+  };
 
   const handleInputChange = (field: keyof FormData, value: any) => {
     setFormData(prev => ({
@@ -112,11 +173,17 @@ const CommunityJoinForm = () => {
     closeForm();
     setShowCancelConfirm(false);
     setCurrentSection(1);
+    setCountrySearch('');
+    setIsCountryDropdownOpen(false);
+    setStateSearch('');
+    setIsStateDropdownOpen(false);
+    setSelectedCountryCode('');
     setFormData({
       fullName: '',
       email: '',
       phone: '',
       country: '',
+      state: '',
       socialHandle: '',
       role: '',
       specialty: '',
@@ -137,64 +204,63 @@ const CommunityJoinForm = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.email || !formData.fullName || !formData.consent) {
       alert('Please fill in all required fields');
       return;
     }
     
-    // TODO: Google Sheets Integration
-    // 1. Set up Google Apps Script (GAS) endpoint URL:
-    // const GOOGLE_SHEET_URL = 'https://script.google.com/macros/d/{SCRIPT_ID}/usercallback';
-    //
-    // 2. Prepare data for Google Sheets:
-    // const googleSheetData = {
-    //   timestamp: new Date().toISOString(),
-    //   fullName: formData.fullName,
-    //   email: formData.email,
-    //   phone: formData.phone,
-    //   country: formData.country,
-    //   socialHandle: formData.socialHandle,
-    //   role: formData.role,
-    //   specialty: formData.specialty,
-    //   practicing: formData.practicing,
-    //   contentExperience: formData.contentExperience,
-    //   contentPlatforms: formData.contentPlatforms.join(', '),
-    //   socialLinks: formData.socialLinks,
-    //   contentTypes: formData.contentTypes.join(', '),
-    //   topGoals: formData.topGoals,
-    //   biggestStruggle: formData.biggestStruggle,
-    //   creatorMDHelp: formData.creatorMDHelp,
-    //   heardAbout: formData.heardAbout,
-    //   whatsappInterest: formData.whatsappInterest,
-    //   whatsappNumber: formData.whatsappNumber,
-    //   premiumInterest: formData.premiumInterest.join(', '),
-    //   additionalInfo: formData.additionalInfo,
-    //   consent: formData.consent,
-    // };
-    //
-    // 3. Send to Google Sheets:
-    // try {
-    //   const response = await fetch(GOOGLE_SHEET_URL, {
-    //     method: 'POST',
-    //     body: JSON.stringify(googleSheetData),
-    //     headers: { 'Content-Type': 'application/json' }
-    //   });
-    //   if (!response.ok) throw new Error('Submission failed');
-    // } catch (error) {
-    //   console.error('Error submitting form:', error);
-    //   alert('Error submitting form. Please try again.');
-    //   return;
-    // }
+    setIsSubmitting(true);
     
-    console.log('Form Data for Google Sheets:', formData);
-    setIsSubmitted(true);
-    setTimeout(() => {
-      closeForm();
-      setCurrentSection(1);
-      setIsSubmitted(false);
-    }, 2000);
+    // Google Sheets Integration
+    const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycby_e3qsAAwUCjR6bpqyFB8aE6Izg1DSXchxAv928uCh1CFV1Dt0Lu0xEg4d5oeXcAtNmw/exec';
+    
+    const googleSheetData = {
+      fullName: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
+      country: formData.country,
+      state: formData.state,
+      socialHandle: formData.socialHandle,
+      role: formData.role,
+      specialty: formData.specialty,
+      practicing: formData.practicing,
+      contentExperience: formData.contentExperience,
+      contentPlatforms: formData.contentPlatforms.join(', '),
+      socialLinks: formData.socialLinks,
+      contentTypes: formData.contentTypes.join(', '),
+      topGoals: formData.topGoals,
+      biggestStruggle: formData.biggestStruggle,
+      creatorMDHelp: formData.creatorMDHelp,
+      heardAbout: formData.heardAbout,
+      whatsappInterest: formData.whatsappInterest,
+      whatsappNumber: formData.whatsappNumber,
+      premiumInterest: formData.premiumInterest.join(', '),
+      additionalInfo: formData.additionalInfo,
+      consent: formData.consent,
+    };
+    
+    try {
+      // Use fetch with redirect:follow to handle Google's redirect
+      await fetch(GOOGLE_SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'text/plain',
+        },
+        body: JSON.stringify(googleSheetData),
+      });
+      
+      console.log('Form submitted to Google Sheets');
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      // Don't auto-close - let user close manually
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setIsSubmitting(false);
+      alert('Error submitting form. Please try again.');
+    }
   };
 
   const sections = [
@@ -211,7 +277,8 @@ const CommunityJoinForm = () => {
         { label: 'Full Name', key: 'fullName', type: 'text', required: true },
         { label: 'Email Address', key: 'email', type: 'email', required: true },
         { label: 'Phone Number', key: 'phone', type: 'tel' },
-        { label: 'Country & State', key: 'country', type: 'text' },
+        { label: 'Country', key: 'country', type: 'country-search' },
+        { label: 'State / Region', key: 'state', type: 'state-search' },
         { label: 'Preferred Social Media Handle', key: 'socialHandle', type: 'text' },
       ]
     },
@@ -344,14 +411,14 @@ const CommunityJoinForm = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -30 }}
             transition={{ type: 'spring', stiffness: 350, damping: 35, mass: 1 }}
-            className="fixed inset-0 z-50 flex items-start sm:items-center justify-center px-4 sm:px-6 py-6 sm:py-8 overflow-y-auto"
+            className="fixed inset-0 z-50 flex items-start sm:items-center justify-center px-4 sm:px-6 py-4 sm:py-8 overflow-y-auto"
           >
-            <div className="w-full max-w-2xl mt-8 sm:mt-0 bg-gradient-to-br from-gray-900/95 via-gray-900/90 to-gray-950/95 rounded-2xl border border-red-500/30 shadow-2xl shadow-red-500/20 backdrop-blur-xl">
+            <div className="w-full max-w-2xl my-4 sm:my-0 bg-gradient-to-br from-gray-900/95 via-gray-900/90 to-gray-950/95 rounded-2xl border border-red-500/30 shadow-2xl shadow-red-500/20 backdrop-blur-xl max-h-[90vh] sm:max-h-[85vh] flex flex-col overflow-hidden">
               {!isSubmitted ? (
-                <form onSubmit={handleSubmit} className="overflow-hidden">
-                  {/* Header */}
+                <form onSubmit={handleSubmit} className="flex flex-col h-full overflow-hidden">
+                  {/* Header - Sticky */}
                   <motion.div 
-                    className="relative p-5 sm:p-7 lg:p-7 border-b border-gray-800/50"
+                    className="relative p-4 sm:p-6 border-b border-gray-800/50 flex-shrink-0 bg-gradient-to-br from-gray-900/95 via-gray-900/90 to-gray-950/95"
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1, duration: 0.3 }}
@@ -362,7 +429,7 @@ const CommunityJoinForm = () => {
                       onClick={handleClose}
                       whileHover={{ rotate: 90, scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
-                      className="absolute top-4 right-4 text-gray-400 hover:text-gray-200 transition-colors"
+                      className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-gray-200 transition-colors z-10"
                     >
                       <X className="w-6 h-6" />
                     </motion.button>
@@ -394,7 +461,7 @@ const CommunityJoinForm = () => {
 
                     {/* Title */}
                     <motion.h2 
-                      className="text-2xl sm:text-3xl lg:text-2xl font-black text-white"
+                      className="text-xl sm:text-2xl font-black text-white pr-8"
                       initial={{ opacity: 0, y: -5 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.13, duration: 0.3 }}
@@ -405,7 +472,7 @@ const CommunityJoinForm = () => {
                     {/* Description */}
                     {currentSectionData.description && (
                       <motion.p 
-                        className="text-gray-400 text-sm sm:text-base lg:text-sm mt-2 whitespace-pre-line"
+                        className="text-gray-400 text-xs sm:text-sm mt-2 whitespace-pre-line"
                         initial={{ opacity: 0, y: 5 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.14, duration: 0.3 }}
@@ -415,9 +482,9 @@ const CommunityJoinForm = () => {
                     )}
                   </motion.div>
 
-                  {/* Content */}
+                  {/* Content - Scrollable */}
                   <motion.div 
-                    className="p-5 sm:p-7 lg:p-7 space-y-5"
+                    className="p-4 sm:p-6 space-y-4 overflow-y-auto flex-1"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.15, duration: 0.4 }}
@@ -479,14 +546,154 @@ const CommunityJoinForm = () => {
                               </label>
                             ))}
                           </div>
+                        ) : field.type === 'country-search' ? (
+                          <div className="relative" ref={countryDropdownRef}>
+                            {/* Selected country display / trigger */}
+                            <div
+                              onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
+                              className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700/50 rounded-lg text-white cursor-pointer flex items-center justify-between hover:border-gray-600/50 transition-all duration-300"
+                            >
+                              <span className={formData.country ? 'text-white' : 'text-gray-500'}>
+                                {formData.country || 'Select a country'}
+                              </span>
+                              <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${isCountryDropdownOpen ? 'rotate-180' : ''}`} />
+                            </div>
+
+                            {/* Dropdown */}
+                            <AnimatePresence>
+                              {isCountryDropdownOpen && (
+                                <motion.div
+                                  initial={{ opacity: 0, y: -10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  exit={{ opacity: 0, y: -10 }}
+                                  transition={{ duration: 0.2 }}
+                                  className="absolute z-50 w-full mt-2 bg-gray-900 border border-gray-700/50 rounded-lg shadow-xl overflow-hidden"
+                                >
+                                  {/* Search input */}
+                                  <div className="p-3 border-b border-gray-700/50">
+                                    <div className="relative">
+                                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                                      <input
+                                        type="text"
+                                        value={countrySearch}
+                                        onChange={(e) => setCountrySearch(e.target.value)}
+                                        placeholder="Search countries..."
+                                        className="w-full pl-10 pr-4 py-2 bg-gray-800/50 border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-red-500/50 text-sm"
+                                        autoFocus
+                                      />
+                                    </div>
+                                  </div>
+
+                                  {/* Countries list */}
+                                  <div className="max-h-48 overflow-y-auto">
+                                    {filteredCountries.length > 0 ? (
+                                      filteredCountries.map((country) => (
+                                        <div
+                                          key={country.isoCode}
+                                          onClick={() => handleCountrySelect(country)}
+                                          className={`px-4 py-2.5 cursor-pointer transition-colors text-sm ${
+                                            formData.country === country.name
+                                              ? 'bg-red-600/20 text-red-400'
+                                              : 'text-gray-300 hover:bg-gray-800/50 hover:text-white'
+                                          }`}
+                                        >
+                                          {country.flag} {country.name}
+                                        </div>
+                                      ))
+                                    ) : (
+                                      <div className="px-4 py-3 text-gray-500 text-sm text-center">
+                                        No countries found
+                                      </div>
+                                    )}
+                                  </div>
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </div>
+                        ) : field.type === 'state-search' ? (
+                          <div className="relative" ref={stateDropdownRef}>
+                            {/* Selected state display / trigger */}
+                            <div
+                              onClick={() => {
+                                if (!formData.country) {
+                                  alert('Please select a country first');
+                                  return;
+                                }
+                                setIsStateDropdownOpen(!isStateDropdownOpen);
+                              }}
+                              className={`w-full px-4 py-3 bg-gray-800/50 border border-gray-700/50 rounded-lg text-white flex items-center justify-between transition-all duration-300 ${
+                                formData.country ? 'cursor-pointer hover:border-gray-600/50' : 'cursor-not-allowed opacity-60'
+                              }`}
+                            >
+                              <span className={formData.state ? 'text-white' : 'text-gray-500'}>
+                                {formData.state || (formData.country ? 'Select a state/region' : 'Select a country first')}
+                              </span>
+                              <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${isStateDropdownOpen ? 'rotate-180' : ''}`} />
+                            </div>
+
+                            {/* Dropdown */}
+                            <AnimatePresence>
+                              {isStateDropdownOpen && formData.country && (
+                                <motion.div
+                                  initial={{ opacity: 0, y: -10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  exit={{ opacity: 0, y: -10 }}
+                                  transition={{ duration: 0.2 }}
+                                  className="absolute z-50 w-full mt-2 bg-gray-900 border border-gray-700/50 rounded-lg shadow-xl overflow-hidden"
+                                >
+                                  {/* Search input */}
+                                  <div className="p-3 border-b border-gray-700/50">
+                                    <div className="relative">
+                                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                                      <input
+                                        type="text"
+                                        value={stateSearch}
+                                        onChange={(e) => setStateSearch(e.target.value)}
+                                        placeholder="Search states/regions..."
+                                        className="w-full pl-10 pr-4 py-2 bg-gray-800/50 border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-red-500/50 text-sm"
+                                        autoFocus
+                                      />
+                                    </div>
+                                  </div>
+
+                                  {/* States list */}
+                                  <div className="max-h-48 overflow-y-auto">
+                                    {availableStates.length === 0 ? (
+                                      <div className="px-4 py-3 text-gray-500 text-sm text-center">
+                                        No states/regions available for this country
+                                      </div>
+                                    ) : filteredStates.length > 0 ? (
+                                      filteredStates.map((state) => (
+                                        <div
+                                          key={state.isoCode}
+                                          onClick={() => handleStateSelect(state)}
+                                          className={`px-4 py-2.5 cursor-pointer transition-colors text-sm ${
+                                            formData.state === state.name
+                                              ? 'bg-red-600/20 text-red-400'
+                                              : 'text-gray-300 hover:bg-gray-800/50 hover:text-white'
+                                          }`}
+                                        >
+                                          {state.name}
+                                        </div>
+                                      ))
+                                    ) : (
+                                      <div className="px-4 py-3 text-gray-500 text-sm text-center">
+                                        No states/regions found
+                                      </div>
+                                    )}
+                                  </div>
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </div>
                         ) : null}
                       </motion.div>
                     ))}
                   </motion.div>
 
-                  {/* Footer Navigation */}
+                  {/* Footer Navigation - Sticky */}
                   <motion.div 
-                    className="p-6 sm:p-8 border-t border-gray-800/50 flex gap-3 sm:gap-4"
+                    className="p-4 sm:p-6 border-t border-gray-800/50 flex gap-3 sm:gap-4 flex-shrink-0 bg-gradient-to-br from-gray-900/95 via-gray-900/90 to-gray-950/95"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.3 }}
@@ -495,12 +702,13 @@ const CommunityJoinForm = () => {
                       <motion.button
                         type="button"
                         onClick={() => setCurrentSection(prev => Math.max(1, prev - 1))}
-                        whileHover={{ scale: 1.08, backgroundColor: 'rgba(55, 65, 81, 0.9)' }}
-                        whileTap={{ scale: 0.92 }}
-                        className="flex items-center gap-2 px-6 py-3 bg-gray-800/50 hover:bg-gray-800/80 text-gray-300 font-bold rounded-lg transition-all"
+                        disabled={isSubmitting}
+                        whileHover={{ scale: 1.05, backgroundColor: 'rgba(55, 65, 81, 0.9)' }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center gap-2 px-4 sm:px-6 py-3 bg-gray-800/50 hover:bg-gray-800/80 text-gray-300 font-bold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         <ChevronLeft className="w-4 h-4" />
-                        Back
+                        <span className="hidden sm:inline">Back</span>
                       </motion.button>
                     )}
 
@@ -508,9 +716,9 @@ const CommunityJoinForm = () => {
                       <motion.button
                         type="button"
                         onClick={() => setCurrentSection(prev => Math.min(totalSections, prev + 1))}
-                        whileHover={{ scale: 1.08, boxShadow: '0 0 20px rgba(239, 68, 68, 0.5)' }}
-                        whileTap={{ scale: 0.92 }}
-                        className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-500 hover:to-purple-500 text-white font-bold rounded-lg transition-all shadow-lg shadow-red-500/20"
+                        whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(239, 68, 68, 0.5)' }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex-1 flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-500 hover:to-purple-500 text-white font-bold rounded-lg transition-all shadow-lg shadow-red-500/20"
                       >
                         Next
                         <ChevronRight className="w-4 h-4" />
@@ -518,11 +726,22 @@ const CommunityJoinForm = () => {
                     ) : (
                       <motion.button
                         type="submit"
-                        whileHover={{ scale: 1.08, boxShadow: '0 0 20px rgba(34, 197, 94, 0.5)' }}
-                        whileTap={{ scale: 0.92 }}
-                        className="flex-1 px-6 py-3 bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-500 hover:to-purple-500 text-white font-bold rounded-lg transition-all shadow-lg shadow-red-500/20"
+                        disabled={isSubmitting}
+                        whileHover={{ scale: isSubmitting ? 1 : 1.05, boxShadow: isSubmitting ? 'none' : '0 0 20px rgba(34, 197, 94, 0.5)' }}
+                        whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
+                        className="flex-1 flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-500 hover:to-purple-500 text-white font-bold rounded-lg transition-all shadow-lg shadow-red-500/20 disabled:opacity-70 disabled:cursor-not-allowed"
                       >
-                        Submit & Join the Movement
+                        {isSubmitting ? (
+                          <>
+                            <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            <span>Submitting...</span>
+                          </>
+                        ) : (
+                          'Submit & Join the Movement'
+                        )}
                       </motion.button>
                     )}
                   </motion.div>
@@ -530,12 +749,52 @@ const CommunityJoinForm = () => {
               ) : (
                 // Success Screen
                 <motion.div 
-                  className="p-8 sm:p-10 text-center"
+                  className="p-6 sm:p-10 text-center relative"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4 }}
                 >
+                  {/* Close Button */}
+                  <motion.button
+                    type="button"
+                    onClick={() => {
+                      closeForm();
+                      setCurrentSection(1);
+                      setIsSubmitted(false);
+                      setFormData({
+                        fullName: '',
+                        email: '',
+                        phone: '',
+                        country: '',
+                        state: '',
+                        socialHandle: '',
+                        role: '',
+                        specialty: '',
+                        practicing: '',
+                        contentExperience: '',
+                        contentPlatforms: [],
+                        socialLinks: '',
+                        contentTypes: [],
+                        topGoals: '',
+                        biggestStruggle: '',
+                        creatorMDHelp: '',
+                        heardAbout: '',
+                        whatsappInterest: '',
+                        whatsappNumber: '',
+                        premiumInterest: [],
+                        additionalInfo: '',
+                        consent: '',
+                      });
+                      setSelectedCountryCode('');
+                    }}
+                    whileHover={{ rotate: 90, scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-gray-200 transition-colors z-10"
+                  >
+                    <X className="w-6 h-6" />
+                  </motion.button>
+
                   <motion.div
                     initial={{ scale: 0, rotate: -180 }}
                     animate={{ scale: 1, rotate: 0 }}
@@ -563,7 +822,7 @@ const CommunityJoinForm = () => {
                   </motion.div>
 
                   <motion.h3 
-                    className="text-3xl sm:text-4xl font-black text-white mb-3"
+                    className="text-2xl sm:text-3xl font-black text-white mb-3"
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2, duration: 0.3 }}
@@ -571,7 +830,7 @@ const CommunityJoinForm = () => {
                     Welcome to CreatorMD!
                   </motion.h3>
                   <motion.p 
-                    className="text-gray-400 text-base sm:text-lg mb-6"
+                    className="text-gray-400 text-sm sm:text-base mb-6"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.25, duration: 0.3 }}
@@ -580,7 +839,7 @@ const CommunityJoinForm = () => {
                   </motion.p>
 
                   <motion.div 
-                    className="space-y-2 text-left bg-gray-800/30 rounded-lg p-4 border border-gray-700/50"
+                    className="space-y-2 text-left bg-gray-800/30 rounded-lg p-4 border border-gray-700/50 mb-6"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.3 }}
@@ -595,7 +854,7 @@ const CommunityJoinForm = () => {
                         key={idx}
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: idx * 0.1 }}
+                        transition={{ delay: 0.35 + idx * 0.08 }}
                         className="flex items-center gap-3"
                       >
                         <div className="w-5 h-5 rounded-full bg-green-500/30 border border-green-500/50 flex items-center justify-center flex-shrink-0">
@@ -605,6 +864,48 @@ const CommunityJoinForm = () => {
                       </motion.div>
                     ))}
                   </motion.div>
+
+                  {/* Close Button at bottom */}
+                  <motion.button
+                    onClick={() => {
+                      closeForm();
+                      setCurrentSection(1);
+                      setIsSubmitted(false);
+                      setFormData({
+                        fullName: '',
+                        email: '',
+                        phone: '',
+                        country: '',
+                        state: '',
+                        socialHandle: '',
+                        role: '',
+                        specialty: '',
+                        practicing: '',
+                        contentExperience: '',
+                        contentPlatforms: [],
+                        socialLinks: '',
+                        contentTypes: [],
+                        topGoals: '',
+                        biggestStruggle: '',
+                        creatorMDHelp: '',
+                        heardAbout: '',
+                        whatsappInterest: '',
+                        whatsappNumber: '',
+                        premiumInterest: [],
+                        additionalInfo: '',
+                        consent: '',
+                      });
+                      setSelectedCountryCode('');
+                    }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5, duration: 0.3 }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-bold rounded-lg transition-all shadow-lg"
+                  >
+                    Done
+                  </motion.button>
                 </motion.div>
               )}
             </div>
