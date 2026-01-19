@@ -488,11 +488,10 @@ const CoreValuesSection = () => {
           {Array.from({ length: 20 }).map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 rounded-full"
+              className={`absolute w-1 h-1 rounded-full ${['bg-red-400/40', 'bg-purple-400/40', 'bg-blue-400/40'][i % 3]}`}
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                background: ['bg-red-400/40', 'bg-purple-400/40', 'bg-blue-400/40'][i % 3]
               }}
               animate={{
                 y: [0, -120, 0],
@@ -505,7 +504,6 @@ const CoreValuesSection = () => {
                 delay: i * 0.15,
                 ease: 'easeInOut'
               }}
-              className={['bg-red-400/40', 'bg-purple-400/40', 'bg-blue-400/40'][i % 3]}
             />
           ))}
         </div>

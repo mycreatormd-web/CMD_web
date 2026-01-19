@@ -8,6 +8,7 @@ import Partnerships from './components/Partnerships';
 import ValueProps from './components/ValueProps';
 import SocialProof from './components/SocialProof';
 import Resources from './components/Resources';
+import Contact from './components/Contact';
 
 export default function Home() {
   return (
@@ -21,7 +22,7 @@ export default function Home() {
       <Partnerships />
       <ValueProps />
       <SocialProof />
-      {/* Other sections will go here */}
+      <Contact />
     </main>
   );
 }
