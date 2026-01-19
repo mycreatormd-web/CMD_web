@@ -10,6 +10,7 @@ import CoreValuesSection from './CoreValuesSection';
 const Community = () => {
   const { openForm } = useCommunityForm();
   const [expandedId, setExpandedId] = useState<number | null>(null);
+  const [hoveredPillar, setHoveredPillar] = useState<string | null>(null);
 
   const insideCommunity = [
     {
@@ -50,10 +51,45 @@ const Community = () => {
   ];
 
   const audience = [
-    "Medical students",
-    "Practicing medics",
-    "Health creators",
-    "Digital health educators"
+    {
+      title: "Medics",
+      description: "Doctors, nurses, and healthcare professionals ready to extend their reach beyond the clinic",
+      icon: "🩺"
+    },
+    {
+      title: "Aspiring Medics",
+      description: "Medical students and trainees building their personal brand early",
+      icon: "📚"
+    },
+    {
+      title: "Health Educators",
+      description: "Those passionate about teaching and sharing medical knowledge with the world",
+      icon: "🎓"
+    }
+  ];
+
+  const pillars = [
+    {
+      word: "Impact",
+      description: "Reach thousands with health education that actually changes lives",
+      gradient: "from-red-500 to-pink-500",
+      bgGradient: "from-red-50 to-pink-50",
+      borderColor: "border-red-200"
+    },
+    {
+      word: "Influence",
+      description: "Build authority and become a trusted voice in your medical niche",
+      gradient: "from-purple-500 to-indigo-500",
+      bgGradient: "from-purple-50 to-indigo-50",
+      borderColor: "border-purple-200"
+    },
+    {
+      word: "Income",
+      description: "Create sustainable revenue streams from your expertise online",
+      gradient: "from-emerald-500 to-teal-500",
+      bgGradient: "from-emerald-50 to-teal-50",
+      borderColor: "border-emerald-200"
+    }
   ];
 
   const testimonials = [
@@ -285,44 +321,324 @@ const Community = () => {
         {/* Divider Border */}
         <div className="my-8 sm:my-12 md:my-16 border-t border-gray-200" />
 
-        {/* Who It's For Section */}
+        {/* Who It's For Section 2.0 - Premium Design */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="mb-16 sm:mb-20 md:mb-28"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="mb-16 sm:mb-20 md:mb-28 relative"
         >
-          <motion.h3
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.45, duration: 0.5 }}
-            className="text-sm sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-7 md:mb-8"
-          >
-            Who It's For
-          </motion.h3>
+          {/* Subtle Floating Particles - Optimized */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {[...Array(12)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute rounded-full"
+                style={{
+                  width: `${4 + (i % 3) * 2}px`,
+                  height: `${4 + (i % 3) * 2}px`,
+                  background: i % 3 === 0 
+                    ? 'radial-gradient(circle, rgba(239, 68, 68, 0.4) 0%, transparent 70%)' 
+                    : i % 3 === 1 
+                    ? 'radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%)' 
+                    : 'radial-gradient(circle, rgba(16, 185, 129, 0.4) 0%, transparent 70%)',
+                  left: `${10 + (i * 7)}%`,
+                  top: `${15 + (i * 6) % 70}%`,
+                }}
+                animate={{
+                  y: [0, -20, 0],
+                  opacity: [0.4, 0.8, 0.4],
+                }}
+                transition={{
+                  duration: 4 + (i % 3),
+                  repeat: Infinity,
+                  delay: i * 0.3,
+                  ease: "easeInOut"
+                }}
+              />
+            ))}
+          </div>
 
-          {/* Audience Tags */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="flex flex-wrap gap-3 sm:gap-4"
-          >
+          {/* Section Header - Clean & Elegant */}
+          <div className="text-center mb-12 sm:mb-16 relative">
+            {/* Ambient Glow */}
+            <motion.div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-40 rounded-full blur-3xl pointer-events-none"
+              style={{
+                background: 'radial-gradient(ellipse, rgba(168, 85, 247, 0.15) 0%, transparent 70%)'
+              }}
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.5, 0.8, 0.5],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            
+            <motion.h3
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ 
+                duration: 0.8,
+                ease: [0.22, 1, 0.36, 1]
+              }}
+              className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 relative"
+            >
+              Who It's For
+            </motion.h3>
+            
+            {/* Subtitle with Interactive Highlighted Words */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ 
+                delay: 0.2, 
+                duration: 0.8,
+                ease: [0.22, 1, 0.36, 1]
+              }}
+              className="text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
+            >
+              For medics and aspiring medics who want to make{' '}
+              <motion.span 
+                className={`font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500 transition-all duration-300 ${hoveredPillar === 'Impact' ? 'scale-110' : ''}`}
+                animate={{
+                  scale: hoveredPillar === 'Impact' ? 1.15 : 1,
+                  textShadow: hoveredPillar === 'Impact' ? '0 0 20px rgba(239, 68, 68, 0.5)' : '0 0 0px transparent'
+                }}
+                transition={{ duration: 0.3 }}
+                style={{ display: 'inline-block' }}
+              >
+                impact
+              </motion.span>,{' '}
+              build{' '}
+              <motion.span 
+                className={`font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-indigo-500 transition-all duration-300`}
+                animate={{
+                  scale: hoveredPillar === 'Influence' ? 1.15 : 1,
+                  textShadow: hoveredPillar === 'Influence' ? '0 0 20px rgba(168, 85, 247, 0.5)' : '0 0 0px transparent'
+                }}
+                transition={{ duration: 0.3 }}
+                style={{ display: 'inline-block' }}
+              >
+                influence
+              </motion.span>,{' '}
+              and generate{' '}
+              <motion.span 
+                className={`font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300`}
+                animate={{
+                  scale: hoveredPillar === 'Income' ? 1.15 : 1,
+                  textShadow: hoveredPillar === 'Income' ? '0 0 20px rgba(16, 185, 129, 0.5)' : '0 0 0px transparent'
+                }}
+                transition={{ duration: 0.3 }}
+                style={{ display: 'inline-block' }}
+              >
+                income
+              </motion.span>{' '}
+              online.
+            </motion.p>
+          </div>
+
+          {/* Three Pillars 2.0 - Premium Glass Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 mb-8 sm:mb-10">
+            {pillars.map((pillar, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  delay: 0.3 + idx * 0.15, 
+                  duration: 0.7,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                whileHover={{ 
+                  y: -8, 
+                  scale: 1.02,
+                  transition: { duration: 0.25, ease: "easeOut" }
+                }}
+                onMouseEnter={() => setHoveredPillar(pillar.word)}
+                onMouseLeave={() => setHoveredPillar(null)}
+                className="relative group cursor-pointer"
+              >
+                {/* Card Glow Effect */}
+                <motion.div
+                  className={`absolute -inset-0.5 bg-gradient-to-r ${pillar.gradient} rounded-2xl blur-lg transition-all duration-500`}
+                  initial={{ opacity: 0 }}
+                  animate={{ 
+                    opacity: hoveredPillar === pillar.word ? 0.6 : 0 
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+                
+                {/* Main Card */}
+                <div className={`relative h-full bg-gradient-to-br ${pillar.bgGradient} backdrop-blur-sm border-2 ${pillar.borderColor} rounded-2xl overflow-hidden transition-all duration-300 group-hover:border-opacity-80`}>
+                  {/* Top Gradient Bar */}
+                  <div className={`h-1.5 bg-gradient-to-r ${pillar.gradient}`} />
+                  
+                  {/* Content Container */}
+                  <div className="p-5 sm:p-6 md:p-7">
+                    {/* Icon & Title Row */}
+                    <div className="flex items-center gap-3 mb-3">
+                      <motion.div
+                        className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${pillar.gradient} flex items-center justify-center shadow-lg`}
+                        whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
+                        transition={{ duration: 0.4 }}
+                      >
+                        <span className="text-white font-black text-lg sm:text-xl">
+                          {pillar.word[0]}
+                        </span>
+                      </motion.div>
+                      <h4 className={`text-xl sm:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r ${pillar.gradient}`}>
+                        {pillar.word}
+                      </h4>
+                    </div>
+                    
+                    {/* Description */}
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                      {pillar.description}
+                    </p>
+                  </div>
+
+                  {/* Decorative Background Letter */}
+                  <div 
+                    className={`absolute -right-4 -bottom-6 text-[120px] font-black text-transparent bg-clip-text bg-gradient-to-br ${pillar.gradient} opacity-[0.07] select-none pointer-events-none leading-none`}
+                  >
+                    {pillar.word[0]}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Connection Flow Line (Desktop Only) - Red to Purple */}
+          <div className="hidden md:block relative h-12 mb-6">
+            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center">
+              {/* Full Width Line - Red to Purple gradient */}
+              <motion.div
+                className="w-2/3 h-[3px] rounded-full"
+                style={{
+                  background: 'linear-gradient(90deg, #ef4444 0%, #a855f7 100%)'
+                }}
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.8, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              />
+              
+              {/* Traveling Orb - Changes color as it moves */}
+              <motion.div
+                className="absolute w-5 h-5 rounded-full shadow-lg"
+                style={{
+                  marginLeft: '-10px',
+                }}
+                animate={{
+                  left: ['16.67%', '83.33%', '16.67%'],
+                  background: [
+                    'linear-gradient(135deg, #ef4444 0%, #f87171 100%)',
+                    'linear-gradient(135deg, #a855f7 0%, #c084fc 100%)',
+                    'linear-gradient(135deg, #ef4444 0%, #f87171 100%)'
+                  ],
+                  boxShadow: [
+                    '0 0 20px rgba(239, 68, 68, 0.7)',
+                    '0 0 20px rgba(168, 85, 247, 0.7)',
+                    '0 0 20px rgba(239, 68, 68, 0.7)'
+                  ],
+                  scale: [1.2, 1.2, 1.2],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  times: [0, 0.5, 1]
+                }}
+              />
+              
+              {/* Endpoint Dots - Red on left, Purple on right */}
+              <div className="absolute left-[16.67%] -translate-x-1/2 w-3 h-3 rounded-full bg-red-500" style={{ boxShadow: '0 0 12px rgba(239, 68, 68, 0.6)' }} />
+              <div className="absolute right-[16.67%] translate-x-1/2 w-3 h-3 rounded-full bg-purple-500" style={{ boxShadow: '0 0 12px rgba(168, 85, 247, 0.6)' }} />
+            </div>
+          </div>
+
+          {/* Audience Cards 2.0 - Refined Design */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
             {audience.map((item, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.5 + idx * 0.08, duration: 0.4 }}
-                whileHover={{ scale: 1.05, y: -2 }}
-                className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-red-100/80 to-purple-100/80 border-2 border-red-200/60 hover:border-red-400 rounded-full transition-all duration-300"
+                transition={{ 
+                  delay: 0.6 + idx * 0.1, 
+                  duration: 0.6,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                whileHover={{ 
+                  y: -6, 
+                  scale: 1.02,
+                  transition: { duration: 0.25 }
+                }}
+                className="relative group"
               >
-                <span className="text-xs sm:text-base font-semibold text-gray-900">{item}</span>
+                {/* Card */}
+                <div className="relative flex items-start gap-4 p-5 sm:p-6 bg-white border-2 border-gray-100 hover:border-gray-200 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
+                  {/* Gradient Overlay on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 via-transparent to-purple-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  {/* Emoji Icon with Background */}
+                  <motion.div 
+                    className="relative z-10 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 flex items-center justify-center shadow-sm"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <span className="text-2xl sm:text-3xl">{item.icon}</span>
+                  </motion.div>
+                  
+                  {/* Content */}
+                  <div className="relative z-10 flex-1">
+                    <h5 className="font-bold text-gray-900 text-base sm:text-lg mb-1.5">
+                      {item.title}
+                    </h5>
+                    <p className="text-sm text-gray-500 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+
+                  {/* Subtle Corner Accent */}
+                  <div className={`absolute top-0 right-0 w-16 h-16 ${idx === 0 ? 'bg-red-500' : idx === 1 ? 'bg-purple-500' : 'bg-emerald-500'} opacity-[0.03] rounded-bl-[40px]`} />
+                </div>
               </motion.div>
+            ))}
+          </div>
+
+          {/* Bottom Accent Dots */}
+          <motion.div
+            className="flex justify-center mt-10 gap-3"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 1, duration: 0.5 }}
+          >
+            {['bg-red-400', 'bg-purple-400', 'bg-emerald-400'].map((color, i) => (
+              <motion.div
+                key={i}
+                className={`w-2 h-2 rounded-full ${color}`}
+                animate={{
+                  scale: [1, 1.3, 1],
+                  opacity: [0.6, 1, 0.6],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: i * 0.3,
+                  ease: "easeInOut"
+                }}
+              />
             ))}
           </motion.div>
         </motion.div>
