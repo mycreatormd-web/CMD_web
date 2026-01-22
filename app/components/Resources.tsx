@@ -1,10 +1,17 @@
 // app/components/Resources.tsx
 "use client";
 
-import { motion } from 'framer-motion';
-import { CheckCircle2, Calendar, BookOpen, Briefcase, Download, Zap, Sparkles } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { CheckCircle2, Calendar, BookOpen, Briefcase, Download, Zap, Sparkles, ChevronDown } from 'lucide-react';
 
 const Resources = () => {
+  const [expandedId, setExpandedId] = useState<number | null>(null);
+
+  const toggleExpand = (id: number) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
+
   const resources = [
     {
       id: 1,
@@ -118,9 +125,10 @@ const Resources = () => {
         </motion.div>
 
         {/* Resources Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto mb-12 md:mb-16 lg:mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto mb-12 md:mb-16 lg:mb-20 items-start">
           {resources.map((resource, idx) => {
             const Icon = resource.icon;
+            const isExpanded = expandedId === resource.id;
             return (
               <motion.div
                 key={resource.id}
@@ -132,21 +140,17 @@ const Resources = () => {
                   duration: 0.5,
                   ease: "easeOut"
                 }}
-                className="h-full"
               >
-                <motion.a
-                  href={resource.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                  className="block h-full"
+                <motion.div
+                  whileHover={{ y: -4, transition: { duration: 0.3 } }}
+                  className="block"
                 >
-                  <div className={`relative h-full bg-white rounded-xl border-2 ${resource.borderColor} shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden cursor-pointer group`}>
+                  <div className={`relative bg-white rounded-xl border-2 ${resource.borderColor} shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group min-h-[280px] sm:min-h-[300px]`}>
                     {/* Animated Background - BEHIND content */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${resource.bgColor} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`} />
 
                     {/* Content Container - ABOVE background */}
-                    <div className="relative z-20 p-6 h-full flex flex-col">
+                    <div className="relative z-20 p-6 flex flex-col h-full">
                       {/* Badge */}
                       {resource.badge && (
                         <motion.div
@@ -209,48 +213,93 @@ const Resources = () => {
                         <span className="text-white text-[10px] sm:text-xs font-semibold">{resource.type}</span>
                       </div>
 
-                      {/* Title with gradient */}
-                      <motion.h3
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: idx * 0.1 + 0.1, duration: 0.4 }}
-                        className="text-base sm:text-lg font-bold mb-3 leading-tight"
-                        style={{
-                          background: resource.id === 1 ? 'linear-gradient(135deg, #dc2626, #b91c1c)' :
-                                     resource.id === 2 ? 'linear-gradient(135deg, #a855f7, #7c3aed)' :
-                                     resource.id === 3 ? 'linear-gradient(135deg, #ec4899, #be185d)' :
-                                     'linear-gradient(135deg, #a855f7, #7c3aed)',
-                          WebkitBackgroundClip: 'text',
-                          WebkitTextFillColor: 'transparent',
-                          backgroundClip: 'text'
-                        }}
+                      {/* Title with gradient - Clickable for dropdown */}
+                      <motion.button
+                        onClick={() => toggleExpand(resource.id)}
+                        className="w-full text-left flex items-center justify-between gap-2 cursor-pointer"
                       >
-                        {resource.title}
-                      </motion.h3>
+                        <h3
+                          className="text-base sm:text-lg font-bold leading-tight"
+                          style={{
+                            background: resource.id === 1 ? 'linear-gradient(135deg, #dc2626, #b91c1c)' :
+                                       resource.id === 2 ? 'linear-gradient(135deg, #a855f7, #7c3aed)' :
+                                       resource.id === 3 ? 'linear-gradient(135deg, #ec4899, #be185d)' :
+                                       'linear-gradient(135deg, #a855f7, #7c3aed)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text'
+                          }}
+                        >
+                          {resource.title}
+                        </h3>
+                        <motion.div
+                          animate={{ rotate: isExpanded ? 180 : 0 }}
+                          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                          className="flex-shrink-0"
+                        >
+                          <ChevronDown 
+                            className="w-4 h-4 sm:w-5 sm:h-5"
+                            style={{
+                              color: resource.id === 1 ? '#dc2626' : resource.id === 2 ? '#a855f7' : resource.id === 3 ? '#db2777' : '#9333ea'
+                            }}
+                          />
+                        </motion.div>
+                      </motion.button>
 
-                      {/* Description */}
-                      <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
-                        className="text-xs sm:text-sm text-gray-700 leading-relaxed flex-grow mb-4"
-                      >
-                        {resource.description}
-                      </motion.p>
+                      {/* Animated Dropdown Description */}
+                      <AnimatePresence initial={false}>
+                        {isExpanded && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ 
+                              height: "auto", 
+                              opacity: 1,
+                              transition: {
+                                height: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+                                opacity: { duration: 0.3, delay: 0.1 }
+                              }
+                            }}
+                            exit={{ 
+                              height: 0, 
+                              opacity: 0,
+                              transition: {
+                                height: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+                                opacity: { duration: 0.2 }
+                              }
+                            }}
+                            className="overflow-hidden"
+                          >
+                            <motion.p
+                              initial={{ y: -10 }}
+                              animate={{ y: 0 }}
+                              exit={{ y: -10 }}
+                              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                              className="text-xs sm:text-sm text-gray-700 leading-relaxed pt-3 pb-2"
+                            >
+                              {resource.description}
+                            </motion.p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                      {/* Spacer to push CTA to bottom */}
+                      <div className="flex-grow" />
 
                       {/* CTA Button */}
-                      <motion.div
+                      <motion.a
+                        href={resource.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         whileHover={{ x: 4 }}
-                        className="flex items-center gap-2 text-sm font-semibold text-gray-900 group/link mt-auto"
+                        className="flex items-center gap-2 text-sm font-semibold text-gray-900 group/link mt-4 cursor-pointer"
+                        onClick={(e) => e.stopPropagation()}
                       >
                         <span>{resource.cta}</span>
                         <Download className="w-3 h-3 sm:w-4 sm:h-4 group-hover/link:translate-y-0.5 transition-transform" />
-                      </motion.div>
+                      </motion.a>
                     </div>
                   </div>
-                </motion.a>
+                </motion.div>
               </motion.div>
             );
           })}

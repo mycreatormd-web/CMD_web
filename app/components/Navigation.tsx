@@ -19,7 +19,7 @@ const Navigation = () => {
     { label: 'Programs', href: pathname === '/' ? '#programs' : '/programs' },
     { label: 'Community', href: '#community' },
     { label: 'Resources', href: '#resources' },
-    { label: 'Partnerships', href: '#partnerships' },
+    { label: 'Blog', href: '/blog' },
     { label: 'Contact', href: '#contact' },
   ];
 

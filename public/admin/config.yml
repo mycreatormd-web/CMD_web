@@ -1,0 +1,51 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Enables the editorial workflow (draft, review, ready, published)
+publish_mode: editorial_workflow
+
+# Media files storage
+media_folder: "public/blog/images"
+public_folder: "/blog/images"
+
+# Site URL (update this to your actual domain)
+site_url: https://creatormd.com
+display_url: https://creatormd.com
+
+# Logo for the CMS
+logo_url: /cmd_logo_invert6.svg
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}"
+    preview_path: "blog/{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Publish Date", name: "date", widget: "datetime", required: true }
+      - { label: "Author", name: "author", widget: "string", default: "CreatorMD Team" }
+      - { 
+          label: "Category", 
+          name: "category", 
+          widget: "select",
+          options: ["Getting Started", "Personal Branding", "Content Strategy", "Growth Tips", "Monetization", "Community Stories"],
+          default: "Getting Started"
+        }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Excerpt", name: "excerpt", widget: "text", required: true, hint: "A short summary of the post (150-200 characters)" }
+      - { label: "Read Time", name: "readTime", widget: "string", default: "5 min read" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Published", name: "published", widget: "boolean", default: false, hint: "Toggle to publish or unpublish this post" }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "About Page Content"
+        name: "about"
+        file: "content/pages/about.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
