@@ -3,9 +3,18 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Users, BookOpen, Trophy, Heart, MessageCircle, Zap, ChevronRight, CheckCircle, Star, Lightbulb, Shield } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { useCommunityForm } from '@/app/context/CommunityFormContext';
 import CoreValuesSection from './CoreValuesSection';
+
+// Unique icons from different libraries
+import { HiOutlineAcademicCap, HiOutlineSparkles, HiOutlineLightningBolt, HiOutlineUserGroup } from 'react-icons/hi';
+import { RiShieldStarLine, RiLightbulbFlashLine, RiTeamLine, RiAwardLine } from 'react-icons/ri';
+import { TbTargetArrow, TbBrandCampaignmonitor, TbHeartHandshake, TbRocket } from 'react-icons/tb';
+import { BsGraphUpArrow, BsStars } from 'react-icons/bs';
+import { IoTrophyOutline, IoRocketOutline } from 'react-icons/io5';
+import { FiTarget } from 'react-icons/fi';
+import { AiFillStar } from 'react-icons/ai';
 
 const Community = () => {
   const { openForm } = useCommunityForm();
@@ -15,28 +24,28 @@ const Community = () => {
   const insideCommunity = [
     {
       id: 1,
-      icon: BookOpen,
+      icon: HiOutlineAcademicCap,
       title: "Monthly Live Learning Sessions",
       description: "Learn directly from experienced creators",
       details: "Join our live workshops every week where we dive deep into content creation, health communication, personal branding, and monetization strategies. Interactive Q&A with industry experts included."
     },
     {
       id: 2,
-      icon: Trophy,
+      icon: IoTrophyOutline,
       title: "Quarterly Challenges & Giveaways",
       description: "Stay inspired with curated content ideas",
       details: "Get fresh, themed content prompts every month. Participate in challenges that stretch your creativity, get feedback from the community, and build your portfolio while having fun."
     },
     {
       id: 3,
-      icon: Zap,
+      icon: TbRocket,
       title: "Practical Templates & Resources",
       description: "Scripts, captions, and ideas ready to use",
       details: "Access our library of ready-to-use content templates, email swipes, video scripts, carousel templates, and caption ideas. Save hours of planning and jump straight into creation."
     },
     {
       id: 4,
-      icon: Heart,
+      icon: TbHeartHandshake,
       title: "Peer Support & Accountability",
       description: "Connect with fellow medics on the journey",
       details: "Find your accountability buddy, celebrate wins together, share struggles without judgment, and build real relationships with medics who understand your unique challenges."
@@ -44,10 +53,10 @@ const Community = () => {
   ];
 
   const culturePoints = [
-    { icon: Shield, text: "No comparison culture" },
-    { icon: Lightbulb, text: "Execution-focused space" },
-    { icon: Users, text: "Supportive environment" },
-    { icon: Star, text: "Purpose-driven community" }
+    { icon: RiShieldStarLine, text: "No comparison culture" },
+    { icon: RiLightbulbFlashLine, text: "Execution-focused space" },
+    { icon: RiTeamLine, text: "Supportive environment" },
+    { icon: FiTarget, text: "Purpose-driven community" }
   ];
 
   const audience = [
@@ -136,7 +145,7 @@ const Community = () => {
             transition={{ delay: 0.1, duration: 0.4 }}
             className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-red-100 to-purple-100 rounded-full mb-2 md:mb-3 lg:mb-3.5"
           >
-            <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-700" />
+            <RiTeamLine className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-700" />
             <span className="text-xs sm:text-sm font-semibold text-red-700">COMMUNITY</span>
           </motion.div>
 
@@ -674,7 +683,7 @@ const Community = () => {
                 {/* Stars */}
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    <AiFillStar key={i} className="w-4 h-4 text-yellow-400" />
                   ))}
                 </div>
 
