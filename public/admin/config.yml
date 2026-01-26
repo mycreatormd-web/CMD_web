@@ -16,6 +16,10 @@ display_url: https://creatormd.com
 # Logo for the CMS
 logo_url: /cmd_logo_invert6.svg
 
+# Restrict access to specific roles (set in Netlify Identity)
+# Only users with 'admin' or 'editor' role can access
+# You assign roles in Netlify Dashboard → Identity → Users → Click user → Edit → Add role
+
 collections:
   - name: "blog"
     label: "Blog Posts"

@@ -9,6 +9,23 @@
   NODE_VERSION = "18"
   NPM_FLAGS = "--legacy-peer-deps"
 
+# Password protect the admin area
+# Only people with the password can even see the login page
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# Basic Auth for /admin (requires Netlify Pro plan)
+# Uncomment below if you have Pro plan:
+# [[redirects]]
+#   from = "/admin/*"
+#   to = "/admin/:splat"
+#   status = 200
+#   force = true
+#   [redirects.headers]
+#     Authorization = "Basic Auth"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
