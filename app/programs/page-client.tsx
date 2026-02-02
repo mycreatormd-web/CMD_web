@@ -140,7 +140,7 @@ const ComingSoonCard = ({
           </div>
 
           {/* Program Title */}
-          <h3 className="text-sm sm:text-xl font-bold text-white mb-3 leading-tight line-clamp-2">
+          <h3 className="text-base sm:text-xl font-bold text-white mb-3 leading-tight line-clamp-2">
             {program.title}
           </h3>
 
@@ -151,7 +151,7 @@ const ComingSoonCard = ({
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
             className="overflow-hidden"
           >
-            <p className={`text-gray-400 text-xs sm:text-sm leading-relaxed ${!isExpanded ? 'line-clamp-1' : ''}`}>
+            <p className={`text-gray-400 text-sm sm:text-sm leading-relaxed ${!isExpanded ? 'line-clamp-1' : ''}`}>
               {program.shortDescription}
             </p>
           </motion.div>
@@ -373,7 +373,7 @@ export default function ProgramsPageClient() {
             <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-4 sm:mb-6 leading-tight">
               Transform Your <span className="bg-gradient-to-r from-red-500 via-purple-500 to-red-600 bg-clip-text text-transparent">Medical Career</span>
             </h1>
-            <p className="text-xs sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium px-2">
+            <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium px-2">
               Expert-designed programs combining self-paced learning, live bootcamps, and personalized mentorship. Take control of your professional development.
             </p>
           </motion.div>
@@ -396,7 +396,7 @@ export default function ProgramsPageClient() {
                 Available Now
               </h2>
             </div>
-            <p className="text-gray-400 text-xs sm:text-base md:text-lg mt-2 sm:mt-3">Start your transformation today with our most popular programs</p>
+            <p className="text-gray-400 text-sm sm:text-base md:text-lg mt-2 sm:mt-3">Start your transformation today with our most popular programs</p>
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
@@ -431,7 +431,7 @@ export default function ProgramsPageClient() {
                       </h3>
 
                       {/* Description */}
-                      <p className="text-gray-400 text-xs sm:text-base mb-6 flex-grow leading-relaxed group-hover:text-gray-300 transition-colors">
+                      <p className="text-gray-400 text-sm sm:text-base mb-6 flex-grow leading-relaxed group-hover:text-gray-300 transition-colors">
                         {program.shortDescription}
                       </p>
 
@@ -509,7 +509,7 @@ export default function ProgramsPageClient() {
                 Coming Soon
               </h2>
             </div>
-            <p className="text-gray-400 text-xs sm:text-base md:text-lg mt-3">Exciting new programs launching soon. Secure your spot with early access.</p>
+            <p className="text-gray-400 text-sm sm:text-base md:text-lg mt-3">Exciting new programs launching soon. Secure your spot with early access.</p>
           </motion.div>
 
           {/* Grid - Shows 3 cards on first row, rest hidden until expanded */}
@@ -615,7 +615,7 @@ export default function ProgramsPageClient() {
                 How It Works
               </h2>
             </div>
-            <p className="text-xs sm:text-lg text-gray-400 mt-3 max-w-2xl">A simple 3-step process to accelerate your medical career</p>
+            <p className="text-sm sm:text-lg text-gray-400 mt-3 max-w-2xl">A simple 3-step process to accelerate your medical career</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
@@ -673,7 +673,7 @@ export default function ProgramsPageClient() {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-400 leading-relaxed text-xs sm:text-base group-hover:text-gray-300 transition-colors duration-300">
+                  <p className="text-gray-400 leading-relaxed text-sm sm:text-base group-hover:text-gray-300 transition-colors duration-300">
                     {item.description}
                   </p>
 
@@ -710,7 +710,7 @@ export default function ProgramsPageClient() {
                 Frequently Asked Questions
               </h2>
             </div>
-            <p className="text-gray-400 text-xs sm:text-lg mt-3">Everything you need to know about our programs</p>
+            <p className="text-gray-400 text-sm sm:text-lg mt-3">Everything you need to know about our programs</p>
           </motion.div>
 
           <div className="space-y-4">
@@ -751,10 +751,10 @@ export default function ProgramsPageClient() {
                       </div>
                     </motion.div>
                     <div className="flex-1">
-                      <h3 className="font-black text-white text-sm sm:text-xl mb-3 group-hover:text-red-300 transition-colors duration-300">
+                      <h3 className="font-black text-white text-base sm:text-xl mb-3 group-hover:text-red-300 transition-colors duration-300">
                         {faq.q}
                       </h3>
-                      <p className="text-gray-400 text-xs sm:text-base leading-relaxed group-hover:text-gray-300 transition-colors">
+                      <p className="text-gray-400 text-sm sm:text-base leading-relaxed group-hover:text-gray-300 transition-colors">
                         {faq.a}
                       </p>
                     </div>
@@ -785,7 +785,7 @@ export default function ProgramsPageClient() {
             <h2 className="text-2xl sm:text-5xl md:text-6xl font-black mb-6">
               Ready to Transform Your <span className="bg-gradient-to-r from-red-500 to-purple-500 bg-clip-text text-transparent">Medical Career?</span>
             </h2>
-            <p className="text-xs sm:text-xl text-gray-300 mb-12 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-sm sm:text-xl text-gray-300 mb-12 leading-relaxed max-w-2xl mx-auto">
               Join thousands of healthcare professionals already accelerating their growth with our programs. Secure your spot today and start your journey to success.
             </p>
 
@@ -884,7 +884,7 @@ export default function ProgramsPageClient() {
                     <h3 className="text-lg sm:text-3xl font-black text-white mb-2">
                       Stay Updated
                     </h3>
-                    <p className="text-gray-400 text-xs sm:text-base mb-8">
+                    <p className="text-gray-400 text-sm sm:text-base mb-8">
                       Get notified about new programs, exclusive offers, and medical career insights delivered to your inbox.
                     </p>
 

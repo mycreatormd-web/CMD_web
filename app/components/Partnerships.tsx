@@ -219,7 +219,7 @@ const Partnerships = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.15, duration: 0.6 }}
-              className="text-lg md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-2 sm:mb-2.5 lg:mb-3 xl:mb-4"
+              className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-2 sm:mb-2.5 lg:mb-3 xl:mb-4"
             >
               Partner with CreatorMD to{" "}
               <span className="bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent">
@@ -233,7 +233,7 @@ const Partnerships = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-xs sm:text-base md:text-sm lg:text-base xl:text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed"
+              className="text-sm sm:text-base md:text-sm lg:text-base xl:text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed"
             >
               We work with hospitals, global health organizations, and digital platforms to create ethical, high-impact health communication — training staff, running content campaigns, and building workplace wellness programs.
             </motion.p>
@@ -320,7 +320,7 @@ const Partnerships = () => {
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: idx * 0.1 + 0.1, duration: 0.4 }}
-                          className="text-sm sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-1.5 sm:mb-2 md:mb-3 leading-snug"
+                          className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-1.5 sm:mb-2 md:mb-3 leading-snug"
                         >
                           {benefit.title}
                         </motion.h4>
@@ -331,7 +331,7 @@ const Partnerships = () => {
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
-                          className="text-xs sm:text-base md:text-base text-gray-300 leading-relaxed"
+                          className="text-sm sm:text-base md:text-base text-gray-300 leading-relaxed"
                         >
                           {benefit.description}
                         </motion.p>

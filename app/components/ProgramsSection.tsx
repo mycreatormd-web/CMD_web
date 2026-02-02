@@ -120,7 +120,7 @@ const ProgramCard = ({ program, idx, expandedId, setExpandedId }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 + 0.1, duration: 0.4 }}
-              className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-bold text-gray-900 mb-1 sm:mb-1.5 md:mb-1.5 lg:mb-1.5 xl:mb-2 leading-snug"
+              className="text-sm sm:text-base md:text-base lg:text-lg xl:text-xl font-bold text-gray-900 mb-1 sm:mb-1.5 md:mb-1.5 lg:mb-1.5 xl:mb-2 leading-snug"
             >
               {program.title}
             </motion.h3>
@@ -131,7 +131,7 @@ const ProgramCard = ({ program, idx, expandedId, setExpandedId }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
-              className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base text-gray-700 mb-1.5 sm:mb-2 md:mb-2 lg:mb-2.5 xl:mb-4 leading-relaxed"
+              className="text-sm sm:text-sm md:text-sm lg:text-sm xl:text-base text-gray-700 mb-1.5 sm:mb-2 md:mb-2 lg:mb-2.5 xl:mb-4 leading-relaxed"
             >
               {program.microcopy}
             </motion.p>
@@ -298,7 +298,7 @@ const ProgramsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.5 }}
-            className="text-lg sm:text-2xl md:text-3xl font-bold text-gray-900 mb-2 sm:mb-3"
+            className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-2 sm:mb-3"
           >
             Ready to explore all programs?
           </motion.h3>
@@ -308,7 +308,7 @@ const ProgramsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.45, duration: 0.5 }}
-            className="text-xs sm:text-base text-gray-700 max-w-2xl mx-auto mb-4 sm:mb-8"
+            className="text-sm sm:text-base text-gray-700 max-w-2xl mx-auto mb-4 sm:mb-8"
           >
             Check out our complete programs hub with detailed descriptions, pricing, and everything you need to choose your path.
           </motion.p>

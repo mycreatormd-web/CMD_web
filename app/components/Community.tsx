@@ -155,7 +155,7 @@ const Community = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.15, duration: 0.6 }}
-            className="text-sm sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl font-bold text-gray-900 mb-2 md:mb-3 lg:mb-4 xl:mb-5"
+            className="text-xl sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl font-bold text-gray-900 mb-2 md:mb-3 lg:mb-4 xl:mb-5"
           >
             You don't have to build{" "}
             <span className="bg-gradient-to-r from-red-600 to-purple-700 bg-clip-text text-transparent">
@@ -169,7 +169,7 @@ const Community = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-xs md:text-sm lg:text-base xl:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed"
+            className="text-sm md:text-sm lg:text-base xl:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed"
           >
             CreatorMD is a supportive global community where medics learn to create, communicate, and grow online — without burnout or pressure.
           </motion.p>
@@ -225,12 +225,12 @@ const Community = () => {
                     </motion.div>
 
                     {/* Title */}
-                    <h4 className="relative z-10 text-sm sm:text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3">
+                    <h4 className="relative z-10 text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3">
                       {feature.title}
                     </h4>
 
                     {/* Description */}
-                    <p className="relative z-10 text-xs sm:text-base text-gray-600 leading-relaxed mb-4">
+                    <p className="relative z-10 text-sm sm:text-base text-gray-600 leading-relaxed mb-4">
                       {feature.description}
                     </p>
 
@@ -297,7 +297,7 @@ const Community = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.5 }}
-              className="relative z-10 text-xs sm:text-lg md:text-xl text-white/95 leading-relaxed max-w-3xl mb-4 sm:mb-8 md:mb-10"
+              className="relative z-10 text-sm sm:text-lg md:text-xl text-white/95 leading-relaxed max-w-3xl mb-4 sm:mb-8 md:mb-10"
             >
               CreatorMD is a <span className="font-bold text-white">calm, focused space</span>. No noise. No hype. No comparison culture. Just medics supporting one another, sharing knowledge, and building with clarity and purpose.
             </motion.p>
@@ -316,7 +316,7 @@ const Community = () => {
                     className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-3 sm:p-4"
                   >
                     <Icon className="w-5 h-5 text-white flex-shrink-0" />
-                    <span className="text-xs sm:text-base font-semibold text-white">{point.text}</span>
+                    <span className="text-sm sm:text-base font-semibold text-white">{point.text}</span>
                   </motion.div>
                 );
               })}
@@ -688,7 +688,7 @@ const Community = () => {
                 </div>
 
                 {/* Quote */}
-                <p className="text-sm sm:text-lg text-gray-900 font-semibold mb-4 italic">
+                <p className="text-base sm:text-lg text-gray-900 font-semibold mb-4 italic">
                   "{testimonial.quote}"
                 </p>
 
@@ -739,7 +739,7 @@ const Community = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6, duration: 0.5 }}
-            className="text-xs sm:text-base text-gray-700 font-semibold"
+            className="text-sm sm:text-base text-gray-700 font-semibold"
           >
             Be part of a growing network of medics creating with intention.
           </motion.p>

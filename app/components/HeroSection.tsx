@@ -169,7 +169,7 @@ const HeroSection = () => {
             transition={{ delay: 0.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="text-center mb-4 md:mb-6 lg:mb-8 px-4 mt-4 sm:mt-8 md:mt-6 lg:mt-10 xl:mt-16"
           >
-            <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 md:px-4 md:py-2 lg:px-5 lg:py-2 xl:px-6 xl:py-2.5 bg-gradient-to-r from-red-600/20 via-purple-600/20 to-red-600/20 backdrop-blur-lg rounded-full border-2 border-red-500/40 text-white text-xs sm:text-xs md:text-xs lg:text-xs xl:text-sm font-bold shadow-lg hover:shadow-red-600/20 transition-all duration-300 -translate-y-3 sm:translate-y-0">
+            <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 md:px-4 md:py-2 lg:px-5 lg:py-2 xl:px-6 xl:py-2.5 bg-gradient-to-r from-red-600/20 via-purple-600/20 to-red-600/20 backdrop-blur-lg rounded-full border-2 border-red-500/40 text-white text-sm sm:text-xs md:text-xs lg:text-xs xl:text-sm font-bold shadow-lg hover:shadow-red-600/20 transition-all duration-300 -translate-y-8 sm:translate-y-0">
               Built by medics, for medics.
             </span>
           </motion.div>

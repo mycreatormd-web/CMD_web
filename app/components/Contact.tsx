@@ -132,7 +132,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-900 mb-1">Email Us</h3>
-                    <p className="text-sm text-gray-500 mb-2">We'll respond within 24 hours</p>
+                    <p className="text-sm sm:text-sm text-gray-500 mb-2">We'll respond within 24 hours</p>
                     <a 
                       href="mailto:hello@creatormd.com" 
                       className="text-red-600 font-medium text-sm hover:text-red-700 transition-colors"
@@ -151,7 +151,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-900 mb-1">Quick Response</h3>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm sm:text-sm text-gray-500">
                       We value your time and aim to get back to you as quickly as possible.
                     </p>
                   </div>
@@ -167,7 +167,7 @@ const Contact = () => {
                 className="p-5 sm:p-6 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl text-white relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-red-500/20 to-purple-500/20 rounded-full blur-2xl" />
-                <p className="text-sm sm:text-base font-medium relative z-10 leading-relaxed">
+                <p className="text-base sm:text-base font-medium relative z-10 leading-relaxed">
                   "Every great journey begins with a single step. Let's take that step together."
                 </p>
                 <p className="text-xs text-gray-400 mt-3 relative z-10">— The CreatorMD Team</p>

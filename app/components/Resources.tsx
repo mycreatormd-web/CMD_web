@@ -118,7 +118,7 @@ const Resources = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-xs sm:text-sm md:text-base md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed"
+            className="text-sm sm:text-sm md:text-base md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed"
           >
             CreatorMD resources are practical tools built to help medics create, grow, and show up online with confidence. No overwhelm. No guesswork. Just systems that work.
           </motion.p>
@@ -274,7 +274,7 @@ const Resources = () => {
                               animate={{ y: 0 }}
                               exit={{ y: -10 }}
                               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                              className="text-xs sm:text-sm text-gray-700 leading-relaxed pt-3 pb-2"
+                              className="text-sm sm:text-sm text-gray-700 leading-relaxed pt-3 pb-2"
                             >
                               {resource.description}
                             </motion.p>
