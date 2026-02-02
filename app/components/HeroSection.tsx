@@ -169,7 +169,7 @@ const HeroSection = () => {
             transition={{ delay: 0.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="text-center mb-4 md:mb-6 lg:mb-8 px-4 mt-4 sm:mt-8 md:mt-6 lg:mt-10 xl:mt-16"
           >
-            <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 md:px-4 md:py-2 lg:px-5 lg:py-2 xl:px-6 xl:py-2.5 bg-gradient-to-r from-red-600/20 via-purple-600/20 to-red-600/20 backdrop-blur-lg rounded-full border-2 border-red-500/40 text-white text-sm sm:text-sm md:text-sm lg:text-sm xl:text-base font-bold shadow-lg hover:shadow-red-600/20 transition-all duration-300">
+            <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 md:px-4 md:py-2 lg:px-5 lg:py-2 xl:px-6 xl:py-2.5 bg-gradient-to-r from-red-600/20 via-purple-600/20 to-red-600/20 backdrop-blur-lg rounded-full border-2 border-red-500/40 text-white text-xs sm:text-xs md:text-xs lg:text-xs xl:text-sm font-bold shadow-lg hover:shadow-red-600/20 transition-all duration-300">
               Built by medics, for medics.
             </span>
           </motion.div>
@@ -180,9 +180,9 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-[2.1rem] sm:text-3xl md:text-3xl lg:text-4xl xl:text-6xl font-bold leading-[1.1] sm:leading-[1.2]"
+              className="text-[2.1rem] sm:text-4xl md:text-3xl lg:text-4xl xl:text-6xl font-bold leading-tight md:leading-[1.1] lg:leading-[1.2]"
             >
-              {/* Mobile: 3 lines */}
+              {/* Mobile: 3 lines - Turn Your Medical / Knowledge Into / [word] */}
               <span className="block md:hidden text-white">Turn Your Medical</span>
               <span className="block md:hidden text-white">Knowledge Into</span>
               
@@ -269,43 +269,37 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-row gap-2 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-5 justify-center items-center px-2 sm:px-4 mt-2 sm:mt-1 lg:mt-2 xl:mt-0"
+            className="grid grid-cols-2 gap-3 sm:gap-3 md:gap-3 lg:gap-3 xl:gap-5 max-w-sm sm:max-w-md mx-auto px-4 mt-2 sm:mt-1 lg:mt-2 xl:mt-0"
           >
             <motion.button
               whileHover={{ 
                 scale: 1.05, 
-                boxShadow: "0 20px 60px rgba(59, 130, 246, 0.4)",
+                y: -8,
                 transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } 
               }}
               whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
-              className="group relative px-3 sm:px-5 md:px-5 lg:px-7 xl:py-3 py-2.5 sm:py-3 md:py-2 lg:py-2.5 xl:py-3 bg-gradient-to-r from-purple-900 via-purple-700 to-red-600 text-white font-bold rounded-lg sm:rounded-lg lg:rounded-lg xl:rounded-xl text-xs sm:text-sm md:text-sm lg:text-base xl:text-lg shadow-2xl overflow-hidden ring-2 ring-red-400/20 hover:ring-red-400/40 transition-all"
+              className="group bg-gradient-to-br from-purple-900/80 via-purple-700/80 to-red-600/80 backdrop-blur-md rounded-lg md:rounded-lg lg:rounded-lg xl:rounded-xl p-3 sm:p-3 md:p-3 lg:p-4 xl:p-5 border border-red-500/30 hover:border-red-500/50 transition-all duration-300 shadow-xl hover:shadow-red-500/20"
             >
-              <span className="relative z-10 flex items-center justify-center gap-1 sm:gap-1.5">
-                Join Waitlist 
-                <ChevronRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 lg:w-3.5 lg:h-3.5 xl:w-4 xl:h-4 group-hover:translate-x-1 transition-transform duration-300" />
-              </span>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-red-600 via-red-500 to-purple-900"
-                initial={{ x: "-100%" }}
-                whileHover={{ x: 0 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="flex items-center justify-center gap-1.5 sm:gap-2">
+                <span className="text-sm sm:text-base md:text-sm lg:text-base xl:text-lg font-bold text-white">Join Waitlist</span>
+                <ChevronRight className="w-4 h-4 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white group-hover:translate-x-1 transition-transform duration-300" />
+              </div>
             </motion.button>
 
             <motion.button
               whileHover={{ 
                 scale: 1.05,
-                borderColor: "rgba(255, 255, 255, 0.3)",
-                backgroundColor: "rgba(255, 255, 255, 0.15)",
+                y: -8,
                 transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } 
               }}
               whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
               onClick={() => setVideoPlaying(true)}
-              className="group px-3 sm:px-5 md:px-5 lg:px-7 xl:px-8 py-2.5 sm:py-3 md:py-2 lg:py-2.5 xl:py-3 bg-white/5 backdrop-blur-md text-white font-bold rounded-lg sm:rounded-lg lg:rounded-lg xl:rounded-xl text-xs sm:text-sm md:text-sm lg:text-base xl:text-lg border border-white/10 transition-all flex items-center justify-center gap-1 sm:gap-1.5 lg:gap-2 xl:gap-2.5 shadow-lg hover:shadow-white/10"
+              className="group bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-md rounded-lg md:rounded-lg lg:rounded-lg xl:rounded-xl p-3 sm:p-3 md:p-3 lg:p-4 xl:p-5 border border-white/10 hover:border-white/30 transition-all duration-300 shadow-xl hover:shadow-white/10"
             >
-              <Play className="w-2.5 h-2.5 sm:w-3 sm:h-3 lg:w-3.5 lg:h-3.5 xl:w-4 xl:h-4 group-hover:scale-110 transition-transform duration-300" />
-              Watch Intro
+              <div className="flex items-center justify-center gap-1.5 sm:gap-2">
+                <Play className="w-4 h-4 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-red-400 group-hover:scale-110 transition-transform duration-300" />
+                <span className="text-sm sm:text-base md:text-sm lg:text-base xl:text-lg font-bold text-white">Watch Intro</span>
+              </div>
             </motion.button>
           </motion.div>
         </div>

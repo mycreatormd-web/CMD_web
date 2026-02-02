@@ -214,7 +214,7 @@ const Navigation = () => {
                       initial={{ opacity: 0, x: 50 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1, duration: 0.3 }}
-                      className="block px-3 py-2 text-xs sm:text-sm text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all group"
+                      className="block px-3 py-2 text-sm sm:text-base text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all group"
                       whileTap={{ scale: 0.98 }}
                     >
                       <div className="flex items-center justify-between">
@@ -239,7 +239,7 @@ const Navigation = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6, duration: 0.3 }}
-                    className="block w-full mt-6 px-4 py-2 bg-gradient-to-r from-red-600 to-purple-600 text-white font-semibold rounded-full text-xs sm:text-sm text-center shadow-lg hover:shadow-red-500/50 transition-shadow"
+                    className="block w-full mt-6 px-4 py-2 bg-gradient-to-r from-red-600 to-purple-600 text-white font-semibold rounded-full text-sm sm:text-base text-center shadow-lg hover:shadow-red-500/50 transition-shadow"
                     whileTap={{ scale: 0.98 }}
                   >
                     Join Community
