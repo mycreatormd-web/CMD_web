@@ -13,6 +13,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Viewport meta tag for proper mobile scaling */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+        {/* Prevent iOS from auto-zooming on inputs */}
+        <meta name="format-detection" content="telephone=no" />
         {/* Netlify Identity Widget for CMS authentication */}
         <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" async></script>
       </head>

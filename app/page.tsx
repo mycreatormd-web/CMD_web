@@ -12,7 +12,7 @@ import Contact from './components/Contact';
 
 export default function Home() {
   return (
-    <main className="relative">
+    <main className="relative w-full min-w-0 overflow-x-hidden">
       <Navigation />
       <HeroSection />
       <About />

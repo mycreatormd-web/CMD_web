@@ -9,6 +9,8 @@
 
 html {
   overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 body {
@@ -16,6 +18,52 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+  min-width: 320px;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure full width on mobile */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Fix iOS Safari viewport issues */
+@supports (-webkit-touch-callout: none) {
+  body {
+    min-height: -webkit-fill-available;
+  }
+  html {
+    height: -webkit-fill-available;
+  }
+}
+
+/* Override max-width constraints on mobile for better space usage */
+@media (max-width: 640px) {
+  .max-w-3xl,
+  .max-w-4xl,
+  .max-w-5xl {
+    max-width: 100% !important;
+  }
+  
+  /* Reduce horizontal padding on mobile */
+  .px-4 {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+  
+  .px-6 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* Make container use full width on mobile */
+  .container {
+    max-width: 100% !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
 }
 
 @layer utilities {

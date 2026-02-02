@@ -169,7 +169,7 @@ const HeroSection = () => {
             transition={{ delay: 0.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="text-center mb-4 md:mb-6 lg:mb-8 px-4 mt-4 sm:mt-8 md:mt-6 lg:mt-10 xl:mt-16"
           >
-            <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 md:px-4 md:py-2 lg:px-5 lg:py-2 xl:px-6 xl:py-2.5 bg-gradient-to-r from-red-600/20 via-purple-600/20 to-red-600/20 backdrop-blur-lg rounded-full border-2 border-red-500/40 text-white text-xs sm:text-sm md:text-sm lg:text-sm xl:text-base font-bold shadow-lg hover:shadow-red-600/20 transition-all duration-300">
+            <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 md:px-4 md:py-2 lg:px-5 lg:py-2 xl:px-6 xl:py-2.5 bg-gradient-to-r from-red-600/20 via-purple-600/20 to-red-600/20 backdrop-blur-lg rounded-full border-2 border-red-500/40 text-white text-sm sm:text-sm md:text-sm lg:text-sm xl:text-base font-bold shadow-lg hover:shadow-red-600/20 transition-all duration-300">
               Built by medics, for medics.
             </span>
           </motion.div>
@@ -180,7 +180,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-3xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-6xl font-bold leading-[1.1] sm:leading-[1.2]"
+              className="text-[2.1rem] sm:text-3xl md:text-3xl lg:text-4xl xl:text-6xl font-bold leading-[1.1] sm:leading-[1.2]"
             >
               {/* Mobile: 3 lines */}
               <span className="block md:hidden text-white">Turn Your Medical</span>
@@ -218,7 +218,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-xs sm:text-sm md:text-base lg:text-sm xl:text-lg mb-2 md:mb-3 lg:mb-4 xl:mb-6 max-w-3xl mx-auto leading-relaxed px-3 sm:px-4 md:px-6 mt-2 sm:mt-1 lg:mt-2 xl:mt-0"
+              className="text-sm sm:text-sm md:text-base lg:text-sm xl:text-lg mb-2 md:mb-3 lg:mb-4 xl:mb-6 max-w-3xl mx-auto leading-relaxed px-3 sm:px-4 md:px-6 mt-2 sm:mt-1 lg:mt-2 xl:mt-0"
             >
               <span className="text-gray-300">
                 CreatorMD helps medics build <span className="font-semibold text-white">income</span>, <span className="font-semibold text-red-300">influence</span>, and <span className="font-semibold text-purple-300">impact</span> online.
@@ -269,7 +269,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col sm:flex-row gap-2 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-5 justify-center items-stretch sm:items-center px-3 sm:px-4 mt-2 sm:mt-1 lg:mt-2 xl:mt-0"
+            className="flex flex-row gap-2 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-5 justify-center items-center px-2 sm:px-4 mt-2 sm:mt-1 lg:mt-2 xl:mt-0"
           >
             <motion.button
               whileHover={{ 
@@ -278,7 +278,7 @@ const HeroSection = () => {
                 transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } 
               }}
               whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
-              className="group relative px-6 sm:px-6 md:px-5 lg:px-7 xl:py-3 py-3 sm:py-3 md:py-2 lg:py-2.5 xl:py-3 bg-gradient-to-r from-purple-900 via-purple-700 to-red-600 text-white font-bold rounded-lg sm:rounded-lg lg:rounded-lg xl:rounded-xl text-sm sm:text-base md:text-sm lg:text-base xl:text-lg shadow-2xl overflow-hidden ring-2 ring-red-400/20 hover:ring-red-400/40 transition-all w-full sm:w-auto"
+              className="group relative px-3 sm:px-5 md:px-5 lg:px-7 xl:py-3 py-2.5 sm:py-3 md:py-2 lg:py-2.5 xl:py-3 bg-gradient-to-r from-purple-900 via-purple-700 to-red-600 text-white font-bold rounded-lg sm:rounded-lg lg:rounded-lg xl:rounded-xl text-xs sm:text-sm md:text-sm lg:text-base xl:text-lg shadow-2xl overflow-hidden ring-2 ring-red-400/20 hover:ring-red-400/40 transition-all"
             >
               <span className="relative z-10 flex items-center justify-center gap-1 sm:gap-1.5">
                 Join Waitlist 
@@ -302,26 +302,11 @@ const HeroSection = () => {
               }}
               whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
               onClick={() => setVideoPlaying(true)}
-              className="group px-6 sm:px-6 md:px-5 lg:px-7 xl:px-8 py-3 sm:py-3 md:py-2 lg:py-2.5 xl:py-3 bg-white/5 backdrop-blur-md text-white font-bold rounded-lg sm:rounded-lg lg:rounded-lg xl:rounded-xl text-sm sm:text-base md:text-sm lg:text-base xl:text-lg border border-white/10 transition-all flex items-center justify-center gap-1 sm:gap-1.5 lg:gap-2 xl:gap-2.5 shadow-lg hover:shadow-white/10 w-full sm:w-auto"
+              className="group px-3 sm:px-5 md:px-5 lg:px-7 xl:px-8 py-2.5 sm:py-3 md:py-2 lg:py-2.5 xl:py-3 bg-white/5 backdrop-blur-md text-white font-bold rounded-lg sm:rounded-lg lg:rounded-lg xl:rounded-xl text-xs sm:text-sm md:text-sm lg:text-base xl:text-lg border border-white/10 transition-all flex items-center justify-center gap-1 sm:gap-1.5 lg:gap-2 xl:gap-2.5 shadow-lg hover:shadow-white/10"
             >
               <Play className="w-2.5 h-2.5 sm:w-3 sm:h-3 lg:w-3.5 lg:h-3.5 xl:w-4 xl:h-4 group-hover:scale-110 transition-transform duration-300" />
               Watch Intro
             </motion.button>
-          </motion.div>
-
-          {/* Scroll Indicator */}
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-            className="mt-4 md:mt-6 lg:mt-8 xl:mt-12 flex justify-center"
-          >
-            <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center hover:border-white/50 transition-colors">
-              <motion.div 
-                animate={{ y: [0, 6, 0] }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                className="w-1 h-2 bg-gradient-to-b from-red-400 to-red-500 rounded-full mt-1.5" 
-              />
-            </div>
           </motion.div>
         </div>
       </div>
