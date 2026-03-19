@@ -399,7 +399,7 @@ export default function ProgramsPageClient() {
             <p className="text-gray-400 text-sm sm:text-base md:text-lg mt-2 sm:mt-3">Start your transformation today with our most popular programs</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {programs.availableNow.map((program, idx) => {
               const colorClasses = getColorClasses(program.color);
               return (

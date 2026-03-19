@@ -279,11 +279,11 @@ const HeroSection = () => {
                 transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } 
               }}
               whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
-              onClick={() => window.open('https://example.com', '_blank')}
+              onClick={() => window.open('https://selar.com/73395y7252', '_blank')}
               className="group bg-gradient-to-br from-purple-900/80 via-purple-700/80 to-red-600/80 backdrop-blur-md rounded-lg md:rounded-lg lg:rounded-lg xl:rounded-xl p-3 sm:p-3 md:p-3 lg:p-4 xl:p-5 border border-red-500/30 hover:border-red-500/50 transition-all duration-300 shadow-xl hover:shadow-red-500/20"
             >
               <div className="flex items-center justify-center gap-1.5 sm:gap-2">
-                <span className="text-sm sm:text-base md:text-sm lg:text-base xl:text-lg font-bold text-white">Explore Now</span>
+                <span className="text-sm sm:text-base md:text-sm lg:text-base xl:text-lg font-bold text-white">Explore New</span>
                 <ChevronRight className="w-4 h-4 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white group-hover:translate-x-1 transition-transform duration-300" />
               </div>
             </motion.button>

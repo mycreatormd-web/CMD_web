@@ -7,12 +7,12 @@ export const programs: ProgramsData = {
       slug: 'creatormd-bootcamp',
       title: 'CreatorMD Bootcamp',
       shortDescription: 'An intensive live program designed to help medical professionals launch their content authority in 7 days.',
-      fullDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      fullDescription: 'The CreatorMD Bootcamp is an intensive live program that transforms medical professionals into confident content creators. Learn from expert speakers who share practical strategies for building your brand, authority, and income online.',
       benefits: [
-        'Lorem ipsum dolor sit amet',
-        'Consectetur adipiscing elit',
-        'Sed do eiusmod tempor incididunt',
-        'Ut labore et dolore magna aliqua'
+        'Get clear on what to create and who to serve',
+        'Turn your medical journey into authority',
+        'Build influence that leads to income',
+        'Expert-led live sessions with Q&A'
       ],
       icon: 'Zap',
       color: 'from-red-500 to-purple-500',
@@ -25,7 +25,7 @@ export const programs: ProgramsData = {
       id: 'core-course',
       slug: 'creatormd-core-course',
       title: 'CreatorMD Core Course',
-      shortDescription: 'Self-paced foundational course covering content strategy, personal branding, and audience building fundamentals.',
+      shortDescription: 'Self-paced foundational course covering content strategy, personal branding, and audience building.',
       fullDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       benefits: [
         'Lorem ipsum dolor sit amet',
@@ -39,6 +39,25 @@ export const programs: ProgramsData = {
       duration: 'Self-paced',
       level: 'Beginner',
       externalLink: 'https://app.gohighlevel.com/v2/preview/XIxNxbeFj0B5mVXJyglB?notrack=true'
+    },
+    {
+      id: 'how-to-become-creatormd',
+      slug: 'how-to-become-creatormd',
+      title: 'How to Become a CreatorMD',
+      shortDescription: 'The essential guide to starting your journey as a medical content creator with actionable first steps.',
+      fullDescription: 'A comprehensive introduction to the CreatorMD journey, covering the mindset, strategies, and first steps to becoming a successful medical content creator.',
+      benefits: [
+        'Understand the CreatorMD mindset',
+        'Learn the foundational principles',
+        'Get started on your creator journey',
+        'Access actionable first steps'
+      ],
+      icon: 'Zap',
+      color: 'from-purple-500 to-pink-500',
+      status: 'available',
+      duration: 'Quick Start',
+      level: 'Beginner',
+      externalLink: 'https://selar.com/73395y7252'
     }
   ],
   comingSoon: [
