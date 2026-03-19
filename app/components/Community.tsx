@@ -109,13 +109,13 @@ const Community = () => {
     },
     {
       quote: "Finally, a space where I don't feel alone in this journey.",
-      author: "Dr. James",
-      role: "Family Medicine Resident"
+      author: "Pharm. James",
+      role: "Pharmacist"
     },
     {
       quote: "The templates alone saved me weeks of work.",
-      author: "Dr. Sarah",
-      role: "Health Educator & Content Creator"
+      author: "Sarah",
+      role: "Medical Student"
     }
   ];
 

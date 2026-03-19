@@ -88,13 +88,10 @@ const ProgramCard = ({ program, idx, expandedId, setExpandedId }) => {
         duration: 0.5,
         ease: "easeOut"
       }}
-      className="h-full"
     >
       <motion.div
-        layout
-        layoutId={`card-${program.id}`}
         onClick={() => setExpandedId(isExpanded ? null : program.id)}
-        className={`relative h-full bg-white rounded-lg md:rounded-lg lg:rounded-lg xl:rounded-lg border-2 ${program.borderColor} shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden cursor-pointer group`}
+        className={`relative bg-white rounded-lg md:rounded-lg lg:rounded-lg xl:rounded-lg border-2 ${program.borderColor} shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden cursor-pointer group`}
       >
         {/* Animated Background */}
         <div className={`absolute inset-0 bg-gradient-to-br ${program.bgColor} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
@@ -273,7 +270,7 @@ const ProgramsSection = () => {
         </motion.div>
 
         {/* Programs Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 mb-10 sm:mb-12 md:mb-16 lg:mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 mb-10 sm:mb-12 md:mb-16 lg:mb-20 items-start">
           {programs.map((program, idx) => (
             <ProgramCard 
               key={program.id}

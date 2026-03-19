@@ -190,8 +190,9 @@ const HeroSection = () => {
               <span className="hidden md:block text-white">Turn Your Medical Knowledge</span>
               
               {/* Changing word line */}
-              <span className="flex items-center justify-center gap-2 md:gap-3">
+              <span className="flex items-center justify-center gap-0">
                 <span className="hidden md:inline text-white">Into</span>
+                <span className="hidden md:inline text-white">&nbsp;</span>
                 <span className="relative inline-block min-h-[1.2em] flex items-center">
                   <AnimatePresence mode="wait">
                     <motion.span
@@ -209,7 +210,7 @@ const HeroSection = () => {
                     </motion.span>
                   </AnimatePresence>
                 </span>
-                <span className="text-white ml-1">.</span>
+                <span className="text-white">.</span>
               </span>
             </motion.h2>
 
@@ -321,15 +322,15 @@ const HeroSection = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="relative w-full max-w-4xl mx-4"
+              className="relative max-h-[90vh] mx-4"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="aspect-video bg-black rounded-3xl overflow-hidden border-8 border-gray-800 shadow-2xl shadow-black">
+              <div className="bg-black rounded-3xl overflow-hidden border-8 border-gray-800 shadow-2xl shadow-black">
                 <video
-                  src="/creatormd.mov"
+                  src="/intro-video.mp4"
                   autoPlay
                   controls
-                  className="w-full h-full object-cover"
+                  className="max-h-[80vh] w-auto object-contain"
                 />
               </div>
               <button
