@@ -32,26 +32,28 @@ const Contact = () => {
     }));
   };
 
+  const encode = (data: Record<string, string>) =>
+    Object.keys(data)
+      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&');
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError('');
 
     try {
-      // Send to our own API route
-      const response = await fetch('/api/contact', {
+      const response = await fetch('/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({ 'form-name': 'contact', ...formData })
       });
-
-      const data = await response.json();
 
       if (response.ok) {
         setIsSuccess(true);
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
-        throw new Error(data.error || 'Failed to submit');
+        throw new Error('Submission failed');
       }
     } catch (err) {
       setError('Something went wrong. Please try again or email us directly.');
@@ -71,6 +73,13 @@ const Contact = () => {
 
   return (
     <section id="contact" className="relative py-16 sm:py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
+      {/* Hidden form for Netlify build-time detection */}
+      <form name="contact" data-netlify="true" hidden>
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <input type="text" name="subject" />
+        <textarea name="message" />
+      </form>
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-0 w-96 h-96 bg-red-100/30 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
@@ -210,8 +219,11 @@ const Contact = () => {
               ) : (
                 <form
                   onSubmit={handleSubmit}
+                  name="contact"
+                  data-netlify="true"
                   className="p-6 sm:p-8 bg-white rounded-2xl border-2 border-gray-100 shadow-lg"
                 >
+                  <input type="hidden" name="form-name" value="contact" />
                   <div className="space-y-5">
                     {/* Name Field */}
                     <div>
