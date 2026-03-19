@@ -43,20 +43,21 @@ const Contact = () => {
     setError('');
 
     try {
-      const response = await fetch('/', {
+      // Use the Netlify forms endpoint directly
+      const response = await fetch('/__forms.html', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: encode({ 'form-name': 'contact', ...formData })
       });
 
-      if (response.ok) {
+      if (response.ok || response.status === 303 || response.status === 302) {
         setIsSuccess(true);
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
         throw new Error('Submission failed');
       }
     } catch (err) {
-      setError('Something went wrong. Please try again or email us directly.');
+      setError('Something went wrong. Please try again or email us directly at mycreatormd@gmail.com');
     } finally {
       setIsSubmitting(false);
     }
