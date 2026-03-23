@@ -183,7 +183,7 @@ const Partnerships = () => {
 
   return (
     <>
-      <section id="partnerships" className="relative py-9 sm:py-11 md:py-14 lg:py-17 xl:py-19 bg-gradient-to-b from-slate-900 via-red-950/30 to-slate-900">
+      <section id="partnerships" className="relative py-8 sm:py-10 md:py-13 lg:py-16 xl:py-18 bg-gradient-to-b from-slate-900 via-red-950/30 to-slate-900">
         {/* Background Effects */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(239,68,68,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(239,68,68,0.05)_1px,transparent_1px)] bg-[size:80px_80px]" />
         
@@ -219,7 +219,7 @@ const Partnerships = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.15, duration: 0.6 }}
-              className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-2 sm:mb-2.5 lg:mb-3 xl:mb-4"
+              className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-white mb-2 sm:mb-2.5 lg:mb-3 xl:mb-4"
             >
               Partner with CreatorMD to{" "}
               <span className="bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent">
@@ -233,7 +233,7 @@ const Partnerships = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-sm sm:text-base md:text-sm lg:text-base xl:text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed"
+              className="text-xs sm:text-sm md:text-xs lg:text-sm xl:text-base text-gray-200 max-w-3xl mx-auto leading-relaxed"
             >
               We work with hospitals, global health organizations, and digital platforms to create ethical, high-impact health communication — training staff, running content campaigns, and building workplace wellness programs.
             </motion.p>
@@ -252,7 +252,7 @@ const Partnerships = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.25, duration: 0.5 }}
-              className="text-2xl sm:text-4xl font-bold text-white mb-6 relative inline-block"
+              className="text-xl sm:text-3xl font-bold text-white mb-6 relative inline-block"
             >
               <span className="bg-gradient-to-r from-red-400 via-purple-400 to-red-300 bg-clip-text text-transparent">
                 Why partner with us
@@ -320,7 +320,7 @@ const Partnerships = () => {
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: idx * 0.1 + 0.1, duration: 0.4 }}
-                          className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-1.5 sm:mb-2 md:mb-3 leading-snug"
+                          className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white mb-1.5 sm:mb-2 md:mb-3 leading-snug"
                         >
                           {benefit.title}
                         </motion.h4>
@@ -331,7 +331,7 @@ const Partnerships = () => {
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
-                          className="text-sm sm:text-base md:text-base text-gray-300 leading-relaxed"
+                          className="text-xs sm:text-sm md:text-sm text-gray-300 leading-relaxed"
                         >
                           {benefit.description}
                         </motion.p>

@@ -15,12 +15,12 @@ const Navigation = () => {
   const router = useRouter();
 
   const navItems = [
-    { label: 'About', href: '#about' },
-    { label: 'Programs', href: pathname === '/' ? '#programs' : '/programs' },
-    { label: 'Community', href: '#community' },
-    { label: 'Resources', href: '#resources' },
+    { label: 'About', href: '/#about' },
+    { label: 'Programs', href: '/programs' },
+    { label: 'Community', href: '/#community' },
+    { label: 'Resources', href: '/#resources' },
     { label: 'Blog', href: '/blog' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Contact', href: '/#contact' },
   ];
 
   useEffect(() => {
@@ -34,23 +34,18 @@ const Navigation = () => {
   const handleNavClick = (href: string) => {
     setIsOpen(false);
     
-    // If it's a hash link
-    if (href.startsWith('#')) {
-      // If we're not on home page, navigate there first
-      if (pathname !== '/') {
-        router.push('/');
-        // Wait a bit for page to load, then scroll
-        setTimeout(() => {
-          const element = document.querySelector(href);
-          element?.scrollIntoView({ behavior: 'smooth' });
-        }, 500);
+    if (href.startsWith('/#')) {
+      if (pathname === '/') {
+        const hash = href.slice(1);
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+          window.history.replaceState(null, '', href);
+        }
       } else {
-        // We're on home page, just scroll
-        const element = document.querySelector(href);
-        element?.scrollIntoView({ behavior: 'smooth' });
+        router.push(href);
       }
     } else {
-      // It's a regular link
       router.push(href);
     }
   };
@@ -72,12 +67,10 @@ const Navigation = () => {
           <div className="flex items-center justify-between h-14 lg:h-16 xl:h-20">
             {/* Logo Container */}
             <motion.a
-              href="#"
+              href="/"
               onClick={(e) => {
-                e.preventDefault();
-                if (pathname !== '/') {
-                  router.push('/');
-                } else {
+                if (pathname === '/') {
+                  e.preventDefault();
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
               }}
@@ -88,7 +81,7 @@ const Navigation = () => {
               <img
                 src="/cmd_logo_invert6.svg"
                 alt="CreatorMD Logo"
-                className="h-8 lg:h-10 xl:h-12 w-auto drop-shadow-[0_0_12px_rgba(220,38,38,0.3)] hover:drop-shadow-[0_0_16px_rgba(220,38,38,0.5)] transition-all duration-300"
+                className="h-7 lg:h-9 xl:h-11 w-auto drop-shadow-[0_0_12px_rgba(220,38,38,0.3)] hover:drop-shadow-[0_0_16px_rgba(220,38,38,0.5)] transition-all duration-300"
               />
             </motion.a>
 

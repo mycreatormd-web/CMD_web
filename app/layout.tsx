@@ -3,6 +3,7 @@
 import "./globals.css";
 import { CommunityFormProvider } from "@/app/context/CommunityFormContext";
 import CommunityJoinForm from "@/app/components/CommunityJoinForm";
+import StructuredData from "@/app/components/StructuredData";
 import Script from "next/script";
 
 export default function RootLayout({
@@ -25,6 +26,7 @@ export default function RootLayout({
       </head>
       <body>
         <CommunityFormProvider>
+          <StructuredData />
           {children}
           <CommunityJoinForm />
         </CommunityFormProvider>

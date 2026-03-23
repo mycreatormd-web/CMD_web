@@ -120,6 +120,7 @@ const HeroSection = () => {
 
   return (
     <div 
+      id="hero"
       ref={containerRef}
       className="relative h-screen overflow-hidden bg-gradient-to-br from-black via-gray-950 to-black"
     >

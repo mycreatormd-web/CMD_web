@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   BookOpen, Target, Wrench, Trophy, Users, ArrowRight, ChevronDown, Zap, Heart, Briefcase
 } from 'lucide-react';
+import { useCommunityForm } from '@/app/context/CommunityFormContext';
 
 const programs = [
   {
@@ -197,6 +198,7 @@ const ProgramCard = ({ program, idx, expandedId, setExpandedId }) => {
 
 const ProgramsSection = () => {
   const [expandedId, setExpandedId] = useState(null);
+  const { openForm } = useCommunityForm();
 
   return (
     <section id="programs" className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-8 sm:px-6 md:px-8 overflow-hidden">
@@ -333,6 +335,8 @@ const ProgramsSection = () => {
 
             {/* Secondary CTA */}
             <motion.button
+
+            onClick={() => openForm()}
               whileHover={{ 
                 scale: 1.05,
                 backgroundColor: "#f3f4f6"

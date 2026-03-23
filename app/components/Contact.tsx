@@ -73,7 +73,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="relative py-16 sm:py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
+    <section id="contact" className="relative py-14 sm:py-18 md:py-25 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
       {/* Hidden form for Netlify build-time detection */}
       <form name="contact" data-netlify="true" hidden>
         <input type="text" name="name" />
@@ -113,13 +113,13 @@ const Contact = () => {
             <span className="text-sm font-semibold text-gray-700">Get In Touch</span>
           </div>
           
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-4">
             Let's{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-purple-600">
               Connect
             </span>
           </h2>
-          <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
+          <p className="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto">
             Have a question, idea, or just want to say hello? We'd love to hear from you.
           </p>
         </motion.div>
@@ -141,11 +141,11 @@ const Contact = () => {
                     <Mail className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900 mb-1">Email Us</h3>
-                    <p className="text-sm sm:text-sm text-gray-500 mb-2">We'll respond within 24 hours</p>
+                    <h3 className="font-semibold text-gray-900 mb-1">Email Us</h3>
+                    <p className="text-xs sm:text-xs text-gray-500 mb-2">We'll respond within 24 hours</p>
                     <a 
                       href="mailto:hello@creatormd.com" 
-                      className="text-red-600 font-medium text-sm hover:text-red-700 transition-colors"
+                      className="text-red-600 font-medium text-xs hover:text-red-700 transition-colors"
                     >
                       hello@creatormd.com
                     </a>
@@ -160,8 +160,8 @@ const Contact = () => {
                     <MessageSquare className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900 mb-1">Quick Response</h3>
-                    <p className="text-sm sm:text-sm text-gray-500">
+                    <h3 className="font-semibold text-gray-900 mb-1">Quick Response</h3>
+                    <p className="text-xs sm:text-xs text-gray-500">
                       We value your time and aim to get back to you as quickly as possible.
                     </p>
                   </div>
@@ -177,7 +177,7 @@ const Contact = () => {
                 className="p-5 sm:p-6 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl text-white relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-red-500/20 to-purple-500/20 rounded-full blur-2xl" />
-                <p className="text-base sm:text-base font-medium relative z-10 leading-relaxed">
+                <p className="text-sm sm:text-sm font-medium relative z-10 leading-relaxed">
                   "Every great journey begins with a single step. Let's take that step together."
                 </p>
                 <p className="text-xs text-gray-400 mt-3 relative z-10">— The CreatorMD Team</p>
@@ -206,7 +206,7 @@ const Contact = () => {
                   >
                     <CheckCircle className="w-10 h-10 text-white" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">Message Sent!</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">Message Sent!</h3>
                   <p className="text-gray-600 mb-6">
                     Thank you for reaching out. We'll get back to you within 24 hours.
                   </p>

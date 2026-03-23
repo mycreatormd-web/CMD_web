@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ChevronLeft, Play, Sparkles, Target, Users, Zap } from 'lucide-react';
 import Navigation from '@/app/components/Navigation';
+import Footer from '@/app/components/Footer';
 
 const bootcampSessions = [
   {
@@ -277,6 +278,8 @@ export default function BootcampClient() {
           </motion.div>
         </div>
       </section>
+
+      <Footer />
     </main>
   );
 }

@@ -13,7 +13,11 @@ import {
   ChevronRight
 } from 'lucide-react';
 
+import { useCommunityForm } from '@/app/context/CommunityFormContext';
+
+
 const CoreValuesSection = () => {
+  const { openForm } = useCommunityForm();
   const [animationStep, setAnimationStep] = useState(0);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -469,7 +473,7 @@ const CoreValuesSection = () => {
 
             {/* CTA Button */}
             <motion.a
-              href="#community"
+              onClick={() => openForm()}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}

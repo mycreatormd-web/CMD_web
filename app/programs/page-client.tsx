@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navigation from '@/app/components/Navigation';
+import Footer from '@/app/components/Footer';
 import { programs } from '@/app/data/programs';
 import ProgramModal from '@/app/components/ProgramModal';
 import { Program } from '@/app/types/program';
@@ -989,6 +990,8 @@ export default function ProgramsPageClient() {
         isOpen={isModalOpen} 
         onClose={handleCloseModal}
       />
+
+      <Footer />
     </main>
   );
 }

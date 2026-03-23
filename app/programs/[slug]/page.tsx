@@ -28,12 +28,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${program.title} | CreatorMD`,
     description: program.shortDescription,
-    metadataBase: new URL('https://creatormd.com'),
+    metadataBase: new URL('https://thecreatormd.com'),
     openGraph: {
       title: program.title,
       description: program.shortDescription,
       type: 'website',
-      url: `https://creatormd.com/programs/${program.slug}`,
+      url: `https://thecreatormd.com/programs/${program.slug}`,
     },
     alternates: {
       canonical: `/programs/${program.slug}`,
