@@ -22,7 +22,8 @@ export default function RootLayout({
         {/* Prevent iOS from auto-zooming on inputs */}
         <meta name="format-detection" content="telephone=no" />
         {/* Google Search Console Verification */}
-        <meta name="google-site-verification" content="SofrAGiqzWepvojH-FgPEd4376vKXYBiRfXEgDvBgmk" />        {/* Additional SEO meta tags for better indexing */}
+        <meta name="google-site-verification" content="SofrAGiqzWepvojH-FgPEd4376vKXYBiRfXEgDvBgmk" />
+        {/* Additional SEO meta tags for better indexing */}
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta name="googlebot" content="index, follow" />
         <meta name="author" content="CreatorMD" />
