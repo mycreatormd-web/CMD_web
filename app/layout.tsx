@@ -21,6 +21,13 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
         {/* Prevent iOS from auto-zooming on inputs */}
         <meta name="format-detection" content="telephone=no" />
+        {/* Google Search Console Verification */}
+        <meta name="google-site-verification" content="PASTE_YOUR_ACTUAL_VERIFICATION_CODE_HERE" />
+        {/* Additional SEO meta tags for better indexing */}
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="author" content="CreatorMD" />
+        <meta name="publisher" content="CreatorMD" />
         {/* Netlify Identity Widget for CMS authentication */}
         <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" async></script>
       </head>
