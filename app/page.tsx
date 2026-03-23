@@ -13,12 +13,12 @@ import Footer from './components/Footer';
 import TitleManager from './components/TitleManager';
 
 export const metadata = {
-  title: 'CreatorMD - Medical Content Acceleration System',
-  description: 'Turn medical knowledge into authority, opportunities, impact, and influence. Join 500+ medical professionals building their authority online.',
-  keywords: 'medical content creation, healthcare professionals, medical social media, doctor content creator, medical education, healthcare content strategy, medical influencer, physician content',
+  title: 'CreatorMD - Medical Content Acceleration System | Healthcare Creator Education',
+  description: 'Turn medical knowledge into authority, opportunities, impact, and influence. Join 500+ medical professionals building their authority online through strategic content creation.',
+  keywords: 'CreatorMD, medical content creation, healthcare professionals, medical social media, doctor content creator, medical education, healthcare content strategy, medical influencer, physician content, medical creator bootcamp',
   openGraph: {
-    title: 'CreatorMD - Medical Content Acceleration System',
-    description: 'Turn medical knowledge into authority, opportunities, impact, and influence. Join 500+ medical professionals building their authority online.',
+    title: 'CreatorMD - Medical Content Acceleration System | Healthcare Creator Education',
+    description: 'Turn medical knowledge into authority, opportunities, impact, and influence. Join 500+ medical professionals building their authority online through strategic content creation.',
     url: 'https://thecreatormd.com',
     siteName: 'CreatorMD',
     type: 'website',
