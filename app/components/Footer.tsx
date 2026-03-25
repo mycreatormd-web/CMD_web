@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { 
   Instagram, 
-  Twitter, 
+  X, 
   Linkedin, 
   Youtube, 
   Mail, 
@@ -33,7 +33,7 @@ const Footer = () => {
 
   const socialLinks = [
     { name: 'Instagram', icon: Instagram, href: 'https://instagram.com/thecreatormd', color: 'hover:text-pink-400' },
-    { name: 'X', icon: Twitter, href: 'https://x.com/thecreatormd', color: 'hover:text-blue-400' },
+    { name: 'X', icon: X, href: 'https://x.com/thecreatormd', color: 'hover:text-blue-400' },
     { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com/company/thecreatormd', color: 'hover:text-blue-500' },
     { name: 'YouTube', icon: Youtube, href: 'https://youtube.com/@thecreatormd', color: 'hover:text-red-500' },
   ];

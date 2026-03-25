@@ -23,6 +23,7 @@ export const metadata = {
     url: 'https://thecreatormd.com',
     siteName: 'CreatorMD',
     type: 'website',
+    logo: 'https://thecreatormd.com/icon.jpg',
     images: [
       {
         url: 'https://thecreatormd.com/icon.jpg',
@@ -38,6 +39,18 @@ export const metadata = {
     description: 'Turn medical knowledge into authority, opportunities, impact, and influence.',
     site: '@thecreatormd',
     creator: '@thecreatormd',
+  },
+  // LinkedIn Open Graph metadata
+  linkedin: {
+    title: 'CreatorMD - Medical Content Acceleration System | Healthcare Creator Education',
+    description: 'Turn medical knowledge into authority, opportunities, impact, and influence. Join 500+ medical professionals building their authority online through strategic content creation.',
+    image: 'https://thecreatormd.com/icon.jpg',
+  },
+  // Instagram metadata (uses OpenGraph)
+  instagram: {
+    title: 'CreatorMD - Medical Content Acceleration System',
+    description: 'Turn medical knowledge into authority, opportunities, impact, and influence.',
+    image: 'https://thecreatormd.com/icon.jpg',
   },
   alternates: {
     canonical: 'https://thecreatormd.com',

@@ -15,8 +15,13 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Favicon */}
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/favicon.svg" />
+        <link rel="icon" href="/icon.jpg" type="image/jpeg" />
+        <link rel="apple-touch-icon" href="/icon.jpg" />
+        {/* Open Graph image for search results and social sharing */}
+        <meta property="og:image" content="https://thecreatormd.com/icon.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/jpeg" />
         {/* Viewport meta tag for proper mobile scaling */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
         {/* Prevent iOS from auto-zooming on inputs */}
