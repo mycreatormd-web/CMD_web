@@ -17,6 +17,7 @@ export const metadata = {
   description: 'Turn medical knowledge into authority, opportunities, impact, and influence. Join 500+ medical professionals building their authority online through strategic content creation.',
   keywords: 'CreatorMD, medical content creation, healthcare professionals, medical social media, doctor content creator, medical education, healthcare content strategy, medical influencer, physician content, medical creator bootcamp',
   openGraph: {
+    name: 'CreatorMD',
     title: 'CreatorMD - Medical Content Acceleration System | Healthcare Creator Education',
     description: 'Turn medical knowledge into authority, opportunities, impact, and influence. Join 500+ medical professionals building their authority online through strategic content creation.',
     url: 'https://thecreatormd.com',
@@ -24,14 +25,14 @@ export const metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://thecreatormd.com/cmd_logo_invert6.svg',
+        url: 'https://thecreatormd.com/icon.jpg',
         width: 1200,
         height: 630,
         alt: 'CreatorMD - Medical Content Acceleration System',
       },
     ],
   },
-  twitter: {
+  x: {
     card: 'summary_large_image',
     title: 'CreatorMD - Medical Content Acceleration System',
     description: 'Turn medical knowledge into authority, opportunities, impact, and influence.',

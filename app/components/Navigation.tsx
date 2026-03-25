@@ -81,7 +81,7 @@ const Navigation = () => {
               <img
                 src="/cmd_logo_invert6.svg"
                 alt="CreatorMD Logo"
-                className="h-7 lg:h-9 xl:h-11 w-auto drop-shadow-[0_0_12px_rgba(220,38,38,0.3)] hover:drop-shadow-[0_0_16px_rgba(220,38,38,0.5)] transition-all duration-300"
+                className="h-6 lg:h-8 xl:h-10 w-auto drop-shadow-[0_0_12px_rgba(220,38,38,0.3)] hover:drop-shadow-[0_0_16px_rgba(220,38,38,0.5)] transition-all duration-300"
               />
             </motion.a>
 
