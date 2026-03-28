@@ -2,52 +2,95 @@ backend:
   name: git-gateway
   branch: main
 
-# Enables the editorial workflow (draft, review, ready, published)
+# Enables draft → review → publish workflow
 publish_mode: editorial_workflow
 
-# Media files storage
+# Where uploaded images are saved in the repo
 media_folder: "public/blog/images"
+# The URL path used when images are referenced in posts
 public_folder: "/blog/images"
 
-# Site URL (update this to your actual domain)
-site_url: https://creatormd.com
-display_url: https://creatormd.com
-
-# Logo for the CMS
+site_url: https://thecreatormd.com
+display_url: https://thecreatormd.com
 logo_url: /cmd_logo_invert6.svg
-
-# Restrict access to specific roles (set in Netlify Identity)
-# Only users with 'admin' or 'editor' role can access
-# You assign roles in Netlify Dashboard → Identity → Users → Click user → Edit → Add role
 
 collections:
   - name: "blog"
     label: "Blog Posts"
     folder: "content/blog"
     create: true
+    # filename = slug field value
     slug: "{{slug}}"
     preview_path: "blog/{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string", required: true }
       - { label: "Publish Date", name: "date", widget: "datetime", required: true }
       - { label: "Author", name: "author", widget: "string", default: "CreatorMD Team" }
-      - { 
-          label: "Category", 
-          name: "category", 
+      - {
+          label: "Category",
+          name: "category",
           widget: "select",
-          options: ["Getting Started", "Personal Branding", "Content Strategy", "Growth Tips", "Monetization", "Community Stories"],
-          default: "Getting Started"
+          options:
+            [
+              "Getting Started",
+              "Personal Branding",
+              "Content Strategy",
+              "Growth Tips",
+              "Monetization",
+              "Community Stories",
+            ],
+          default: "Getting Started",
         }
-      - { label: "Featured Image", name: "image", widget: "image", required: false }
-      - { label: "Excerpt", name: "excerpt", widget: "text", required: true, hint: "A short summary of the post (150-200 characters)" }
-      - { label: "Read Time", name: "readTime", widget: "string", default: "5 min read" }
-      - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Published", name: "published", widget: "boolean", default: false, hint: "Toggle to publish or unpublish this post" }
+      - {
+          label: "Tags",
+          name: "tags",
+          widget: "list",
+          allow_add: true,
+          hint: "Add relevant tags e.g. branding, instagram, tiktok",
+        }
+      - {
+          label: "Cover Image",
+          name: "image",
+          widget: "image",
+          required: false,
+          hint: "Recommended size: 1200 × 630 px",
+        }
+      - {
+          label: "Excerpt / Summary",
+          name: "excerpt",
+          widget: "text",
+          required: true,
+          hint: "A short summary shown on the blog listing page (150–200 characters).",
+        }
+      - {
+          label: "SEO Description",
+          name: "seoDescription",
+          widget: "text",
+          required: false,
+          hint: "Overrides Excerpt for Google search snippet. Leave blank to use Excerpt.",
+        }
+      - {
+          label: "Body",
+          name: "body",
+          widget: "markdown",
+          hint: "Write the full post here. You can add headings, images, links, bullet lists etc.",
+        }
+      - {
+          label: "Gallery Images",
+          name: "gallery",
+          widget: "list",
+          required: false,
+          field: { label: "Image", name: "image", widget: "image" },
+          hint: "Optional extra images that appear at the end of the post.",
+        }
+      - {
+          label: "Published",
+          name: "published",
+          widget: "boolean",
+          default: false,
+          hint: "Turn ON to make this post visible on the site.",
+        }
 
-  - name: "pages"
-    label: "Pages"
-    files:
-      - label: "About Page Content"
         name: "about"
         file: "content/pages/about.md"
         fields:

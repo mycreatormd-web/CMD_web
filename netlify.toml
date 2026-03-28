@@ -6,27 +6,19 @@
   package = "@netlify/plugin-nextjs"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
   NPM_FLAGS = "--legacy-peer-deps"
 
-# Password protect the admin area
-# Only people with the password can even see the login page
+# Netlify Identity: enable Git Gateway for Decap CMS
+[functions]
+  directory = "netlify/functions"
+
+# Keep admin area out of search engines
 [[headers]]
   for = "/admin/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
 
-# Basic Auth for /admin (requires Netlify Pro plan)
-# Uncomment below if you have Pro plan:
-# [[redirects]]
-#   from = "/admin/*"
-#   to = "/admin/:splat"
-#   status = 200
-#   force = true
-#   [redirects.headers]
-#     Authorization = "Basic Auth"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Next.js handles all routing — remove the catch-all redirect
+# that was overriding Next.js pages
